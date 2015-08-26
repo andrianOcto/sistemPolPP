@@ -17,15 +17,17 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
+//digunakan untuk routing kalau belum login
+Route::group(['middleware' => 'guest'], function () {
+    Route::controller('/', 'LoginController');
+});
+
 //digunakan untuk routing kalau udah login
 Route::group(['middleware' => 'auth'], function () {
     Route::controller('/', 'DashboardController');
 });
 
-//digunakan untuk routing kalau belum login
-Route::group(['middleware' => 'guest'], function () {
-    Route::controller('/', 'LoginController');
-});
+
 
 
 
