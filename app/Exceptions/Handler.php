@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Session;
 use Exception;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -41,7 +42,10 @@ class Handler extends ExceptionHandler
     {
         if ($e instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException) {
         //
-            return redirect("/");
+           if(Session::get("role","default")=="master")
+                return redirect("/admin");
+            else
+                return redirect('/');
         }
         else
         {

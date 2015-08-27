@@ -38,7 +38,10 @@ class RedirectIfAuthenticated
     {
         if(Session::has("user"))
         {
-            return redirect('/');
+            if(Session::get("role","default")=="master")
+                return redirect("/admin");
+            else
+                return redirect('/');
         }
         // if ($this->auth->check()) {
             
