@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 4.4.12
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 26, 2015 at 01:59 PM
--- Server version: 5.6.21
--- PHP Version: 5.6.3
+-- Generation Time: Aug 27, 2015 at 06:32 AM
+-- Server version: 5.6.25
+-- PHP Version: 5.6.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `db_rencana_anggaran`
@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `s_bidang` (
 CREATE TABLE IF NOT EXISTS `s_jenis_belanja` (
   `id` varchar(55) NOT NULL,
   `id_kelompok` varchar(55) NOT NULL,
-  `deskripsi` varchar(255) NOT NULL
+  `description` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -155,9 +155,9 @@ CREATE TABLE IF NOT EXISTS `s_kepala` (
 --
 
 CREATE TABLE IF NOT EXISTS `s_objek_belanja` (
-  `id_jenis` varchar(55) NOT NULL,
   `id` varchar(55) NOT NULL,
-  `deskripsi` varchar(255) NOT NULL
+  `id_jenis` varchar(55) NOT NULL,
+  `description` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -224,6 +224,13 @@ CREATE TABLE IF NOT EXISTS `s_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Dumping data for table `s_user`
+--
+
+INSERT INTO `s_user` (`username`, `password`, `role`) VALUES
+('master', 'eyJpdiI6IjZHc2RWbVwvY0JKWkRnUUNJUHpLVGpRPT0iLCJ2YWx1ZSI6IlMzVStLb0h5bGsyXC9OMDRJNnhPczJBPT0iLCJtYWMiOiIyYWUzODk0YTk3ZjFiMGVhNzg2OTc1MzlkNjNhYzY5ZWY2NjkwYWM5ODZiOTc3Y2I0ZWNlNDliMWJjN2Y3NGE4In0=', 'master');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -231,65 +238,62 @@ CREATE TABLE IF NOT EXISTS `s_user` (
 -- Indexes for table `m_detail_program`
 --
 ALTER TABLE `m_detail_program`
- ADD PRIMARY KEY (`id`,`id_bidang`), ADD KEY `id_bidang` (`id_bidang`);
-
---
--- Indexes for table `m_detail_rko`
---
-ALTER TABLE `m_detail_rko`
- ADD KEY `id_kegiatan` (`id_kegiatan`);
-
---
--- Indexes for table `m_detail_spj`
---
-ALTER TABLE `m_detail_spj`
- ADD PRIMARY KEY (`id`), ADD KEY `id_kegiatan` (`id_kegiatan`), ADD KEY `id_rincian` (`id_rincian`);
+  ADD PRIMARY KEY (`id`,`id_bidang`),
+  ADD KEY `id_bidang` (`id_bidang`);
 
 --
 -- Indexes for table `s_bidang`
 --
 ALTER TABLE `s_bidang`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `s_jenis_belanja`
 --
 ALTER TABLE `s_jenis_belanja`
- ADD PRIMARY KEY (`id`,`id_kelompok`), ADD KEY `kelompok_jenis` (`id_kelompok`);
+  ADD PRIMARY KEY (`id`,`id_kelompok`),
+  ADD KEY `jenis_kelompok` (`id_kelompok`);
 
 --
--- Indexes for table `s_kelompok_kerja`
+-- Indexes for table `s_kelompok_belanja`
 --
-ALTER TABLE `s_kelompok_kerja`
- ADD PRIMARY KEY (`id`);
+ALTER TABLE `s_kelompok_belanja`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `s_objek_belanja`
 --
 ALTER TABLE `s_objek_belanja`
- ADD PRIMARY KEY (`id_jenis`,`id`);
+  ADD PRIMARY KEY (`id`,`id_jenis`),
+  ADD KEY `objek_jenis` (`id_jenis`);
 
 --
 -- Indexes for table `s_user`
 --
 ALTER TABLE `s_user`
- ADD PRIMARY KEY (`username`);
+  ADD PRIMARY KEY (`username`);
 
 --
 -- Constraints for dumped tables
 --
 
 --
+-- Constraints for table `m_detail_program`
+--
+ALTER TABLE `m_detail_program`
+  ADD CONSTRAINT `m_detail_program_ibfk_1` FOREIGN KEY (`id_bidang`) REFERENCES `s_bidang` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `s_jenis_belanja`
 --
 ALTER TABLE `s_jenis_belanja`
-ADD CONSTRAINT `kelompok_jenis` FOREIGN KEY (`id_kelompok`) REFERENCES `s_kelompok_kerja` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `jenis_kelompok` FOREIGN KEY (`id_kelompok`) REFERENCES `s_kelompok_belanja` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `s_objek_belanja`
 --
 ALTER TABLE `s_objek_belanja`
-ADD CONSTRAINT `objek_jenis` FOREIGN KEY (`id_jenis`) REFERENCES `s_jenis_belanja` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `objek_jenis` FOREIGN KEY (`id_jenis`) REFERENCES `s_jenis_belanja` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
