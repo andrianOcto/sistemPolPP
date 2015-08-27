@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use Session;
+use Log;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
@@ -34,9 +36,13 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next)
     {
-        if ($this->auth->check()) {
-            return redirect('/home');
+        if(Session::has("user"))
+        {
+            return redirect('/');
         }
+        // if ($this->auth->check()) {
+            
+        // }
 
         return $next($request);
     }
