@@ -68,6 +68,7 @@ class LoginController extends Controller {
         {
             //set session
             Session::put('user', $users->username);  
+            Session::put('name',$users->nama);
             Session::put('role', $role);    
             return redirect("/");
         }

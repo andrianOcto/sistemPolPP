@@ -11,11 +11,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Bootstrap 3.3.2 -->
     <link href="{{ asset("/bower_components/admin-lte/bootstrap/css/bootstrap.min.css") }}" rel="stylesheet" type="text/css" />
     <!-- Font Awesome Icons -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset("/bower_components/admin-lte/dist/css/font.css")}}" rel="stylesheet" type="text/css" />
     <!-- Ionicons -->
-    <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset("/bower_components/admin-lte/dist/css/ionic.css")}}" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
     <link href="{{ asset("/bower_components/admin-lte/dist/css/AdminLTE.min.css")}}" rel="stylesheet" type="text/css" />
+    <!-- DataTabel -->
+    <link href="{{ asset("/bower_components/admin-lte/plugins/datatables/dataTables.bootstrap.css") }}" rel="stylesheet" type="text/css" />
+    <!-- Skin -->
+    <link href="{{ asset("/bower_components/admin-lte/dist/css/skins/_all-skins.min.css") }}" rel="stylesheet" type="text/css" />
+    
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect.
@@ -39,6 +44,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="{{ asset ("/bower_components/admin-lte/bootstrap/js/bootstrap.min.js") }}" type="text/javascript"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset ("/bower_components/admin-lte/dist/js/app.min.js") }}" type="text/javascript"></script>
+
+    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -89,6 +96,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="{{ asset("bower_components/admin-lte/plugins/input-mask/jquery.inputmask.js")}}"></script>
     <script src="{{ asset("bower_components/admin-lte/plugins/input-mask/jquery.inputmask.date.extensions.js")}}"></script>
     <script src="{{ asset("bower_components/admin-lte/plugins/input-mask/jquery.inputmask.extensions.js")}}"></script>
+    <script src="{{ asset("bower_components/admin-lte/plugins/datatables/jquery.dataTables.min.js")}}"></script>
+    <script src="{{ asset("bower_components/admin-lte/plugins/datatables/dataTables.bootstrap.min.js")}}"></script>
     <!-- date-range-picker -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
     <script src="{{ asset("bower_components/admin-lte/plugins/daterangepicker/daterangepicker.js")}}"></script>
@@ -103,8 +112,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- FastClick -->
     <script src="{{ asset("bower_components/admin-lte/plugins/fastclick/fastclick.min.js")}}"></script>
     <!-- jQuery 2.1.3 -->
-    
+    <script src="{{ asset("bower_components/admin-lte/dist/js/demo.js")}}"></script>
 
+    <!-- page script -->
+    <script>
+      $(function () {
+        $("#example1").DataTable();
+        $('#example2').DataTable({
+          "paging": true,
+          "lengthChange": false,
+          "searching": false,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false
+        });
+      });
     <!-- Optionally, you can add Slimscroll and FastClick plugins. 
           Both of these plugins are recommended to enhance the 
           user experience -->

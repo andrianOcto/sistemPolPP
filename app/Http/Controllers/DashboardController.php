@@ -1,12 +1,13 @@
 <?php namespace App\Http\Controllers;
 
+use Session;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller {
 
-	public function getIndex() {
+    public function getIndex() {
     $data['tasks'] = [
         [
             'name' => 'Design New Dashboard',
@@ -34,6 +35,10 @@ class DashboardController extends Controller {
             'color' => 'success'
         ]
     ];
+    if(Session::get("role","default")=="master")
+                return redirect("/admin");
+            else
+                
     return view('nganu')->with($data);
   }
 
