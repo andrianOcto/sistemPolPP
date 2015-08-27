@@ -9,35 +9,44 @@
       <div class="pull-left image">
         <img src="{{ asset("/bower_components/admin-lte/dist/img/user2-160x160.jpg") }}" class="img-circle" alt="User Image" />
       </div>
-      <div class="pull-left info">
-        <p>Alexander Pierce</p>
-        <!-- Status -->
-        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-      </div>
+      
     </div>
-
-    <!-- search form (Optional) -->
-    <form action="#" method="get" class="sidebar-form">
-      <div class="input-group">
-        <input type="text" name="q" class="form-control" placeholder="Search..."/>
-        <span class="input-group-btn">
-          <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
-        </span>
-      </div>
-    </form>
-    <!-- /.search form -->
-
     <!-- Sidebar Menu -->
     <ul class="sidebar-menu">
       <li class="header">HEADER</li>
       <!-- Optionally, you can add icons to the links -->
-      <li class="active"><a href="#"><span>Link</span></a></li>
-      <li><a href="#"><span>Another Link</span></a></li>
       <li class="treeview">
-        <a href="#"><span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
+        <a href="#"><span>Input</span> <i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">
-          <li><a href="#">Link in level 2</a></li>
-          <li><a href="#">Link in level 2</a></li>
+          <li><a href="#">Entry RKO</a></li>
+          <li><a href="#">Entry SPJ</a></li>
+        </ul>
+      </li>
+      <li class="treeview">
+        <a href="#"><span>Laporan</span> <i class="fa fa-angle-left pull-right"></i></a>
+        <ul class="treeview-menu">
+          <li><a href="#">Daftar Kegiatan</a></li>
+          <li><a href="#">Daftar RKO (Alokasi)</a></li>
+          <li><a href="#">Realisasi Seluruh</a></li>
+          <li><a href="#">Realisasi Per Bidang</a></li>
+          <li><a href="#">Rekap Realisasi Seluruh</a></li>
+          <li><a href="#">Rekap Realisasi Per Bidang</a></li>
+          <li><a href="#">Grafik Realisasi Seluruh</a></li>
+          <li><a href="#">Grafik Realisasi Per Bidang</a></li>
+          <li><a href="#">Cetak Laporan SPJ</a></li>
+        </ul>
+      </li>
+      <li class="treeview">
+        <a href="#"><span>Master</span> <i class="fa fa-angle-left pull-right"></i></a>
+        <ul class="treeview-menu">
+          <li><a href="#">Setting Satuan Kerja</a></li>
+          <li><a href="#">Bidang</a></li>
+          <li><a href="#">Program</a></li>
+          <li><a href="#">Kegiatan</a></li>
+          <li><a href="#">Kelompok Belanja</a></li>
+          <li><a href="#">Jenis Belanja</a></li>
+          <li><a href="#">Obyek Belanja</a></li>
+          <li><a href="#">Rincian Belanja</a></li>
         </ul>
       </li>
     </ul><!-- /.sidebar-menu -->
