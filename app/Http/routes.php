@@ -53,6 +53,11 @@ Route::group(['middleware' => 'auth'], function () {
      Route::post('/belanja/add','Master\KelompokBelanjaController@postKelompok');
      Route::post('/kelompokBelanja/update','Master\KelompokBelanjaController@postUpdate');
      Route::post('/kelompokBelanja/delete/{id}','Master\KelompokBelanjaController@postDelete');
+     // Route Master Setting Jenis Belanja
+     Route::get('/jenisBelanja','Master\JenisBelanjaController@getIndex');
+     Route::post('/jenisBelanja/add','Master\JenisBelanjaController@postJenis');
+     Route::post('/jenisBelanja/update','Master\JenisBelanjaController@postUpdate');
+     Route::post('/jenisBelanja/delete/{id}','Master\JenisBelanjaController@postDelete');
 });
 
 
