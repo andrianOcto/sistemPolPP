@@ -36,6 +36,23 @@ Route::group(['middleware' => 'auth'], function () {
      Route::post('/admin/register','Admin\AdminController@postRegister');
      Route::post('/admin/update','Admin\AdminController@postUpdate');
      Route::post('/admin/delete/{username}','Admin\AdminController@postDelete');
+     // Route Master Setting Satuan Kerja
+     Route::get('/satuanKerja','Master\setKerjaController@getIndex');
+     // Route Master Setting Urusan
+     Route::get('/urusan','Master\UrusanController@getIndex');
+     Route::post('/urusan/add','Master\UrusanController@postUrusan');
+     Route::post('/urusan/update','Master\UrusanController@postUpdate');
+     Route::post('/urusan/delete/{id}','Master\UrusanController@postDelete');
+     // Route Master Setting Bidang
+     Route::get('/bidang','Master\BidangController@getIndex');
+     Route::post('/bidang/add','Master\BidangController@postBidang');
+     Route::post('/bidang/update','Master\BidangController@postUpdate');
+     Route::post('/bidang/delete/{id}','Master\BidangController@postDelete');
+     // Route Master Setting Kelompok Belanja
+     Route::get('/kelompokBelanja','Master\KelompokBelanjaController@getIndex');
+     Route::post('/belanja/add','Master\KelompokBelanjaController@postKelompok');
+     Route::post('/kelompokBelanja/update','Master\KelompokBelanjaController@postUpdate');
+     Route::post('/kelompokBelanja/delete/{id}','Master\KelompokBelanjaController@postDelete');
 });
 
 

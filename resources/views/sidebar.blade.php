@@ -39,14 +39,16 @@
       <li class="treeview">
         <a href="#"><span>Master</span> <i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">
-          <li><a href="#">Setting Satuan Kerja</a></li>
-          <li><a href="#">Bidang</a></li>
-          <li><a href="#">Program</a></li>
-          <li><a href="#">Kegiatan</a></li>
-          <li><a href="#">Kelompok Belanja</a></li>
-          <li><a href="#">Jenis Belanja</a></li>
-          <li><a href="#">Obyek Belanja</a></li>
-          <li><a href="#">Rincian Belanja</a></li>
+          <li><a href="/satuanKerja">Setting Satuan Kerja</a></li>
+          <li><a href="/bidang">Bidang</a></li>
+          <li><a href="/program">Program</a></li>
+          <li><a href="/kegiatan">Kegiatan</a></li>
+          <li><a href="/kelompokBelanja">Kelompok Belanja</a></li>
+          <li><a href="/jenisBelanja">Jenis Belanja</a></li>
+          <li><a href="/objekBelanja">Obyek Belanja</a></li>
+          <li><a href="/rincianBelanja">Rincian Belanja</a></li>
+          <li><a href="/urusan">Setting Urusan</a></li>
+          <li><a href="/admin">User</a></li>
         </ul>
       </li>
     </ul><!-- /.sidebar-menu -->
