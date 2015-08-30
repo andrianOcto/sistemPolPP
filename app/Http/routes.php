@@ -67,8 +67,14 @@ Route::group(['middleware' => 'auth'], function () {
      //Route Master Setting Obyek Belanja
      Route::get('/objekBelanja','Master\ObjekBelanjaController@getIndex');
      Route::post('/objekBelanja/add','Master\ObjekBelanjaController@postAdd');
-     Route::post('/objekBelanja/update','Master\ObjekBelanjaController@postUpdate');
+     Route::post('/objekBelanja/update/{id}','Master\ObjekBelanjaController@postUpdate');
      Route::post('/objekBelanja/delete/{id}','Master\ObjekBelanjaController@postDelete');
+
+      //Route Master Setting Rincian Belanja
+     Route::get('/rincianBelanja','Master\RincianBelanjaController@getIndex');
+     Route::post('/rincianBelanja/add','Master\RincianBelanjaController@postAdd');
+     Route::post('/rincianBelanja/update/{id}','Master\RincianBelanjaController@postUpdate');
+     Route::post('/rincianBelanja/delete/{id}','Master\RincianBelanjaController@postDelete');
 });
 
 

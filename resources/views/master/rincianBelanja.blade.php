@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Setting Obyek Belanja</title>
+    <title>Setting Rincian Obyek Belanja</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -47,7 +47,7 @@
 
         <section class="content-header">
           <h1>
-            Setting Obyek belanja
+            Setting Rincian Obyek belanja
             <small></small>
           </h1>
           <ol class="breadcrumb">
@@ -82,7 +82,7 @@
 
               <div class="box">
                 <div class="box-header">
-                  <a class="btn bg-blue btn-app" href="#modal-addObjekbelanja" data-toggle="modal" data-target="#modal-addObjekbelanja">
+                  <a class="btn bg-blue btn-app" href="#modal-addRincianbelanja" data-toggle="modal" data-target="#modal-addRincianbelanja">
                     <i class="fa fa-plus"> </i>
                     <b>Tambah Data</b>
                   </a>
@@ -91,24 +91,24 @@
                   <table id="example2" class="table table-bordered table-striped">
                     <thead>
                       <tr>
-                        <th>Jenis</th>
+                        <th>Obyek</th>
                         <th>Kode</th>
-                        <th>Nama Obyek Belanja</th>
+                        <th>Nama Rincian Obyek Belanja</th>
                         <th align="center">Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php $i=1; ?>
-                      @foreach($objekbelanja as $data)
+                      @foreach($rincianbelanja as $data)
                       <tr>
-                        <td>{{$data->id_jenis}}</td>
+                        <td>{{$data->id_objek}}</td>
                         <td>{{$data->id}}</td>
                         <td>{{$data->description}}</td>
                         <td align="center">
-                          <a class="btn btn-warning" href="#modal-updateObjekbelanja{{$i}}" data-toggle="modal" data-target="#modal-updateObjekbelanja{{$i}}">
+                          <a class="btn btn-warning" href="#modal-updateRincianbelanja{{$i}}" data-toggle="modal" data-target="#modal-updateRincianbelanja{{$i}}">
                               <i class="fa fa-edit fa-lg"></i> Update
                           </a>
-                          <a class="btn btn-danger"  href="#modal-deleteObjekbelanja{{$i}}" data-toggle="modal" data-target="#modal-deleteObjekbelanja{{$i}}">
+                          <a class="btn btn-danger"  href="#modal-deleteRincianbelanja{{$i}}" data-toggle="modal" data-target="#modal-deleteRincianbelanja{{$i}}">
                               <i class="fa fa-trash-o fa-lg"></i> Delete
                           </a>
                         </td>
@@ -129,7 +129,7 @@
       
 
       <!-- Modal Add User-->
-      <div class="modal fade" id="modal-addObjekbelanja" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal fade" id="modal-addRincianbelanja" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -137,14 +137,14 @@
               <h2 class="modal-title" id="myModalLabel">Tambah</h2>
             </div>
             <div class="modal-body">
-              <form role="form" method="post" action="/objekBelanja/add">
+              <form role="form" method="post" action="/rincianBelanja/add">
                   <div class="box-body">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Kode Jenis Belanja</label>
-                      <select class="form-control" name="jenis" id="jenis" required>
-                        <option disabled selected>-Pilih Jenis Belanja-</option>
-                        @foreach($jenis as $jenis)
-                        <option value="{{$jenis->id}}"> {{$jenis->id}} &nbsp &nbsp {{$jenis->description}}</option>
+                      <select class="form-control" name="objek" id="objek" required>
+                        <option disabled selected>-Pilih Objek Belanja-</option>
+                        @foreach($objek as $objek)
+                        <option value="{{$objek->id}}"> {{$objek->id}} &nbsp &nbsp {{$objek->description}}</option>
                         @endforeach
                       </select>
                     </div>
@@ -153,7 +153,7 @@
                       <table>
                         <tr>
                           <td>
-                            <input type="text" class="form-control" style="width: 120px" name="id_jenis" id="id_jenis" placeholder="Kode" value="" readonly>
+                            <input type="text" class="form-control" style="width: 120px" name="id_objek" id="id_objek" placeholder="Kode" value="" readonly>
                           </td>
                           <td>
                             <input type="text" class="form-control" style="width: 100px" name="kode" placeholder="Kode" required>
@@ -162,8 +162,8 @@
                       </table>
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Nama Obyek Belanja</label>
-                      <input type="text" class="form-control" name="nama" placeholder="Masukan Nama Obyek Belanja" required>
+                      <label for="exampleInputEmail1">Nama Rincian Obyek Belanja</label>
+                      <input type="text" class="form-control" name="nama" placeholder="Masukan Nama Rincian Obyek Belanja" required>
                     </div>
                   </div><!-- /.box-body -->
                   <?php echo csrf_field(); ?>
@@ -171,7 +171,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary" onClick = "if(document.getElementById('jenis').value == '-Pilih Jenis Belanja-') document.getElementById('jenis').value=null">Simpan</button>
+              <button type="submit" class="btn btn-primary" onClick = "if(document.getElementById('objek').value == '-Pilih Objek Belanja-') document.getElementById('objek').value=null">Simpan</button>
             </div>
             </form>
           </div>
@@ -179,9 +179,9 @@
       </div>
 
       <?php $i=1; ?>
-      @foreach($objekbelanja as $data)
+      @foreach($rincianbelanja as $data)
       <!-- Modal Convirmation Delete User-->
-      <div class="modal fade" id="modal-deleteObjekbelanja{{$i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal fade" id="modal-deleteRincianbelanja{{$i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -192,7 +192,7 @@
               <h4> Apakah Anda Yakin Akan Menghapus Data </h4>
             </div>
             <div class="modal-footer">
-              <form action="/objekBelanja/delete/{{$data->id}}" method="post">
+              <form action="/rincianBelanja/delete/{{$data->id}}" method="post">
                 <?php echo csrf_field(); ?>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-danger">Delete</button>
@@ -206,9 +206,9 @@
       @endforeach
 
       <?php $i=1; ?>
-      @foreach($objekbelanja as $data)
+      @foreach($rincianbelanja as $data)
       <!-- Modal Update User -->
-      <div class="modal fade" id="modal-updateObjekbelanja{{$i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal fade" id="modal-updateRincianbelanja{{$i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -216,14 +216,14 @@
               <h2 class="modal-title" id="myModalLabel">Update User</h2>
             </div>
             <div class="modal-body">
-              <form role="form" method="post" action="/objekBelanja/update/{{$i}}">
+              <form role="form" method="post" action="/rincianBelanja/update/{{$i}}">
                   <div class="box-body">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Kode Jenis Belanja</label>
-                      <select class="form-control" name="updatejenis{{$i}}" id="updatejenis{{$i}}">
+                      <select class="form-control" name="updateobjek{{$i}}" id="updateobjek{{$i}}">
                         <option disabled>-Pilih Jenis Belanja-</option>
-                        @foreach($jns as $jenis)
-                        <option value="{{$jenis->id}}" <?php if($data->id_jenis == $jenis->id) {echo "selected";} ?> readonly=''> {{$jenis->id}} &nbsp &nbsp {{$jenis->description}}</option>
+                        @foreach($obj as $objek)
+                        <option value="{{$objek->id}}" <?php if($data->id_objek == $objek->id) {echo "selected";} ?> readonly=''> {{$objek->id}} &nbsp &nbsp {{$objek->description}}</option>
                         @endforeach
                       </select>
                     </div>
@@ -232,8 +232,8 @@
                       <table>
                         <tr>
                           <td>
-                            <input type="text" class="form-control" style="width: 120px" name="updateid_jenis{{$i}}" id="updateid_jenis{{$i}}" placeholder="Kode" value="{{$data->id_jenis}}" readonly>
-                            <input type="hidden" class="form-control" style="width: 120px" name="updateid_objek" id="updateid_objek" placeholder="Kode" value="{{$data->id}}" >
+                            <input type="text" class="form-control" style="width: 120px" name="updateid_objek{{$i}}" id="updateid_objek{{$i}}" placeholder="Kode" value="{{$data->id_objek}}" readonly>
+                            <input type="hidden" class="form-control" style="width: 120px" name="updateid_rincian" id="updateid_rincian" placeholder="Kode" value="{{$data->id}}" >
                           </td>
                           <td>
                             <?php $kd = explode('.', $data->id) ?>
@@ -298,20 +298,20 @@
         });
 
         //digunakan untuk mengupdate pada saat select d ganti
-        $('#jenis').change(function(){
+        $('#objek').change(function(){
           var kode = $(this).val();
           if(kode != "-Pilih Jenis Belanja-")
-            $('#id_jenis').val(kode);
+            $('#id_objek').val(kode);
           else
-            $('#id_jenis').val(null);
+            $('#id_objek').val(null);
         });
 
         //digunakan pada onchange event di modal update
         <?php $i=1; ?>
-        @foreach($objekbelanja as $data)
-        $('#updatejenis{{$i}}').change(function(){
+        @foreach($rincianbelanja as $data)
+        $('#updateobjek{{$i}}').change(function(){
           var kode = $(this).val();
-            $('#updateid_jenis{{$i}}').val(kode);
+            $('#updateid_objek{{$i}}').val(kode);
         });
         <?php $i++; ?>
         @endforeach

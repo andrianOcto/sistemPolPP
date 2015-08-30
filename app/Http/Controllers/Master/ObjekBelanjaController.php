@@ -41,11 +41,11 @@ class ObjekBelanjaController extends Controller {
       $kd  = $request->input("kode");
       $kode = $klp.".".$kd;
 
-      $jenisbelanja               = new ObjekBelanja;
-      $jenisbelanja->id           = $kode;
-      $jenisbelanja->id_jenis  = $request->input("jenis");
-      $jenisbelanja->description  = $request->input("nama");
-      $jenisbelanja->save();
+      $objekbelanja               = new ObjekBelanja;
+      $objekbelanja->id           = $kode;
+      $objekbelanja->id_jenis  = $request->input("jenis");
+      $objekbelanja->description  = $request->input("nama");
+      $objekbelanja->save();
 
       return redirect("/objekBelanja")->with('successMessage', 'Data berhasil ditambahkan!');
     }
@@ -57,23 +57,23 @@ class ObjekBelanjaController extends Controller {
     }
   }
 
-  public function postUpdate(Request $request)
+  public function postUpdate(Request $request,$id)
   {
     $klp = $request->input("updatejenis");
     $kd  = $request->input("updateid_objek");
     $kode = $klp.".".$kd;
 
-    $jenisbelanja               = ObjekBelanja::find($kd);
-    $jenisbelanja->id_jenis  = $request->input("updateid_jenis");
-    $jenisbelanja->description  = $request->input("nama");
-    $jenisbelanja->save();
-    return redirect("/objekBelanja");
+    $objekbelanja               = ObjekBelanja::find($kd);
+    $objekbelanja->id_jenis  = $request->input("updateid_jenis".$id);
+    $objekbelanja->description  = $request->input("nama");
+    $objekbelanja->save();
+    return redirect("/objekBelanja")->with('successMessage', 'Data berhasil diupdate!');
   }
 
   public function postDelete(Request $request,$id)
   {
     ObjekBelanja::destroy($id);
-    return redirect("/objekBelanja");
+    return redirect("/objekBelanja")->with('successMessage', 'Data berhasil dihapus!');
   }
 
 }
