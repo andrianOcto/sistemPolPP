@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 27, 2015 at 07:30 PM
+-- Generation Time: Aug 30, 2015 at 09:23 AM
 -- Server version: 5.6.25
 -- PHP Version: 5.6.11
 
@@ -103,6 +103,14 @@ CREATE TABLE IF NOT EXISTS `s_bidang` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `s_bidang`
+--
+
+INSERT INTO `s_bidang` (`id`, `nama`, `nama_lengkap`, `updated_at`, `created_at`) VALUES
+('02', 'GADKA', 'test Update', '2015-08-28 00:04:45', '2015-08-27 23:59:39'),
+('1', 'TU', 'Tata Usaha', '2015-08-28 06:45:56', '0000-00-00 00:00:00');
+
 -- --------------------------------------------------------
 
 --
@@ -111,8 +119,31 @@ CREATE TABLE IF NOT EXISTS `s_bidang` (
 
 CREATE TABLE IF NOT EXISTS `s_jenis_belanja` (
   `id` varchar(55) NOT NULL,
-  `id_kelompok` varchar(55) NOT NULL,
-  `description` int(11) NOT NULL,
+  `id_kelompok` varchar(155) NOT NULL,
+  `description` varchar(110) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `s_jenis_belanja`
+--
+
+INSERT INTO `s_jenis_belanja` (`id`, `id_kelompok`, `description`, `updated_at`, `created_at`) VALUES
+('5.1.8', '5.1', 'jenis belanja 2', '2015-08-28 10:30:14', '2015-08-28 10:30:14'),
+('5.2.1', '5.2', 'BELANJA MODAL\r\n', '2015-08-28 07:46:49', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `s_kegiatan`
+--
+
+CREATE TABLE IF NOT EXISTS `s_kegiatan` (
+  `id` varchar(55) NOT NULL,
+  `id_bidang` varchar(55) NOT NULL,
+  `id_program` varchar(55) NOT NULL,
+  `description` varchar(255) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -125,10 +156,18 @@ CREATE TABLE IF NOT EXISTS `s_jenis_belanja` (
 
 CREATE TABLE IF NOT EXISTS `s_kelompok_belanja` (
   `id` varchar(55) NOT NULL,
-  `description` int(11) NOT NULL,
+  `description` varchar(110) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `s_kelompok_belanja`
+--
+
+INSERT INTO `s_kelompok_belanja` (`id`, `description`, `updated_at`, `created_at`) VALUES
+('5.1', 'BELANJA TIDAK LANGSUNG', '2015-08-28 07:16:02', '0000-00-00 00:00:00'),
+('5.2', 'BELANJA LANGSUNG', '2015-08-28 00:25:17', '2015-08-28 00:25:17');
 
 -- --------------------------------------------------------
 
@@ -173,10 +212,18 @@ CREATE TABLE IF NOT EXISTS `s_kepala` (
 CREATE TABLE IF NOT EXISTS `s_objek_belanja` (
   `id` varchar(55) NOT NULL,
   `id_jenis` varchar(55) NOT NULL,
-  `description` int(11) NOT NULL,
+  `description` varchar(110) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `s_objek_belanja`
+--
+
+INSERT INTO `s_objek_belanja` (`id`, `id_jenis`, `description`, `updated_at`, `created_at`) VALUES
+('5.1.8.2', '5.1.8', 'obyek belanja 1', '2015-08-29 23:47:23', '2015-08-29 23:47:23'),
+('5.2.1.3', '5.1.8', 'belanja lagi 34', '2015-08-30 00:12:27', '2015-08-30 00:11:46');
 
 -- --------------------------------------------------------
 
@@ -186,7 +233,7 @@ CREATE TABLE IF NOT EXISTS `s_objek_belanja` (
 
 CREATE TABLE IF NOT EXISTS `s_program` (
   `id` varchar(55) NOT NULL,
-  `description` int(11) NOT NULL,
+  `description` varchar(110) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -200,10 +247,19 @@ CREATE TABLE IF NOT EXISTS `s_program` (
 CREATE TABLE IF NOT EXISTS `s_rincian_belanja` (
   `id` varchar(55) NOT NULL,
   `id_objek` varchar(55) NOT NULL,
-  `description` int(11) NOT NULL,
+  `description` varchar(110) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `s_rincian_belanja`
+--
+
+INSERT INTO `s_rincian_belanja` (`id`, `id_objek`, `description`, `updated_at`, `created_at`) VALUES
+('5.1.8.2.1', '5.1.8.2', 'obyek rincian belanja 9', '2015-08-30 00:09:10', '2015-08-29 23:49:35'),
+('5.1.8.2.2', '5.1.8.2', 'rincian obyek belanja 3', '2015-08-30 00:02:43', '2015-08-30 00:02:32'),
+('5.1.8.2.4', '5.1.8.2', 'rincian obyek belanja 3', '2015-08-30 00:06:56', '2015-08-30 00:06:56');
 
 -- --------------------------------------------------------
 
@@ -232,10 +288,21 @@ CREATE TABLE IF NOT EXISTS `s_satuan_kerja` (
 
 CREATE TABLE IF NOT EXISTS `s_urusan` (
   `id` varchar(55) NOT NULL,
-  `description` int(11) NOT NULL,
+  `description` varchar(150) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `s_urusan`
+--
+
+INSERT INTO `s_urusan` (`id`, `description`, `updated_at`, `created_at`) VALUES
+('1.01', 'Urusan Wajib Pendidikan', '2015-08-28 04:21:20', '0000-00-00 00:00:00'),
+('1.02', 'Urusan Wajib Kesehatan', '2015-08-28 04:21:20', '0000-00-00 00:00:00'),
+('1.03', 'Urusan Wajib Pekerjaan Umum', '2015-08-28 04:21:20', '0000-00-00 00:00:00'),
+('1.04', 'Urusan Wajib Perumahan\r\n', '2015-08-28 04:21:20', '0000-00-00 00:00:00'),
+('1.05', 'Urusan Wajib Penataan Ruan', '2015-08-28 04:21:20', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -258,7 +325,8 @@ CREATE TABLE IF NOT EXISTS `s_user` (
 
 INSERT INTO `s_user` (`username`, `nama`, `password`, `role`, `updated_at`, `created_at`) VALUES
 ('master', 'admin', 'eyJpdiI6IjZHc2RWbVwvY0JKWkRnUUNJUHpLVGpRPT0iLCJ2YWx1ZSI6IlMzVStLb0h5bGsyXC9OMDRJNnhPczJBPT0iLCJtYWMiOiIyYWUzODk0YTk3ZjFiMGVhNzg2OTc1MzlkNjNhYzY5ZWY2NjkwYWM5ODZiOTc3Y2I0ZWNlNDliMWJjN2Y3NGE4In0=', 'master', '2015-08-27 15:14:19', '0000-00-00 00:00:00'),
-('test', 'dewi', 'eyJpdiI6ImJtZFdRd2F4Q25RWTJSaHZTQUJCYVE9PSIsInZhbHVlIjoibmpkSDZIMjZPd0RGMThGNSs1MTVZdz09IiwibWFjIjoiYWRmNTE4NWM4NDYxODhmNmE5YmE2ZmRlMGVlNDI3YTYyMGMzYmY2NzhmMGYzZGVmMzE2NzhiODUyYmU0NTAxZSJ9', 'TU', '2015-08-27 10:12:40', '2015-08-27 09:01:12');
+('test', 'andrian', 'eyJpdiI6Im1xUVJQbXpYTU51SllHUHd2WmFYVEE9PSIsInZhbHVlIjoiaVBXY2E1bWE1ek5haHhEeFwvbjNUeVE9PSIsIm1hYyI6ImM5YWNhMGUyOWU4YmRiZjdmNjZkMzZjNDU2Yjc3MzcxOWViNTU0YTQzZjEyZTgyOTFkNmMxYmNiZjU5YjM2NjAifQ==', 'TU', '2015-08-30 00:14:06', '2015-08-27 09:01:12'),
+('valen', 'valentino', 'eyJpdiI6InBLZ1M3Tm9QckZ3bXhCYWhVWFIreFE9PSIsInZhbHVlIjoidmpzaHFGNHJnYzJiWHVzSVBNeXFvUT09IiwibWFjIjoiNDEyMWNjMzhlZmVhZGRhMTZlNGI0ZjlhZjY0YThhZTMwZDgwYmFjYjBlMDJmMWJlMmIwODYyOTcxYzczNjA5NSJ9', 'master', '2015-08-27 20:35:30', '0000-00-00 00:00:00');
 
 --
 -- Indexes for dumped tables
@@ -285,9 +353,29 @@ ALTER TABLE `s_jenis_belanja`
   ADD KEY `jenis_kelompok` (`id_kelompok`);
 
 --
+-- Indexes for table `s_kegiatan`
+--
+ALTER TABLE `s_kegiatan`
+  ADD PRIMARY KEY (`id`,`id_bidang`,`id_program`),
+  ADD KEY `kegiatan_bidang` (`id_bidang`),
+  ADD KEY `kegiatan_program` (`id_program`);
+
+--
 -- Indexes for table `s_kelompok_belanja`
 --
 ALTER TABLE `s_kelompok_belanja`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `s_kelompok_kerja`
+--
+ALTER TABLE `s_kelompok_kerja`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `s_kepala`
+--
+ALTER TABLE `s_kepala`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -296,6 +384,31 @@ ALTER TABLE `s_kelompok_belanja`
 ALTER TABLE `s_objek_belanja`
   ADD PRIMARY KEY (`id`,`id_jenis`),
   ADD KEY `objek_jenis` (`id_jenis`);
+
+--
+-- Indexes for table `s_program`
+--
+ALTER TABLE `s_program`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `s_rincian_belanja`
+--
+ALTER TABLE `s_rincian_belanja`
+  ADD PRIMARY KEY (`id`,`id_objek`),
+  ADD KEY `rincian_objek` (`id_objek`);
+
+--
+-- Indexes for table `s_satuan_kerja`
+--
+ALTER TABLE `s_satuan_kerja`
+  ADD PRIMARY KEY (`id`,`id_urusan`);
+
+--
+-- Indexes for table `s_urusan`
+--
+ALTER TABLE `s_urusan`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `s_user`
@@ -320,10 +433,23 @@ ALTER TABLE `s_jenis_belanja`
   ADD CONSTRAINT `jenis_kelompok` FOREIGN KEY (`id_kelompok`) REFERENCES `s_kelompok_belanja` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `s_kegiatan`
+--
+ALTER TABLE `s_kegiatan`
+  ADD CONSTRAINT `kegiatan_bidang` FOREIGN KEY (`id_bidang`) REFERENCES `s_bidang` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `kegiatan_program` FOREIGN KEY (`id_program`) REFERENCES `s_program` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `s_objek_belanja`
 --
 ALTER TABLE `s_objek_belanja`
   ADD CONSTRAINT `objek_jenis` FOREIGN KEY (`id_jenis`) REFERENCES `s_jenis_belanja` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `s_rincian_belanja`
+--
+ALTER TABLE `s_rincian_belanja`
+  ADD CONSTRAINT `rincian_objek` FOREIGN KEY (`id_objek`) REFERENCES `s_objek_belanja` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
