@@ -34,16 +34,27 @@ class ObjekBelanjaController extends Controller {
 
   public function postAdd(Request $request)
   { 
-    $klp = $request->input("id_jenis");
-    $kd  = $request->input("kode");
-    $kode = $klp.".".$kd;
 
-    $jenisbelanja               = new ObjekBelanja;
-    $jenisbelanja->id           = $kode;
-    $jenisbelanja->id_jenis  = $request->input("jenis");
-    $jenisbelanja->description  = $request->input("nama");
-    $jenisbelanja->save();
-    return redirect("/objekBelanja");
+    try
+    {
+      $klp = $request->input("id_jenis");
+      $kd  = $request->input("kode");
+      $kode = $klp.".".$kd;
+
+      $jenisbelanja               = new ObjekBelanja;
+      $jenisbelanja->id           = $kode;
+      $jenisbelanja->id_jenis  = $request->input("jenis");
+      $jenisbelanja->description  = $request->input("nama");
+      $jenisbelanja->save();
+
+      return redirect("/objekBelanja")->with('successMessage', 'Data berhasil ditambahkan!');
+    }
+
+    //jika user sudah ada dalam database
+    catch(\Illuminate\Database\QueryException $e)
+    {
+      return redirect("/objekBelanja")->with('errMessage', 'Kode yang disimpan sudah ada dalam database. </br> Harap Coba menggunakan kode yang belum ada');
+    }
   }
 
   public function postUpdate(Request $request)
