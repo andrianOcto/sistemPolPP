@@ -48,7 +48,6 @@
           <li><a href="/objekBelanja">Obyek Belanja</a></li>
           <li><a href="/rincianBelanja">Rincian Belanja</a></li>
           <li><a href="/urusan">Setting Urusan</a></li>
-          <li><a href="/admin">User</a></li>
         </ul>
       </li>
     </ul><!-- /.sidebar-menu -->

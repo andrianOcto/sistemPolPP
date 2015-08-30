@@ -23,10 +23,11 @@ class JenisbelanjaController extends Controller {
     $data['kelompok']       = KelompokBelanja::all();
     $data['klp']       = KelompokBelanja::all();
 
+    //digunakan untuk membatasi master agar tidak masuk ke dalam fitur
     if(Session::get("role","default")=="master")
-                return view('/master/jenisbelanja')->with($data);
+              return redirect('/');
             else
-                return redirect('/');
+              return view('/master/jenisbelanja')->with($data);
     
   }
 
@@ -54,7 +55,7 @@ class JenisbelanjaController extends Controller {
     $jenisbelanja->id_kelompok  = $request->input("kelompok");
     $jenisbelanja->description  = $request->input("nama");
     $jenisbelanja->save();
-    return redirect("/jenisBelanja");
+   // return redirect("/jenisBelanja");
   }
 
   public function postDelete(Request $request,$id)

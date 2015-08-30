@@ -17,9 +17,9 @@ class KelompokBelanjaController extends Controller {
     $data['kelompokbelanja']        = KelompokBelanja::all();
 
     if(Session::get("role","default")=="master")
-                return view('/master/kelompokbelanja')->with($data);
+              return redirect('/');
             else
-                return redirect('/');
+              return view('/master/kelompokbelanja')->with($data);
     
   }
 

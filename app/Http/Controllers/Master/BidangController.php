@@ -17,9 +17,9 @@ class BidangController extends Controller {
     $data['bidang']        = Bidang::all();
 
     if(Session::get("role","default")=="master")
-                return view('/master/bidang')->with($data);
+              return redirect('/');
             else
-                return redirect('/');
+              return view('/master/bidang')->with($data);
     
   }
 

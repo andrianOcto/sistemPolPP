@@ -14,9 +14,9 @@ class setKerjaController extends Controller {
   public function getIndex() {
   	$data['page_title'] ="Setting Satuan Kerja";
     if(Session::get("role","default")=="master")
-                return view('/master/s_SatuanKerja')->with($data);
-            else
                 return redirect('/');
+            else
+            	return view('/master/s_SatuanKerja')->with($data);
     
   }
 

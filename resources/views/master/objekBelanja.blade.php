@@ -3,12 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Data Tables</title>
+    <title>Setting Obyek Belanja</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
+    
     <link href="{{ asset("/bower_components/admin-lte/bootstrap/css/bootstrap.min.css") }}" rel="stylesheet" type="text/css" />
-    <!-- Font Awesome Icons -->
+        <!-- Font Awesome Icons -->
     <link href="{{ asset("/bower_components/admin-lte/awesome-font/css/font-awesome.min.css")}}" rel="stylesheet" type="text/css" />
     <!-- Ionicons -->
     <link href="{{ asset("/bower_components/admin-lte/dist/css/ionic.css")}}" rel="stylesheet" type="text/css" />
@@ -46,7 +47,7 @@
 
         <section class="content-header">
           <h1>
-            Setting KelompokBelanja
+            Setting Obyek belanja
             <small></small>
           </h1>
           <ol class="breadcrumb">
@@ -63,7 +64,7 @@
 
               <div class="box">
                 <div class="box-header">
-                  <a class="btn bg-blue btn-app" href="#modal-addKelompokBelanja" data-toggle="modal" data-target="#modal-addKelompokBelanja">
+                  <a class="btn bg-blue btn-app" href="#modal-addObjekbelanja" data-toggle="modal" data-target="#modal-addObjekbelanja">
                     <i class="fa fa-plus"> </i>
                     <b>Tambah Data</b>
                   </a>
@@ -72,22 +73,24 @@
                   <table id="example2" class="table table-bordered table-striped">
                     <thead>
                       <tr>
+                        <th>Jenis</th>
                         <th>Kode</th>
-                        <th>Nama Kelompok Belanja</th>
+                        <th>Nama Obyek Belanja</th>
                         <th align="center">Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php $i=1; ?>
-                      @foreach($kelompokbelanja as $data)
+                      @foreach($objekbelanja as $data)
                       <tr>
+                        <td>{{$data->id_jenis}}</td>
                         <td>{{$data->id}}</td>
                         <td>{{$data->description}}</td>
                         <td align="center">
-                          <a class="btn btn-warning" href="#modal-updateKelompokBelanja{{$i}}" data-toggle="modal" data-target="#modal-updateKelompokBelanja{{$i}}">
+                          <a class="btn btn-warning" href="#modal-updateObjekbelanja{{$i}}" data-toggle="modal" data-target="#modal-updateObjekbelanja{{$i}}">
                               <i class="fa fa-edit fa-lg"></i> Update
                           </a>
-                          <a class="btn btn-danger"  href="#modal-deleteKelompokBelanja{{$i}}" data-toggle="modal" data-target="#modal-deleteKelompokBelanja{{$i}}">
+                          <a class="btn btn-danger"  href="#modal-deleteObjekbelanja{{$i}}" data-toggle="modal" data-target="#modal-deleteObjekbelanja{{$i}}">
                               <i class="fa fa-trash-o fa-lg"></i> Delete
                           </a>
                         </td>
@@ -108,7 +111,7 @@
       
 
       <!-- Modal Add User-->
-      <div class="modal fade" id="modal-addKelompokBelanja" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal fade" id="modal-addObjekbelanja" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -116,15 +119,33 @@
               <h2 class="modal-title" id="myModalLabel">Tambah</h2>
             </div>
             <div class="modal-body">
-              <form role="form" method="post" action="/belanja/add">
+              <form role="form" method="post" action="/objekBelanja/add">
                   <div class="box-body">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Kode Kelompok Belanja</label>
-                      <input type="text" class="form-control" name="kode" placeholder="Masukan Kode Kelompok Belanja" required>
+                      <label for="exampleInputEmail1">Kode Jenis Belanja</label>
+                      <select class="form-control" name="jenis" id="jenis" required>
+                        <option disabled selected>-Pilih Jenis Belanja-</option>
+                        @foreach($jenis as $jenis)
+                        <option value="{{$jenis->id}}"> {{$jenis->id}} &nbsp &nbsp {{$jenis->description}}</option>
+                        @endforeach
+                      </select>
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Nama</label>
-                      <input type="text" class="form-control" name="nama" placeholder="Masukan Nama" required>
+                      <label for="exampleInputEmail1">Kode Obyek Belanja</label>
+                      <table>
+                        <tr>
+                          <td>
+                            <input type="text" class="form-control" style="width: 120px" name="id_jenis" id="id_jenis" placeholder="Kode" value="" readonly>
+                          </td>
+                          <td>
+                            <input type="text" class="form-control" style="width: 100px" name="kode" placeholder="Kode" required>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Nama Obyek Belanja</label>
+                      <input type="text" class="form-control" name="nama" placeholder="Masukan Nama Obyek Belanja" required>
                     </div>
                   </div><!-- /.box-body -->
                   <?php echo csrf_field(); ?>
@@ -132,16 +153,17 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Simpan</button>
+              <button type="submit" class="btn btn-primary" onClick = "if(document.getElementById('jenis').value == '-Pilih Jenis Belanja-') document.getElementById('jenis').value=null">Simpan</button>
             </div>
             </form>
           </div>
         </div>
       </div>
+
       <?php $i=1; ?>
-      @foreach($kelompokbelanja as $data)
+      @foreach($objekbelanja as $data)
       <!-- Modal Convirmation Delete User-->
-      <div class="modal fade" id="modal-deleteKelompokBelanja{{$i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal fade" id="modal-deleteObjekbelanja{{$i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -152,7 +174,7 @@
               <h4> Apakah Anda Yakin Akan Menghapus Data </h4>
             </div>
             <div class="modal-footer">
-              <form action="/kelompokBelanja/delete/{{$data->id}}" method="post">
+              <form action="/objekBelanja/delete/{{$data->id}}" method="post">
                 <?php echo csrf_field(); ?>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-danger">Delete</button>
@@ -166,9 +188,9 @@
       @endforeach
 
       <?php $i=1; ?>
-      @foreach($kelompokbelanja as $data)
+      @foreach($objekbelanja as $data)
       <!-- Modal Update User -->
-      <div class="modal fade" id="modal-updateKelompokBelanja{{$i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal fade" id="modal-updateObjekbelanja{{$i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -176,15 +198,35 @@
               <h2 class="modal-title" id="myModalLabel">Update User</h2>
             </div>
             <div class="modal-body">
-              <form role="form" method="post" action="/kelompokBelanja/update">
+              <form role="form" method="post" action="/objekBelanja/update">
                   <div class="box-body">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Kode</label>
-                      <input type="text" class="form-control" name="kode" placeholder="Kode" value="{{$data->id}}" readonly>
+                      <label for="exampleInputEmail1">Kode Jenis Belanja</label>
+                      <select class="form-control" name="updatejenis{{$i}}" id="updatejenis{{$i}}">
+                        <option disabled>-Pilih Jenis Belanja-</option>
+                        @foreach($jns as $jenis)
+                        <option value="{{$jenis->id}}" <?php if($data->id_jenis == $jenis->id) {echo "selected";} ?> readonly=''> {{$jenis->id}} &nbsp &nbsp {{$jenis->description}}</option>
+                        @endforeach
+                      </select>
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Nama Kelompok Belanja</label>
-                      <input type="text" class="form-control" name="nama" placeholder="Masukan Deskripsi" value="{{$data->description}}" required>
+                      <label for="exampleInputEmail1">Kode Obyek Belanja</label>
+                      <table>
+                        <tr>
+                          <td>
+                            <input type="text" class="form-control" style="width: 120px" name="updateid_jenis{{$i}}" id="updateid_jenis{{$i}}" placeholder="Kode" value="{{$data->id_jenis}}" readonly>
+                            <input type="hidden" class="form-control" style="width: 120px" name="updateid_objek" id="updateid_objek" placeholder="Kode" value="{{$data->id}}" >
+                          </td>
+                          <td>
+                            <?php $kd = explode('.', $data->id) ?>
+                            <input type="text" class="form-control" style="width: 100px" name="kode" placeholder="Kode" readonly="" value="<?php echo $kd[3]; ?>">
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Nama Obyek Belanja</label>
+                      <input type="text" class="form-control" name="nama" placeholder="Masukan Nama" value="{{ $data->description}}" required>
                     </div>
                   </div><!-- /.box-body -->
                   <?php echo csrf_field(); ?>
@@ -207,23 +249,22 @@
     <div class="control-sidebar-bg"></div>
     </div><!-- ./wrapper -->
 
-
-
     <!-- jQuery 2.1.4 -->
-    <script src="/bower_components/admin-lte/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+
+    <script src="{{ asset ("/bower_components/admin-lte/plugins/jQuery/jQuery-2.1.4.min.js") }}"></script>
     <!-- Bootstrap 3.3.5 -->
-    <script src="/bower_components/admin-lte/bootstrap/js/bootstrap.min.js"></script>
+    <script src="{{ asset ("/bower_components/admin-lte/bootstrap/js/bootstrap.min.js") }}"></script>
     <!-- DataTables -->
-    <script src="/bower_components/admin-lte/plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="/bower_components/admin-lte/plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <script src="{{ asset ("/bower_components/admin-lte/plugins/datatables/jquery.dataTables.min.js") }}"></script>
+    <script src="{{ asset ("/bower_components/admin-lte/plugins/datatables/dataTables.bootstrap.min.js") }}"></script>
     <!-- SlimScroll -->
-    <script src="/bower_components/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <script src="{{ asset ("/bower_components/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js") }}"></script>
     <!-- FastClick -->
-    <script src="/bower_components/admin-lte/plugins/fastclick/fastclick.min.js"></script>
+    <script src="{{ asset ("/bower_components/admin-lte/plugins/fastclick/fastclick.min.js") }}"></script>
     <!-- AdminLTE App -->
-    <script src="/bower_components/admin-lte/dist/js/app.min.js"></script>
+    <script src="{{ asset ("/bower_components/admin-lte/dist/js/app.min.js") }}"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="/bower_components/admin-lte/dist/js/demo.js"></script>
+    <script src="{{ asset ("/bower_components/admin-lte/dist/js/demo.js") }}"></script>
     <!-- page script -->
     <script>
 
@@ -237,6 +278,25 @@
           "info": true,
           "autoWidth": true
         });
+
+        $('#jenis').change(function(){
+          var kode = $(this).val();
+          if(kode != "-Pilih Jenis Belanja-")
+            $('#id_jenis').val(kode);
+          else
+            $('#id_jenis').val(null);
+        });
+
+        //digunakan pada onchange event di modal update
+        <?php $i=1; ?>
+        @foreach($objekbelanja as $data)
+        $('#updatejenis{{$i}}').change(function(){
+          var kode = $(this).val();
+            $('#updateid_jenis{{$i}}').val(kode);
+        });
+        <?php $i++; ?>
+        @endforeach
+
       });
     </script>
   </body>

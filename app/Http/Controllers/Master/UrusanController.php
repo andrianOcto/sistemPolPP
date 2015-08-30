@@ -16,9 +16,9 @@ class UrusanController extends Controller {
   	$data['urusan']    = Urusan::all();
 
     if(Session::get("role","default")=="master")
-                return view('/master/urusan')->with($data);
+              return redirect('/');                
             else
-                return redirect('/');
+              return view('/master/urusan')->with($data);
     
   }
 
