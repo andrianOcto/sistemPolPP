@@ -75,6 +75,12 @@ Route::group(['middleware' => 'auth'], function () {
      Route::post('/rincianBelanja/add','Master\RincianBelanjaController@postAdd');
      Route::post('/rincianBelanja/update/{id}','Master\RincianBelanjaController@postUpdate');
      Route::post('/rincianBelanja/delete/{id}','Master\RincianBelanjaController@postDelete');
+
+     //Route Master Setting Program
+     Route::get('/program','Master\ProgramController@getIndex');
+     Route::post('/program/add','Master\ProgramController@postAdd');
+     Route::post('/program/update','Master\ProgramController@postUpdate');
+     Route::post('/program/delete/{id}','Master\ProgramController@postDelete');
 });
 
 
