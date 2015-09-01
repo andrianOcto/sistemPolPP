@@ -79,8 +79,12 @@ Route::group(['middleware' => 'auth'], function () {
      //Route Master Setting Program
      Route::get('/program','Master\ProgramController@getIndex');
      Route::post('/program/add','Master\ProgramController@postAdd');
+     Route::get('/program/load/{id}','Master\ProgramController@getLoad');
      Route::post('/program/update','Master\ProgramController@postUpdate');
      Route::post('/program/delete/{id}','Master\ProgramController@postDelete');
+
+     //Route Master Setting Kegiatan
+     Route::post('/kegiatan/add','Master\ProgramController@postKegiatanAdd');
 });
 
 
