@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 30, 2015 at 09:23 AM
+-- Generation Time: Sep 02, 2015 at 04:11 AM
 -- Server version: 5.6.25
 -- PHP Version: 5.6.11
 
@@ -144,9 +144,20 @@ CREATE TABLE IF NOT EXISTS `s_kegiatan` (
   `id_bidang` varchar(55) NOT NULL,
   `id_program` varchar(55) NOT NULL,
   `description` varchar(255) NOT NULL,
+  `anggaran` double NOT NULL DEFAULT '0',
+  `sasaran` varchar(255) NOT NULL DEFAULT ' ',
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `s_kegiatan`
+--
+
+INSERT INTO `s_kegiatan` (`id`, `id_bidang`, `id_program`, `description`, `anggaran`, `sasaran`, `updated_at`, `created_at`) VALUES
+('1', '1', '2', 'hahashaha', 0, ' ', '2015-09-01 22:33:56', '0000-00-00 00:00:00'),
+('1.2', '02', '1', 'ini adalah test', 0, ' ', '2015-09-01 22:34:09', '2015-09-01 14:32:48'),
+('999', '1', '2', 'hahahaha', 0, ' ', '2015-09-01 22:34:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -237,6 +248,14 @@ CREATE TABLE IF NOT EXISTS `s_program` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `s_program`
+--
+
+INSERT INTO `s_program` (`id`, `description`, `updated_at`, `created_at`) VALUES
+('1', 'program 12', '2015-09-01 14:41:50', '2015-09-01 00:55:14'),
+('2', 'program 2', '2015-09-01 01:05:08', '2015-09-01 01:05:08');
 
 -- --------------------------------------------------------
 

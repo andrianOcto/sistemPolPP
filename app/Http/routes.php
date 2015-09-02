@@ -79,8 +79,15 @@ Route::group(['middleware' => 'auth'], function () {
      //Route Master Setting Program
      Route::get('/program','Master\ProgramController@getIndex');
      Route::post('/program/add','Master\ProgramController@postAdd');
+     Route::get('/program/load/{id}','Master\ProgramController@getLoad');
      Route::post('/program/update','Master\ProgramController@postUpdate');
      Route::post('/program/delete/{id}','Master\ProgramController@postDelete');
+
+     //Route Master Setting Kegiatan
+     Route::post('/kegiatan/add','Master\KegiatanController@postAdd');
+     Route::get('/kegiatan','Master\KegiatanController@getIndex');
+     Route::post('/kegiatan/update/{id}','Master\KegiatanController@postUpdate');
+     Route::post('/kegiatan/delete/{id}','Master\KegiatanController@postDelete');
 });
 
 

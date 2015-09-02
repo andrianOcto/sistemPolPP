@@ -15,6 +15,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Font Awesome Icons -->
     <link href="{{ asset("/bower_components/admin-lte/dist/css/font.css")}}" rel="stylesheet" type="text/css" />
     <!-- Ionicons -->
+     <link href="{{ asset("/bower_components/admin-lte/awesome-font/css/font-awesome.min.css")}}" rel="stylesheet" type="text/css" />
     <link href="{{ asset("/bower_components/admin-lte/dist/css/ionic.css")}}" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
     <link href="{{ asset("/bower_components/admin-lte/dist/css/AdminLTE.min.css")}}" rel="stylesheet" type="text/css" />
@@ -41,6 +42,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="login-logo">
         <a href="../../index2.html"><b>Admin</b>LTE</a>
       </div><!-- /.login-logo -->
+      @if (session('errMessage') != null)
+        <!-- Error message kalau kode sudah pernah di masukkan -->
+        <div class="alert alert-danger alert-dismissable ">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          <h4><i class="icon fa fa-ban"></i> Gagal Login!</h4>
+          {!! session('errMessage') !!}
+        </div>
+        @endif
       <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
         <form action="/login" method="post">
@@ -69,6 +78,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </form>
 
       </div><!-- /.login-box-body -->
+
     </div><!-- /.login-box -->
 
     <!-- jQuery 2.1.4 -->
