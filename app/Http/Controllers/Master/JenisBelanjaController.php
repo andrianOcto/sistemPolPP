@@ -47,15 +47,11 @@ class JenisbelanjaController extends Controller {
 
   public function postUpdate(Request $request)
   {
-    $klp = $request->input("kelompok");
-    $kd  = $request->input("kode");
-    $kode = $klp.".".$kd;
-
+    $kode = $request->input("id");
     $jenisbelanja               = Jenisbelanja::find($kode);
-    $jenisbelanja->id_kelompok  = $request->input("kelompok");
-    $jenisbelanja->description  = $request->input("nama");
+    $jenisbelanja->description  = $request->input("deskripsi");
     $jenisbelanja->save();
-   // return redirect("/jenisBelanja");
+    return redirect("/jenisBelanja");
   }
 
   public function postDelete(Request $request,$id)

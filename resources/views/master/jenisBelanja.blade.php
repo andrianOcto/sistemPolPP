@@ -192,17 +192,18 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h2 class="modal-title" id="myModalLabel">Update User</h2>
+              <h2 class="modal-title" id="myModalLabel">Update Jenis Belanja</h2>
             </div>
             <div class="modal-body">
-              <form role="form" method="post" action="/jenisbelAnja/update">
+              <form role="form" method="post" action="/jenisBelanja/update">
+              <input type="hidden" name="id" value="{{$data->id}}">
                   <div class="box-body">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Kode Kelompok Belanja</label>
-                      <select class="form-control" name="kelompok" id="kelompok">
+                      <select class="form-control" name="kelompok" id="kelompok" disabled>
                         <option>-Pilih Kelompok Belanja-</option>
                         @foreach($klp as $kelompok)
-                        <option value="{{$kelompok->id}}" <?php if($data->id == $kelompok->id) {echo "selected";} ?> readonly=''> {{$kelompok->id}} &nbsp &nbsp {{$kelompok->description}}</option>
+                        <option value="{{$kelompok->id}}" <?php if($data->id_kelompok == $kelompok->id) {echo "selected";} ?> disabled> {{$kelompok->id}} &nbsp &nbsp {{$kelompok->description}} </option>
                         @endforeach
                       </select>
                     </div>
@@ -211,7 +212,7 @@
                       <table>
                         <tr>
                           <td>
-                            <input type="text" class="form-control" style="width: 120px" name="id_kelompok" id="id_kelompok" placeholder="Kode" value="{{$data->id_kelompok}}">
+                            <input type="text" class="form-control" style="width: 120px" name="id_kelompok" id="id_kelompok" placeholder="Kode" value="{{$data->id_kelompok}}" readonly="">
                           </td>
                           <td>
                             <?php $kd = explode('.', $data->id) ?>
@@ -222,7 +223,7 @@
                     </div>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Nama Jenis Belanja</label>
-                      <input type="text" class="form-control" name="nama" placeholder="Masukan Nama" value="{{ $data->description}}" required>
+                      <input type="text" class="form-control" name="deskripsi" placeholder="Masukan Nama" value="{{ $data->description}}" required>
                     </div>
                   </div><!-- /.box-body -->
                   <?php echo csrf_field(); ?>
@@ -230,7 +231,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-warning">Update User</button>
+              <button type="submit" class="btn btn-warning">Update</button>
             </div>
             </form>
           </div>
