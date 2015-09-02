@@ -84,7 +84,10 @@ Route::group(['middleware' => 'auth'], function () {
      Route::post('/program/delete/{id}','Master\ProgramController@postDelete');
 
      //Route Master Setting Kegiatan
-     Route::post('/kegiatan/add','Master\ProgramController@postKegiatanAdd');
+     Route::post('/kegiatan/add','Master\KegiatanController@postAdd');
+     Route::get('/kegiatan','Master\KegiatanController@getIndex');
+     Route::post('/kegiatan/update/{id}','Master\KegiatanController@postUpdate');
+     Route::post('/kegiatan/delete/{id}','Master\KegiatanController@postDelete');
 });
 
 

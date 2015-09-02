@@ -48,26 +48,6 @@ class ProgramController extends Controller {
     }
   }
 
-  public function postKegiatanAdd(Request $request)
-  {
-    try
-    {
-      $kegiatan               = new Kegiatan;
-      $kegiatan->id           = $request->input("kodeProgram").".".$request->input("kodeKegiatan");
-      $kegiatan->id_bidang    = $request->input("kodeBidang");
-      $kegiatan->id_program   = $request->input("kodeProgram");
-      $kegiatan->description  = $request->input("namaKegiatan");
-      $kegiatan->save();
-      return redirect("/program")->with('successMessage', 'Data berhasil ditambahkan!');
-    }
-
-    //jika user sudah ada dalam database
-    catch(\Illuminate\Database\QueryException $e)
-    {
-      return redirect("/program")->with('errMessage', 'Kode yang disimpan sudah ada dalam database. </br> Harap Coba menggunakan kode yang belum ada');
-    }
-  }
-
   public function postDelete(Request $request,$id)
   {
     Program::destroy($id);
