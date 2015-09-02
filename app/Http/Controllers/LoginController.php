@@ -72,11 +72,12 @@ class LoginController extends Controller {
             Session::put('role', $role);    
             return redirect("/");
         }
-        return back()->withInput();
+        return redirect("/login")->with('errMessage', 'Username dan password tidak sesuai');
     }
     else
     {
-        return back()->withInput();
+        //Username not found
+        return redirect("/login")->with('errMessage', 'Username tidak ditemukan.');
     }
     
   }
