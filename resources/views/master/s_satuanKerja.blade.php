@@ -19,12 +19,10 @@
             <div class="form-group">
               <label for="inputEmail3" class="col-sm-2 control-label">Urusan</label>
               <div class="col-sm-10">
-                <select class="form-control select2" style="width: 100%;">
-                  <option>1.01 Urusan Wajib Pendidikan</option>
-                  <option>1.02 Urusan Wajib Kesehatan</option>
-                  <option>1.03 Urusan Wajib Pekerjaan Umum</option>
-                  <option>1.04 Urusan Wajib Perumahan</option>
-                  <option>1.05 Urusan Wajib Penataan Ruan</option>
+                <select class="form-control select2" style="width: 100%;" id="kode_urusan">
+                  @foreach($urusan as $data)
+                  <option value="{{$data->id}}">{{$data->id}} &nbsp {{$data->description}}</option>
+                  @endforeach
                 </select>
               </div>
             </div>

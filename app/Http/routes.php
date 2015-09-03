@@ -39,6 +39,8 @@ Route::group(['middleware' => 'auth'], function () {
 
      // Route Master Setting Satuan Kerja
      Route::get('/satuanKerja','Master\setKerjaController@getIndex');
+     Route::get('/satuanKerja/edit','Master\setKerjaController@getEdit');
+     Route::post('/satuanKerja/save','Master\setKerjaController@postSave');
 
      // Route Master Setting Urusan
      Route::get('/urusan','Master\UrusanController@getIndex');
