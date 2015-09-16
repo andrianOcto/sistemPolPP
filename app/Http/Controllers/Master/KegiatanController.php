@@ -41,6 +41,10 @@ public function postAdd(Request $request)
       $kegiatan->id_bidang    = $request->input("kodeBidang");
       $kegiatan->id_program   = $request->input("kodeProgram");
       $kegiatan->description  = $request->input("namaKegiatan");
+      $kegiatan->nama_bidang  = $request->input("shortNameBidang");
+      $kegiatan->nama_lengkap_bidang  = $request->input("completeNameBidang");
+      $kegiatan->tahun        =date('Y');
+      
       $kegiatan->save();
       return redirect("/program")->with('successMessage', 'Data berhasil ditambahkan!');
     }

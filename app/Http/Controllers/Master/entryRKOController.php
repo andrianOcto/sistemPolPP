@@ -14,7 +14,7 @@ use App\Program;
 use App\Kegiatan;
 use DB;
 
-class ProgramController extends Controller {
+class entryRKOController extends Controller {
 
   public function getIndex() {
 
@@ -26,7 +26,7 @@ class ProgramController extends Controller {
     if(Session::get("role","default")=="master")
                 return redirect('/');
             else
-                return view('/master/program')->with($data);
+                return view('/master/entryRKO')->with($data);
   }
 
 

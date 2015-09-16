@@ -78,10 +78,6 @@
 
               <div class="box">
                 <div class="box-header">
-                  <a class="btn bg-blue btn-app" href="#modal-addProgram" data-toggle="modal" data-target="#modal-addProgram">
-                    <i class="fa fa-plus"> </i>
-                    <b>Tambah Program</b>
-                  </a>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <table id="example2" class="table table-hover table-striped">
@@ -89,7 +85,6 @@
                       <tr>
                         <th>Kode</th>
                         <th>Nama Program </th>
-                        <th align="center">Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -100,14 +95,6 @@
                         >
                         <td>{{$program->id}}</td>
                         <td>{{$program->description}}</td>
-                        <td align="center">
-                          <a class="btn btn-warning" href="#modal-updateProgram{{$i}}" data-toggle="modal" data-target="#modal-updateProgram{{$i}}">
-                              <i class="fa fa-edit fa-lg"></i> Update
-                          </a>
-                          <a class="btn btn-danger"  href="#modal-deleteProgram{{$i}}" data-toggle="modal" data-target="#modal-deleteProgram{{$i}}">
-                              <i class="fa fa-trash-o fa-lg"></i> Delete
-                          </a>
-                        </td>
                       </tr>
                       <?php $i++?>
                       @endforeach
@@ -136,10 +123,6 @@
 
               <div class="box">
                 <div class="box-header">
-                  <a class="btn bg-blue btn-app" href="#modal-addKegiatan" data-toggle="modal" data-target="#modal-addKegiatan">
-                    <i class="fa fa-plus"> </i>
-                    <b>Tambah Kegiatan</b>
-                  </a>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <table id="tableProgram" class="table table-bordered table-striped">
@@ -147,6 +130,7 @@
                       <tr>
                         <th>Kode</th>
                         <th>Nama Kegiatan</th>
+                        <th>Action</th>
                       </tr>
                     </thead>
                     
@@ -160,71 +144,9 @@
           </div><!-- /.row -->
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
-      
 
-      <!-- Modal Add Program-->
-      <div class="modal fade" id="modal-addProgram" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h2 class="modal-title" id="myModalLabel">Tambah Program</h2>
-            </div>
-            <div class="modal-body">
-              <form role="form" method="post" action="/program/add">
-                  <div class="box-body">
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Kode</label>
-                      <input type="text" class="form-control" name="kode" placeholder="Masukkan Kode Program" required>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Nama Program</label>
-                      <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Program" required>
-                    </div>
-                  </div><!-- /.box-body -->
-                  <?php echo csrf_field(); ?>
-                
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Tambah Program</button>
-            </div>
-            </form>
-          </div>
-        </div>
-      </div>
-
-      <?php $i=0;?>
-      @foreach($programs as $program)
-      <!-- Modal Convirmation Delete User-->
-      <div class="modal fade" id="modal-deleteProgram{{$program->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h2 class="modal-title" id="myModalLabel">Perhatian</h2>
-            </div>
-            <div class="modal-body">
-              <h4> Apakah Anda Yakin Akan Menghapus Data </h4>
-            </div>
-            <div class="modal-footer">
-              <form action="/program/delete/{{$program->id}}" method="post">
-                <?php echo csrf_field(); ?>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-danger">Delete</button>
-              </form>
-            </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      <?php $i++;?>
-      @endforeach
-
-      <?php $i=0;?>
-      @foreach($programs as $program)
       <!-- Modal Update User -->
-      <div class="modal fade" id="modal-updateProgram{{$i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal fade" id="modal-updateProgram" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -235,13 +157,75 @@
               <form role="form" method="post" action="/program/update">
                   <div class="box-body">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Kode</label>
-                      <input type="text" class="form-control" name="kode" placeholder="Masukkan Kode Program" value="{{$program->id}}" readonly>
+                      <label for="exampleInputEmail1">Kode Kegiatan</label>
+                      <input type="text" class="form-control" name="kode" id="kodeKegiatan" placeholder="Masukkan Kode Program" value="{{$program->id}}" readonly>
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Nama Program</label>
-                      <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Program" value="{{$program->description}}" required>
+                      <label for="exampleInputEmail1">Nama Kegiatan</label>
+                      <input type="text" class="form-control" name="namaKegiatan" id="namaKegiatan" placeholder="Masukkan Nama Program" value="{{$program->description}}" required>
                     </div>
+                    <hr class="divider" style="border-top-color:#908D8D;border-top-width:2px">
+
+                    <div class="row">
+                      <div class="col-md-4 form-group">
+                        <label for="exampleInputEmail1">Jan</label>
+                        <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Program" value="0" required>
+                      </div>
+                      <div class="col-md-4">
+                        <label for="exampleInputEmail1">Februari</label>
+                        <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Program" value="0" required>
+                      </div>
+                      <div class="col-md-4">
+                        <label for="exampleInputEmail1">Maret</label>
+                        <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Program" value="0" required>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-4 form-group">
+                        <label for="exampleInputEmail1">April</label>
+                        <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Program" value="0" required>
+                      </div>
+                      <div class="col-md-4">
+                        <label for="exampleInputEmail1">Mei</label>
+                        <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Program" value="0" required>
+                      </div>
+                      <div class="col-md-4">
+                        <label for="exampleInputEmail1">Juni</label>
+                        <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Program" value="0" required>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-4 form-group">
+                        <label for="exampleInputEmail1">Juli</label>
+                        <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Program" value="0" required>
+                      </div>
+                      <div class="col-md-4">
+                        <label for="exampleInputEmail1">Agustus</label>
+                        <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Program" value="0" required>
+                      </div>
+                      <div class="col-md-4">
+                        <label for="exampleInputEmail1">September</label>
+                        <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Program" value="0" required>
+                      </div>
+                    </div>             
+
+
+                    <div class="row">
+                      <div class="col-md-4 form-group">
+                        <label for="exampleInputEmail1">Oktober</label>
+                        <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Program" value="0" required>
+                      </div>
+                      <div class="col-md-4">
+                        <label for="exampleInputEmail1">November</label>
+                        <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Program" value="0" required>
+                      </div>
+                      <div class="col-md-4">
+                        <label for="exampleInputEmail1">Desember</label>
+                        <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Program" value="0" required>
+                      </div>
+                    </div>     
                   </div><!-- /.box-body -->
                   <?php echo csrf_field(); ?>
                 
@@ -249,74 +233,6 @@
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-warning">Update Program</button>
-            </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      <?php $i++;?>
-      @endforeach
-
-      <!-- Modal Add Kegiatan-->
-      <div class="modal fade" id="modal-addKegiatan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h2 class="modal-title" id="myModalLabel">Tambah Kegiatan</h2>
-            </div>
-            <div class="modal-body">
-              
-              <form role="form" method="post" action="/kegiatan/add">
-                  <div class="box-body">
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">KodeBidang</label>
-                      <div>
-                      <div class="col-md-3" style="padding-left:0px">
-                        <select class="form-control" name="kodeBidang" id="kodeBidang" required>
-                        <option disabled selected>-Pilih Kode Bidang-</option>
-                        @foreach($bidang as $item)
-                          <option value="{{$item->id}}">{{$item->id}}</option>
-                        @endforeach
-                      </select></div>
-                      <div class="col-md-9"><input type="text" class="form-control" name="shortNameBidang" id="shortNameBidang" placeholder="" readonly></div>
-                      </div>
-                    </div>
-                    <div class="form-group" style="margin-top:50px">
-                      <input type="text" class="form-control" name="completeNameBidang" id="completeNameBidang" placeholder="" readonly>
-                    </div>
-
-                    <hr class="divider" style="border-top-color:#908D8D;border-top-width:2px">
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Kode Program</label>
-                      <input type="text" class="form-control" name="kodeProgram" id="kodeProgram" placeholder="Masukkan Kode Program" readonly>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Nama Program</label>
-                      <input type="text" class="form-control" name="namaProgram" id="namaProgram" placeholder="Masukkan Nama Program" readonly>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Kode Kegiatan</label>
-                      <div>
-                        <div class="col-md-8" style="padding-left:0px;padding-right:5px">
-                          <input type="text" class="form-control" name="kodeProgram2" id="kodeProgram2" placeholder="Masukkan Kode Program" readonly>
-                         </div>
-                        <div class="col-md-4" style="padding-right:0px;padding-left:0px">
-                          <input type="text" class="form-control" name="kodeKegiatan" placeholder="Masukkan Kode Program" required>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Nama Kegiatan</label>
-                      <textarea class="form-control" rows="5" name="namaKegiatan" placeholder="Masukkan Nama Kegiatan" required></textarea>
-                    </div>
-                  </div><!-- /.box-body -->
-                  <?php echo csrf_field(); ?>
-                
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary" onClick="if(document.getElementById('kodeBidang').value == '-Pilih Kode Bidang-') document.getElementById('kodeBidang').value=null">Tambah Kegiatan</button>
             </div>
             </form>
           </div>
@@ -376,9 +292,13 @@
         table = $('#example2').DataTable();
         table2 = $('#tableProgram').DataTable();
       });
-
-
       
+    function updateModal(idKegiatan,namaKegiatan)
+    {
+      document.getElementById("kodeKegiatan").value = idKegiatan;
+      document.getElementById("namaKegiatan").value = namaKegiatan;
+    }
+
     //initialize data
     function refreshData(id)
     {
@@ -393,13 +313,13 @@
           {
             table2.clear();
             //create data from response
-            
+              
               var arrTemp = [];
               var objName;
-              
+              var temp = "<a class='btn btn-primary' href='#modal-updateProgram' data-toggle='modal' data-target='#modal-updateProgram' onClick='updateModal(\""+response[i]['id']+"\",\""+response[i]['description']+"\")'><i class='fa fa-edit fa-lg'></i> Entry RKO</a>";
               arrTemp.push(response["id"]);
               arrTemp.push(response["description"]);
-
+              arrTemp.push(temp);
               table2.row.add(arrTemp);
             
           }
@@ -411,10 +331,11 @@
             for (var i =0; i<response.length ; i++) {
                     var arrTemp = [];
                     var objName;
-                    
+                    var temp = "<a class='btn btn-primary' href='#modal-updateProgram' data-toggle='modal' data-target='#modal-updateProgram' onClick='updateModal(\""+response[i]['id']+"\",\""+response[i]['description']+"\")'><i class='fa fa-edit fa-lg'></i> Entry RKO</a>";
+              
                     arrTemp.push(response[i]["id"]);
                     arrTemp.push(response[i]["description"]);
-
+                    arrTemp.push(temp);
                     table2.row.add(arrTemp);
                 }
           }

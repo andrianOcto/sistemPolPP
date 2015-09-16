@@ -3,13 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Setting Obyek Belanja</title>
+    <title>AdminLTE 2 | Data Tables</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- Bootstrap 3.3.5 -->
-    
     <link href="{{ asset("/bower_components/admin-lte/bootstrap/css/bootstrap.min.css") }}" rel="stylesheet" type="text/css" />
-        <!-- Font Awesome Icons -->
+    <!-- Font Awesome Icons -->
     <link href="{{ asset("/bower_components/admin-lte/awesome-font/css/font-awesome.min.css")}}" rel="stylesheet" type="text/css" />
     <!-- Ionicons -->
     <link href="{{ asset("/bower_components/admin-lte/dist/css/ionic.css")}}" rel="stylesheet" type="text/css" />
@@ -47,7 +45,7 @@
 
         <section class="content-header">
           <h1>
-            Setting Obyek belanja
+            Setting Rencana Realisasi
             <small></small>
           </h1>
           <ol class="breadcrumb">
@@ -56,11 +54,11 @@
             <li class="active">Data tables</li>
           </ol>
         </section>
-        
+
         <!-- Main content -->
         <section class="content">
 
-          @if (session('errMessage') != null)
+        @if (session('errMessage') != null)
         <!-- Error message kalau kode sudah pernah di masukkan -->
         <div class="alert alert-danger alert-dismissable ">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -79,38 +77,37 @@
 
           <div class="row">
             <div class="col-xs-12">
-
               <div class="box">
                 <div class="box-header">
-                  
+                  <a class="btn bg-blue btn-app" href="#modal-addBidang" data-toggle="modal" data-target="#modal-addBidang">
+                    <i class="fa fa-plus"> </i>
+                    <b>Tambah Data</b>
+                  </a>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <table id="example2" class="table table-bordered table-striped">
                     <thead>
                       <tr>
-                        <th>Kode</th>
-                        <th>Bidang</th>
-                        <th>Nama Kegiatan</th>
-                        <th>Anggaran</th>
-                        <th>Sasaran</th>
+                        <th>Deskripsi</th>
+                        <th>Jumlah</th>
+                        <th>Harga</th>
+                        <th>total</th>
                         <th align="center">Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php $i=1; ?>
-                      @foreach($kegiatan as $data)
+                      @foreach($bidang as $data)
                       <tr>
-                        <td>{{$data->id}}</td>
-                        <td>{{$data->nama}}</td>
                         <td>{{$data->description}}</td>
-                        <td>{{$data->anggaran}}</td>
-                        <td>{{$data->sasaran}}</td>
-                        
+                        <td>{{$data->jumlah}}</td>
+                        <td>{{$data->harga}}</td>
+                        <td>{{$data->jumlah*$data->harga}}</td>
                         <td align="center">
-                          <a class="btn btn-warning" href="#modal-updateObjekbelanja{{$i}}" data-toggle="modal" data-target="#modal-updateObjekbelanja{{$i}}">
+                          <a class="btn btn-warning" href="#modal-updateBidang{{$i}}" data-toggle="modal" data-target="#modal-updateBidang{{$i}}">
                               <i class="fa fa-edit fa-lg"></i> Update
                           </a>
-                          <a class="btn btn-danger"  href="#modal-deleteObjekbelanja{{$i}}" data-toggle="modal" data-target="#modal-deleteObjekbelanja{{$i}}">
+                          <a class="btn btn-danger"  href="#modal-deleteBidang{{$i}}" data-toggle="modal" data-target="#modal-deleteBidang{{$i}}">
                               <i class="fa fa-trash-o fa-lg"></i> Delete
                           </a>
                         </td>
@@ -128,12 +125,50 @@
           </div><!-- /.row -->
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
+      
 
 
+      <!-- Modal Add User-->
+      <div class="modal fade" id="modal-addBidang" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h2 class="modal-title" id="myModalLabel">Add Rencana Item</h2>
+            </div>
+            <div class="modal-body">
+              <form role="form" method="post" action="/rencana/add">
+                  <div class="box-body">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Nama Item</label>
+                      <input type="hidden" class="form-control" name="id_kegiatan" value="{{$id_kegiatan}}" >
+                      <input type="text" class="form-control" name="description" placeholder="Masukan Nama Item" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Jumlah</label>
+                      <input type="text" class="form-control" name="jumlah" placeholder="Masukan Jumlah Item" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Harga Satuan</label>
+                      <input type="text" class="form-control" name="harga" placeholder="Masukan Harga Satuan Item" required>
+                    </div>
+                  </div><!-- /.box-body -->
+                  <?php echo csrf_field(); ?>
+                
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Simpan</button>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      
       <?php $i=1; ?>
-      @foreach($kegiatan as $data)
+      @foreach($bidang as $data)
       <!-- Modal Convirmation Delete User-->
-      <div class="modal fade" id="modal-deleteObjekbelanja{{$i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal fade" id="modal-deleteBidang{{$i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -144,7 +179,7 @@
               <h4> Apakah Anda Yakin Akan Menghapus Data </h4>
             </div>
             <div class="modal-footer">
-              <form action="/kegiatan/delete/{{$data->id}}" method="post">
+              <form action="/bidang/delete/{{$data->id}}" method="post">
                 <?php echo csrf_field(); ?>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-danger">Delete</button>
@@ -158,66 +193,37 @@
       @endforeach
 
       <?php $i=1; ?>
-      @foreach($kegiatan as $data)
+      @foreach($bidang as $data)
       <!-- Modal Update User -->
-      <div class="modal fade" id="modal-updateObjekbelanja{{$i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal fade" id="modal-updateBidang{{$i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h2 class="modal-title" id="myModalLabel">Update Kegiatan</h2>
+              <h2 class="modal-title" id="myModalLabel">Update User</h2>
             </div>
             <div class="modal-body">
-             <form role="form" method="post" action="/kegiatan/update/{{$i}}">
+              <form role="form" method="post" action="/bidang/update">
                   <div class="box-body">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">KodeBidang</label>
-                      <div>
-                      <div class="col-md-3" style="padding-left:0px">
-                        <select class="form-control" name="kodeBidang{{$i}}" id="kodeBidang{{$i}}" required>
-                        <option disabled selected>-Pilih Kode Bidang-</option>
-                        @foreach($bidang as $item)                          
-                          <option value="{{$item->id}}" @if($item->id == $data->id_bidang) selected @endif>{{$item->id}}</option>
-                        @endforeach
-                      </select></div>
-                      @foreach($bidang as $item)
-                        @if($item->id== $data->id_bidang)
-                        <div class="col-md-9"><input type="text" class="form-control" name="shortNameBidang{{$i}}" id="shortNameBidang{{$i}}" placeholder="" value="{{$item->nama}}" readonly></div>
-                        @endif
-                      @endforeach
-                      </div>
-                    </div>
-                    <div class="form-group" style="margin-top:50px">
-                      @foreach($bidang as $item)
-                        @if($item->id== $data->id_bidang)
-                          <input type="text" class="form-control" name="completeNameBidang{{$i}}" id="completeNameBidang{{$i}}" placeholder="" value="{{$item->nama_lengkap}}" readonly>
-                        @endif
-                      @endforeach
-                    </div>
-                      <hr class="divider" style="border-top-color:#908D8D;border-top-width:2px">
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Kode Kegiatan</label>
-                      <input type="text" class="form-control" name="kodeKegiatan" id="kodeKegiatan{{$i}}" placeholder="Masukkan Kode Kegiatan" value="{{$data->id}}" readonly>
+                      <label for="exampleInputEmail1">Kode</label>
+                      <input type="text" class="form-control" name="kode" placeholder="Kode" value="{{$data->id}}" readonly>
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Nama Kegiatan</label>
-                      <input type="text" class="form-control" name="namaKegiatan" id="namaKegiatan{{$i}}" placeholder="Masukkan Nama Kegiatan" value="{{$data->description}}" required>
+                      <label for="exampleInputEmail1">Nama </label>
+                      <input type="text" class="form-control" name="nama" placeholder="Masukan Deskripsi" value="{{$data->nama}}" required>
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Anggaran</label>
-                      <input type="text" class="form-control" name="anggaran"  maxlength=12 onkeydown="validateNumber(event){{$i}}" placeholder="Masukkan Anggaran" value="{{$data->anggaran}}" required>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Sasaran</label>
-                      <input type="text" class="form-control" name="sasaran" placeholder="Masukkan Kode Program" value="{{$data->sasaran}}" required>
+                      <label for="exampleInputEmail1">Nama Lengkap</label>
+                      <input type="text" class="form-control" name="lengkap" placeholder="Masukan Deskripsi" value="{{$data->nama_lengkap}}" required>
                     </div>
                   </div><!-- /.box-body -->
                   <?php echo csrf_field(); ?>
+                
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <a href = "/rencana/{{$data->id}}"><button type="button" class="btn btn-primary">Rencana Realisasi</button></a>
-              <button type="submit" class="btn btn-warning">Update Kegiatan</button>
+              <button type="submit" class="btn btn-warning">Update User</button>
             </div>
             </form>
           </div>
@@ -231,6 +237,8 @@
            immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
     </div><!-- ./wrapper -->
+
+
 
     <!-- jQuery 2.1.4 -->
 
@@ -251,20 +259,6 @@
     <!-- page script -->
     <script>
 
-    var arrBidangKode = [];
-    var arrBidangNama = [];
-
-    //add nama to array list of bidang 
-    @foreach($bidang as $item)
-    arrBidangKode['{{$item->id}}'] = '{{$item->nama}}';
-      @endforeach
-
-      //add nama_lengkap to array list of bidang 
-      @foreach($bidang as $item)
-        arrBidangNama['{{$item->id}}'] = '{{$item->nama_lengkap}}';
-      @endforeach
-      //digunakan untuk mengupdate pada saat select d ganti
-
       $(function () {
         $("#example1").DataTable();
         $('#example2').DataTable({
@@ -275,66 +269,7 @@
           "info": true,
           "autoWidth": true
         });
-
-        //digunakan untuk mengupdate pada saat select d ganti
-        $('#jenis').change(function(){
-          var kode = $(this).val();
-          if(kode != "-Pilih Jenis Belanja-")
-            $('#id_jenis').val(kode);
-          else
-            $('#id_jenis').val(null);
-        });
-
-        //digunakan pada onchange event di modal update
-        <?php $i=1; ?>
-        @foreach($kegiatan as $data)
-        $('#updatejenis{{$i}}').change(function(){
-          var kode = $(this).val();
-            $('#updateid_jenis{{$i}}').val(kode);
-        });
-        $('#kodeBidang{{$i}}').change(function(){
-        var kode = $(this).val();
-        if(kode != "-Pilih Kode Bidang-")
-        {
-          $('#shortNameBidang{{$i}}').val(arrBidangKode[kode]);
-          $('#completeNameBidang{{$i}}').val(arrBidangNama[kode]);
-        }
-        });
-        <?php $i++; ?>
-        @endforeach
-
-
-        
-
       });
-
-
-      function validateNumber(evt) {
-        
-    var e = evt || window.event;
-    var key = e.keyCode || e.which;
-
-    if (!e.shiftKey && !e.altKey && !e.ctrlKey &&
-    // numbers   
-    key >= 48 && key <= 57 ||
-    // Numeric keypad
-    key >= 96 && key <= 105 ||
-    // Backspace and Tab and Enter
-    key == 8 || key == 9 || key == 13 ||
-    // Home and End
-    key == 35 || key == 36 ||
-    // left and right arrows
-    key == 37 || key == 39 ||
-    // Del and Ins
-    key == 46 || key == 45) {
-        // input is VALID
-    }
-    else {
-        // input is INVALID
-        e.returnValue = false;
-        if (e.preventDefault) e.preventDefault();
-    }
-}
     </script>
   </body>
 </html>

@@ -90,6 +90,17 @@ Route::group(['middleware' => 'auth'], function () {
      Route::get('/kegiatan','Master\KegiatanController@getIndex');
      Route::post('/kegiatan/update/{id}','Master\KegiatanController@postUpdate');
      Route::post('/kegiatan/delete/{id}','Master\KegiatanController@postDelete');
+
+     //Route Rencana Realisasi
+     Route::get('/rencana/{id}','Master\RencanaController@getIndex');
+     Route::post('/rencana/add','Master\RencanaController@postRencana');
+
+     //Route Entry RKO
+     Route::get('/entryRKO','Master\entryRKOController@getIndex');
+     Route::post('/program/add','Master\ProgramController@postAdd');
+     Route::get('/program/load/{id}','Master\ProgramController@getLoad');
+     Route::post('/program/update','Master\ProgramController@postUpdate');
+     Route::post('/program/delete/{id}','Master\ProgramController@postDelete');
 });
 
 

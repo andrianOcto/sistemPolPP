@@ -18,7 +18,7 @@
       <li class="treeview">
         <a href="#"><span>Input</span> <i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">
-          <li><a href="#">Entry RKO</a></li>
+          <li><a href="entryRKO">Entry RKO</a></li>
           <li><a href="#">Entry SPJ</a></li>
         </ul>
       </li>
