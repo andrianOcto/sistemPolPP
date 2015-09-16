@@ -11,6 +11,7 @@ use App\JenisBelanja;
 use App\Bidang;
 use App\ObjekBelanja;
 use App\Kegiatan;
+use App\EntryRKO;
 use DB;
 
 class KegiatanController extends Controller {
@@ -43,8 +44,13 @@ public function postAdd(Request $request)
       $kegiatan->description  = $request->input("namaKegiatan");
       $kegiatan->nama_bidang  = $request->input("shortNameBidang");
       $kegiatan->nama_lengkap_bidang  = $request->input("completeNameBidang");
-      $kegiatan->tahun        =date('Y');
-      
+      $kegiatan->tahun        = date('Y');
+
+      $entryRKO               = new EntryRKO;
+      $entryRKO->id_kegiatan  = $request->input("kodeProgram").".".$request->input("kodeKegiatan");
+      $entryRKO->tahun        = date('Y');
+
+      $entryRKO->save();
       $kegiatan->save();
       return redirect("/program")->with('successMessage', 'Data berhasil ditambahkan!');
     }

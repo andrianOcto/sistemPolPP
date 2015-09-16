@@ -97,10 +97,7 @@ Route::group(['middleware' => 'auth'], function () {
 
      //Route Entry RKO
      Route::get('/entryRKO','Master\entryRKOController@getIndex');
-     Route::post('/program/add','Master\ProgramController@postAdd');
-     Route::get('/program/load/{id}','Master\ProgramController@getLoad');
-     Route::post('/program/update','Master\ProgramController@postUpdate');
-     Route::post('/program/delete/{id}','Master\ProgramController@postDelete');
+     Route::post('/entryRKO/update','Master\entryRKOController@postUpdate');
 });
 
 

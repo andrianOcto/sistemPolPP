@@ -14,9 +14,9 @@ use App\Bidang;
 class RencanaController extends Controller {
 
   public function getIndex($id) {
-
+setlocale(LC_MONETARY, 'id_ID'); 
   	$data['page_title']    = "Master Setting Bidang";
-    $data['bidang']        = Rencana::all();
+    $data['bidang']        = Rencana::where("id_kegiatan",$id)->where("tahun",date('Y'))->get();
     $data['id_kegiatan']   = $id;
 
     if(Session::get("role","default")=="master")

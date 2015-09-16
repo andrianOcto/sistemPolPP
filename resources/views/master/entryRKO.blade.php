@@ -151,63 +151,63 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h2 class="modal-title" id="myModalLabel">Update Program</h2>
+              <h2 class="modal-title" id="myModalLabel">Entry RKO</h2>
             </div>
             <div class="modal-body">
-              <form role="form" method="post" action="/program/update">
+              <form role="form" method="post" action="/entryRKO/update">
                   <div class="box-body">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Kode Kegiatan</label>
-                      <input type="text" class="form-control" name="kode" id="kodeKegiatan" placeholder="Masukkan Kode Program" value="{{$program->id}}" readonly>
+                      <input type="text" class="form-control" name="kodeKegiatan" id="kodeKegiatan" placeholder="Masukkan Kode Program" value="{{$program->id}}" readonly>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Nama Kegiatan</label>
-                      <input type="text" class="form-control" name="namaKegiatan" id="namaKegiatan" placeholder="Masukkan Nama Program" value="{{$program->description}}" required>
+                      <input type="text" class="form-control" name="namaKegiatan" id="namaKegiatan" placeholder="Masukkan Nama Program" value="{{$program->description}}" readonly>
                     </div>
                     <hr class="divider" style="border-top-color:#908D8D;border-top-width:2px">
 
                     <div class="row">
                       <div class="col-md-4 form-group">
-                        <label for="exampleInputEmail1">Jan</label>
-                        <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Program" value="0" required>
+                        <label for="exampleInputEmail1">Januari</label>
+                        <input type="text" class="form-control" name="jan" id="jan" placeholder="0" required>
                       </div>
                       <div class="col-md-4">
                         <label for="exampleInputEmail1">Februari</label>
-                        <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Program" value="0" required>
+                        <input type="text" class="form-control" name="feb" id="feb" placeholder="0" required>
                       </div>
                       <div class="col-md-4">
                         <label for="exampleInputEmail1">Maret</label>
-                        <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Program" value="0" required>
+                        <input type="text" class="form-control" name="mar" id="mar" placeholder="0" required>
                       </div>
                     </div>
 
                     <div class="row">
                       <div class="col-md-4 form-group">
                         <label for="exampleInputEmail1">April</label>
-                        <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Program" value="0" required>
+                        <input type="text" class="form-control" name="apr" id="apr" placeholder="0" required>
                       </div>
                       <div class="col-md-4">
                         <label for="exampleInputEmail1">Mei</label>
-                        <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Program" value="0" required>
+                        <input type="text" class="form-control" name="mei" id="mei" placeholder="0" required>
                       </div>
                       <div class="col-md-4">
                         <label for="exampleInputEmail1">Juni</label>
-                        <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Program" value="0" required>
+                        <input type="text" class="form-control" name="jun" id="jun" placeholder="0" required>
                       </div>
                     </div>
 
                     <div class="row">
                       <div class="col-md-4 form-group">
                         <label for="exampleInputEmail1">Juli</label>
-                        <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Program" value="0" required>
+                        <input type="text" class="form-control" name="jul" id="jul" placeholder="0" required>
                       </div>
                       <div class="col-md-4">
                         <label for="exampleInputEmail1">Agustus</label>
-                        <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Program" value="0" required>
+                        <input type="text" class="form-control" name="agu" id="agu" placeholder="0" required>
                       </div>
                       <div class="col-md-4">
                         <label for="exampleInputEmail1">September</label>
-                        <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Program" value="0" required>
+                        <input type="text" class="form-control" name="sep" id="sep" placeholder="0" required>
                       </div>
                     </div>             
 
@@ -215,15 +215,15 @@
                     <div class="row">
                       <div class="col-md-4 form-group">
                         <label for="exampleInputEmail1">Oktober</label>
-                        <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Program" value="0" required>
+                        <input type="text" class="form-control" name="okt" id="okt" placeholder="0" required>
                       </div>
                       <div class="col-md-4">
                         <label for="exampleInputEmail1">November</label>
-                        <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Program" value="0" required>
+                        <input type="text" class="form-control" name="nov" id="nov" placeholder="0" required>
                       </div>
                       <div class="col-md-4">
                         <label for="exampleInputEmail1">Desember</label>
-                        <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Program" value="0" required>
+                        <input type="text" class="form-control" name="des" id="des" placeholder="0" required>
                       </div>
                     </div>     
                   </div><!-- /.box-body -->
@@ -232,7 +232,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-warning">Update Program</button>
+              <button type="submit" class="btn btn-warning">Update</button>
             </div>
             </form>
           </div>
@@ -293,10 +293,24 @@
         table2 = $('#tableProgram').DataTable();
       });
       
-    function updateModal(idKegiatan,namaKegiatan)
+    function updateModal(idKegiatan,namaKegiatan,jan,feb,mar,apr,mei,jun,jul,agu,sep,okt,nov,des)
     {
       document.getElementById("kodeKegiatan").value = idKegiatan;
       document.getElementById("namaKegiatan").value = namaKegiatan;
+
+      document.getElementById("jan").value = jan;
+      document.getElementById("feb").value = feb;
+      document.getElementById("mar").value = mar;
+      document.getElementById("apr").value = apr;
+      document.getElementById("mei").value = mei;
+      document.getElementById("jun").value = jun;
+      document.getElementById("jul").value = jul;
+      document.getElementById("agu").value = agu;
+      document.getElementById("sep").value = sep;
+      document.getElementById("okt").value = okt;
+      document.getElementById("nov").value = nov;
+      document.getElementById("des").value = des;
+       
     }
 
     //initialize data
@@ -316,7 +330,7 @@
               
               var arrTemp = [];
               var objName;
-              var temp = "<a class='btn btn-primary' href='#modal-updateProgram' data-toggle='modal' data-target='#modal-updateProgram' onClick='updateModal(\""+response[i]['id']+"\",\""+response[i]['description']+"\")'><i class='fa fa-edit fa-lg'></i> Entry RKO</a>";
+              var temp = "<a class='btn btn-primary' href='#modal-updateProgram' data-toggle='modal' data-target='#modal-updateProgram' onClick='updateModal(\""+response[i]['id']+"\",\""+response[i]['description']+"\",\""+response[i]['jan']+"\",\""+response[i]['feb']+"\",\""+response[i]['mar']+"\",\""+response[i]['apr']+"\",\""+response[i]['mei']+"\",\""+response[i]['jun']+"\",\""+response[i]['jul']+"\",\""+response[i]['agu']+"\",\""+response[i]['sep']+"\",\""+response[i]['okt']+"\",\""+response[i]['nov']+"\",\""+response[i]['des']+"\")'><i class='fa fa-edit fa-lg'></i> Entry RKO</a>";
               arrTemp.push(response["id"]);
               arrTemp.push(response["description"]);
               arrTemp.push(temp);
@@ -331,7 +345,8 @@
             for (var i =0; i<response.length ; i++) {
                     var arrTemp = [];
                     var objName;
-                    var temp = "<a class='btn btn-primary' href='#modal-updateProgram' data-toggle='modal' data-target='#modal-updateProgram' onClick='updateModal(\""+response[i]['id']+"\",\""+response[i]['description']+"\")'><i class='fa fa-edit fa-lg'></i> Entry RKO</a>";
+
+                    var temp = "<a class='btn btn-primary' href='#modal-updateProgram' data-toggle='modal' data-target='#modal-updateProgram' onClick='updateModal(\""+response[i]['id']+"\",\""+response[i]['description']+"\",\""+response[i]['jan']+"\",\""+response[i]['feb']+"\",\""+response[i]['mar']+"\",\""+response[i]['apr']+"\",\""+response[i]['mei']+"\",\""+response[i]['jun']+"\",\""+response[i]['jul']+"\",\""+response[i]['agu']+"\",\""+response[i]['sep']+"\",\""+response[i]['okt']+"\",\""+response[i]['nov']+"\",\""+response[i]['des']+"\")'><i class='fa fa-edit fa-lg'></i> Entry RKO</a>";
               
                     arrTemp.push(response[i]["id"]);
                     arrTemp.push(response[i]["description"]);
