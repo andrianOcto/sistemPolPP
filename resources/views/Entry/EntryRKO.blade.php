@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Setting Program</title>
+    <title>Entry Anggaran</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -43,14 +43,8 @@
 
         <section class="content-header">
           <h1>
-            Setting Program
-            <small></small>
+            Entry RKO
           </h1>
-          <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Tables</a></li>
-            <li class="active">Data tables</li>
-          </ol>
         </section>
 
         <!-- Main content -->
@@ -111,7 +105,7 @@
 
         <section class="content-header">
           <h1>
-            Setting Kegiatan
+            RKO Kegiatan
             <small></small>
           </h1>
         </section>

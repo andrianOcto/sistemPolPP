@@ -1,4 +1,4 @@
-<?php namespace App\Http\Controllers\Master;
+<?php namespace App\Http\Controllers\Entry;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -14,7 +14,7 @@ use App\Program;
 use App\Kegiatan;
 use DB;
 
-class entryRKOController extends Controller {
+class EntryRKOController extends Controller {
 
   public function getIndex() {
 
@@ -26,7 +26,7 @@ class entryRKOController extends Controller {
     if(Session::get("role","default")=="master")
                 return redirect('/');
             else
-                return view('/master/entryRKO')->with($data);
+                return view('/Entry/entryRKO')->with($data);
   }
 
 

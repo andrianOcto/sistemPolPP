@@ -13,7 +13,7 @@
     </div>
     <!-- Sidebar Menu -->
     <ul class="sidebar-menu">
-      <li class="header">HEADER</li>
+      <li class="header">MENU</li>
       <!-- Optionally, you can add icons to the links -->
       <li class="treeview">
         <a href="#"><span>Input</span> <i class="fa fa-angle-left pull-right"></i></a>
@@ -25,14 +25,14 @@
       <li class="treeview">
         <a href="#"><span>Laporan</span> <i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">
-          <li><a href="#">Daftar Kegiatan</a></li>
-          <li><a href="#">Daftar RKO (Alokasi)</a></li>
+          <li><a href="/daftarkegiatan">Daftar Kegiatan</a></li>
+          <li><a href="/daftaralokasi">Daftar RKO (Alokasi)</a></li>
           <li><a href="#">Realisasi Seluruh</a></li>
           <li><a href="#">Realisasi Per Bidang</a></li>
           <li><a href="#">Rekap Realisasi Seluruh</a></li>
           <li><a href="#">Rekap Realisasi Per Bidang</a></li>
-          <li><a href="#">Grafik Realisasi Seluruh</a></li>
-          <li><a href="#">Grafik Realisasi Per Bidang</a></li>
+          <li><a href="/grafikrealisasikeseluruhan">Grafik Realisasi Seluruh</a></li>
+          <li><a href="/grafikrealisasiperbidang">Grafik Realisasi Per Bidang</a></li>
           <li><a href="#">Cetak Laporan SPJ</a></li>
         </ul>
       </li>

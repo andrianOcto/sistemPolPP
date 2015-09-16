@@ -40,7 +40,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <body class="hold-transition login-page">
     <div class="login-box">
       <div class="login-logo">
-        <a href="../../index2.html"><b>Admin</b>LTE</a>
+        <a href="../../index2.html">Sistem Anggaran SatPolPP Semarang</a>
       </div><!-- /.login-logo -->
       @if (session('errMessage') != null)
         <!-- Error message kalau kode sudah pernah di masukkan -->
@@ -50,8 +50,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
           {!! session('errMessage') !!}
         </div>
         @endif
-      <div class="login-box-body">
-        <p class="login-box-msg">Sign in to start your session</p>
+      <div class="login-box-body" style="padding-top:30px">
+<!--        <p class="login-box-msg">Sign in to start your session</p>-->
         <form action="/login" method="post">
           <div class="form-group has-feedback">
             <input type="hidden" class="form-control" name="type" value="login" required>

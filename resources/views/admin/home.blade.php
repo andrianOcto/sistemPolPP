@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Data Tables</title>
+    <title>Sistem Anggaran PolPP Semarang</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -34,7 +34,7 @@
       @include('header')
 
       <!-- Sidebar -->
-      @include('sidebar')
+      @include('sidebar_master')
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
@@ -43,13 +43,7 @@
         <section class="content-header">
           <h1>
             Management User
-            <small></small>
           </h1>
-          <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Tables</a></li>
-            <li class="active">Data tables</li>
-          </ol>
         </section>
 
         <!-- Main content -->

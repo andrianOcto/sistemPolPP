@@ -96,11 +96,24 @@ Route::group(['middleware' => 'auth'], function () {
      Route::post('/rencana/add','Master\RencanaController@postRencana');
 
      //Route Entry RKO
-     Route::get('/entryRKO','Master\entryRKOController@getIndex');
+     Route::get('/entryRKO','Entry\EntryRKOController@getIndex');
      Route::post('/program/add','Master\ProgramController@postAdd');
      Route::get('/program/load/{id}','Master\ProgramController@getLoad');
      Route::post('/program/update','Master\ProgramController@postUpdate');
      Route::post('/program/delete/{id}','Master\ProgramController@postDelete');
+    
+     //Route Daftar Kegiatan
+     Route::get('/daftarkegiatan','Laporan\DaftarKegiatanController@getIndex');
+    
+     //Route Daftar RKO
+     Route::get('/daftaralokasi','Laporan\DaftarAlokasiController@getIndex');
+    
+     //Route Grafik Realisasi Keseluruhan
+     Route::get('/grafikrealisasikeseluruhan','Laporan\GrafikKeseluruhanController@getIndex');
+    
+     //Route Grafik Realisasi Perbidang
+     Route::get('/grafikrealisasiperbidang','Laporan\GrafikPerbidangController@getIndex');
+
 });
 
 
