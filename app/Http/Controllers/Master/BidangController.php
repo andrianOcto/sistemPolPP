@@ -3,7 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 //Lib yang digunakan
 use Session;
 //Model yang digunakan
@@ -25,12 +25,21 @@ class BidangController extends Controller {
 
   public function postBidang(Request $request)
   {
-    $bidang               = new Bidang;
-    $bidang->id           = $request->input("kode");
-    $bidang->nama         = $request->input("nama");
-    $bidang->nama_lengkap = $request->input("lengkap");
-    $bidang->save();
-    return redirect("/bidang");
+    try
+    {
+      $bidang               = new Bidang;
+      $bidang->id           = $request->input("kode");
+      $bidang->nama         = $request->input("nama");
+      $bidang->nama_lengkap = $request->input("lengkap");
+      $bidang->save();
+      return redirect("/bidang")->with('successMessage', 'Data berhasil ditambahkan!');;
+    }
+
+    //jika user sudah ada dalam database
+    catch(\Illuminate\Database\QueryException $e)
+    {
+      return redirect("/bidang")->with('errMessage', 'Kode yang disimpan sudah ada dalam database. </br> Harap Coba menggunakan kode yang belum ada');
+    }
   }
 
   public function postUpdate(Request $request)
@@ -39,7 +48,7 @@ class BidangController extends Controller {
     $bidang->nama         = $request->input("nama");
     $bidang->nama_lengkap = $request->input("lengkap");
     $bidang->save();
-    return redirect("/bidang");
+    return redirect("/bidang")->with('successMessage', 'Data berhasil diupdate!');;;;
   }
 
   public function postDelete(Request $request,$id)
