@@ -97,7 +97,7 @@
                         <td>{{$data->id}}</td>
                         <td>{{$data->nama}}</td>
                         <td>{{$data->description}}</td>
-                        <td>{{$data->anggaran}}</td>
+                        <td>Rp {{number_format($data->anggaran,2,',','.')}}</td>
                         <td>{{$data->sasaran}}</td>
                         
                         <td align="center">

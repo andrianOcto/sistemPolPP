@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 16, 2015 at 11:15 AM
+-- Generation Time: Sep 16, 2015 at 02:18 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -45,21 +45,28 @@ CREATE TABLE IF NOT EXISTS `m_detail_program` (
 CREATE TABLE IF NOT EXISTS `m_detail_rko` (
   `id_kegiatan` varchar(55) NOT NULL,
   `tahun` int(11) NOT NULL,
-  `jan` double DEFAULT NULL,
-  `feb` double DEFAULT NULL,
-  `mar` double DEFAULT NULL,
-  `apr` double DEFAULT NULL,
-  `mei` double DEFAULT NULL,
-  `jun` double DEFAULT NULL,
-  `jul` double DEFAULT NULL,
-  `agu` double DEFAULT NULL,
-  `sep` double DEFAULT NULL,
-  `okt` double DEFAULT NULL,
-  `nov` double DEFAULT NULL,
-  `des` double DEFAULT NULL,
+  `jan` double NOT NULL DEFAULT '0',
+  `feb` double NOT NULL DEFAULT '0',
+  `mar` double NOT NULL DEFAULT '0',
+  `apr` double NOT NULL DEFAULT '0',
+  `mei` double NOT NULL DEFAULT '0',
+  `jun` double NOT NULL DEFAULT '0',
+  `jul` double NOT NULL DEFAULT '0',
+  `agu` double NOT NULL DEFAULT '0',
+  `sep` double NOT NULL DEFAULT '0',
+  `okt` double NOT NULL DEFAULT '0',
+  `nov` double NOT NULL DEFAULT '0',
+  `des` double NOT NULL DEFAULT '0',
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `m_detail_rko`
+--
+
+INSERT INTO `m_detail_rko` (`id_kegiatan`, `tahun`, `jan`, `feb`, `mar`, `apr`, `mei`, `jun`, `jul`, `agu`, `sep`, `okt`, `nov`, `des`, `updated_at`, `created_at`) VALUES
+('1.231', 2015, 90, 15, 100, 70, 66, 22, 11, 90, 80, 99, 11, 22, '2015-09-16 11:27:50', '2015-09-16 09:30:52');
 
 -- --------------------------------------------------------
 
@@ -99,7 +106,9 @@ CREATE TABLE IF NOT EXISTS `m_rencana_realisasi` (
 --
 
 INSERT INTO `m_rencana_realisasi` (`id_kegiatan`, `tahun`, `description`, `jumlah`, `harga`, `updated_at`, `created_at`) VALUES
-('1', 2015, 'test', 8, 8000, '2015-09-16 07:55:29', '2015-09-16 07:55:29');
+('1', 2015, 'test', 8, 8000, '2015-09-16 07:55:29', '2015-09-16 07:55:29'),
+('1', 2015, 'test2', 800, 8000, '2015-09-16 11:44:45', '2015-09-16 11:44:45'),
+('1.23', 2015, 'test', 800, 80000, '2015-09-16 12:15:13', '2015-09-16 12:15:13');
 
 -- --------------------------------------------------------
 
@@ -170,11 +179,12 @@ CREATE TABLE IF NOT EXISTS `s_kegiatan` (
 --
 
 INSERT INTO `s_kegiatan` (`tahun`, `id`, `id_bidang`, `nama_bidang`, `nama_lengkap_bidang`, `id_program`, `description`, `anggaran`, `sasaran`, `updated_at`, `created_at`) VALUES
-(0, '1', '1', '', '', '2', 'hahashaha', 0, ' ', '2015-09-01 22:33:56', '0000-00-00 00:00:00'),
+(0, '1', '1', '', '', '2', 'hahashaha', 9000000, ' ', '2015-09-16 12:06:05', '0000-00-00 00:00:00'),
 (0, '1.2', '02', '', '', '1', 'ini adalah test', 0, ' ', '2015-09-01 22:34:09', '2015-09-01 14:32:48'),
 (0, '1.23', '02', 'GADKA', 'test Update', '1', 'ini adalah detail', 0, ' ', '2015-09-15 22:21:03', '2015-09-15 22:21:03'),
 (0, '999', '1', '', '', '2', 'hahahaha', 0, ' ', '2015-09-01 22:34:00', '0000-00-00 00:00:00'),
 (2015, '1.23..1232', '02', 'GADKA', 'test Update', '1.23', 'ini adalah ates', 0, ' ', '2015-09-16 05:34:27', '2015-09-16 05:34:27'),
+(2015, '1.231', '02', 'GADKA', 'test Update', '1', 'test LAgi', 0, ' ', '2015-09-16 09:30:52', '2015-09-16 09:30:52'),
 (2015, '1.5', '1', 'TU', 'Tata Usaha', '1', 'ini adalah test', 0, ' ', '2015-09-16 05:27:37', '2015-09-16 05:27:37');
 
 -- --------------------------------------------------------
@@ -401,7 +411,7 @@ ALTER TABLE `m_detail_rko`
 -- Indexes for table `m_rencana_realisasi`
 --
 ALTER TABLE `m_rencana_realisasi`
- ADD PRIMARY KEY (`id_kegiatan`,`tahun`,`description`), ADD UNIQUE KEY `description` (`description`);
+ ADD PRIMARY KEY (`id_kegiatan`,`tahun`,`description`);
 
 --
 -- Indexes for table `s_bidang`

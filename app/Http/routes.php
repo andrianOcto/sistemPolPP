@@ -113,7 +113,6 @@ Route::group(['middleware' => 'auth'], function () {
     
      //Route Grafik Realisasi Perbidang
      Route::get('/grafikrealisasiperbidang','Laporan\GrafikPerbidangController@getIndex');
-
 });
 
 

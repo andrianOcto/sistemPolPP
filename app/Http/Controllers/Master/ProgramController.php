@@ -66,7 +66,11 @@ class ProgramController extends Controller {
   public function getLoad($id)
   {
       try{
-        $dummy = Kegiatan::where('id_program',$id)->get();
+       $dummy= DB::table('s_kegiatan')->where('s_kegiatan.tahun', date('Y'))
+                                  ->where('s_kegiatan.id_program',$id)
+                                  ->join('m_detail_rko', 's_kegiatan.id', '=', 'm_detail_rko.id_kegiatan')
+                                  ->select('s_kegiatan.id','s_kegiatan.description','m_detail_rko.jan','m_detail_rko.feb','m_detail_rko.mar','m_detail_rko.apr','m_detail_rko.mei','m_detail_rko.jun','m_detail_rko.jul','m_detail_rko.agu','m_detail_rko.sep','m_detail_rko.okt','m_detail_rko.nov','m_detail_rko.des')
+                                  ->get();
         return response()->json($dummy);
       }
       catch(ModelNotFoundException $e)

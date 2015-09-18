@@ -95,8 +95,9 @@
                       <tr>
                         <td>{{$data->description}}</td>
                         <td>{{$data->jumlah}}</td>
-                        <td>{{$data->harga}}</td>
-                        <td>{{$data->jumlah*$data->harga}}</td>
+                        <td>Rp {{ number_format($data->harga,2,',','.')}}</td>
+
+                        <td>Rp {{ number_format(($data->jumlah*$data->harga),2,',','.')}}</td>
                         <td align="center">
                           <a class="btn btn-warning" href="#modal-updateBidang{{$i}}" data-toggle="modal" data-target="#modal-updateBidang{{$i}}">
                               <i class="fa fa-edit fa-lg"></i> Update
@@ -186,6 +187,7 @@
       <?php $i++; ?>
       @endforeach
 
+
       <?php $i=1; ?>
       @foreach($bidang as $data)
       <!-- Modal Update User -->
@@ -194,21 +196,21 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h2 class="modal-title" id="myModalLabel">Update User</h2>
+              <h2 class="modal-title" id="myModalLabel">Update Rencana Item</h2>
             </div>
             <div class="modal-body">
               <form role="form" method="post" action="/bidang/update">
                   <div class="box-body">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Kode</label>
+                      <label for="exampleInputEmail1">Nama Item</label>
                       <input type="text" class="form-control" name="kode" placeholder="Kode" value="{{$data->id}}" readonly>
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Nama </label>
+                      <label for="exampleInputEmail1">Jumlah</label>
                       <input type="text" class="form-control" name="nama" placeholder="Masukan Deskripsi" value="{{$data->nama}}" required>
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Nama Lengkap</label>
+                      <label for="exampleInputEmail1">Harga Satuan</label>
                       <input type="text" class="form-control" name="lengkap" placeholder="Masukan Deskripsi" value="{{$data->nama_lengkap}}" required>
                     </div>
                   </div><!-- /.box-body -->

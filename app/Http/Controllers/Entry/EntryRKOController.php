@@ -12,6 +12,7 @@ use App\KelompokBelanja;
 use App\Bidang;
 use App\Program;
 use App\Kegiatan;
+use App\EntryRKO;
 use DB;
 
 class EntryRKOController extends Controller {
@@ -29,51 +30,26 @@ class EntryRKOController extends Controller {
                 return view('/Entry/entryRKO')->with($data);
   }
 
-
-  public function postAdd(Request $request)
-  {
-    try
-    {
-      $program              = new Program;
-      $program->id          = $request->input("kode");
-      $program->description = $request->input("nama");
-      $program->tahun       = date('Y');
-      $program->save();
-      return redirect("/program")->with('successMessage', 'Data berhasil ditambahkan!');;
-    }
-
-    //jika user sudah ada dalam database
-    catch(\Illuminate\Database\QueryException $e)
-    {
-      return redirect("/program")->with('errMessage', 'Kode yang disimpan sudah ada dalam database. </br> Harap Coba menggunakan kode yang belum ada');
-    }
-  }
-
-  public function postDelete(Request $request,$id)
-  {
-    Program::destroy($id);
-    return redirect("/program")->with('successMessage', 'Data berhasil dihapus!');;
-  }
-
   public function postUpdate(Request $request)
   {
-    $program = Program::find($request->input("kode"));
-    $program->description = $request->input("nama");
-    $program->save();
-    return redirect("/program")->with('successMessage', 'Data berhasil diupdate!');;
+    $affectedRows = EntryRKO::where('id_kegiatan', $request->input("kodeKegiatan"))
+    ->where('tahun', date('Y'))
+    ->update(array(
+      'jan' => $request->input("jan"),
+      'feb' => $request->input("feb"),
+      'mar' => $request->input("mar"),
+      'apr' => $request->input("apr"),
+      'mei' => $request->input("mei"),
+      'jun' => $request->input("jun"),
+      'jul' => $request->input("jul"),
+      'agu' => $request->input("agu"),
+      'sep' => $request->input("sep"),
+      'okt' => $request->input("okt"),
+      'nov' => $request->input("nov"),
+      'des' => $request->input("des"),)
+     );
+    return redirect("/entryRKO")->with('successMessage', 'Data berhasil diupdate!');;
   }
 
-  public function getLoad($id)
-  {
-      try{
-        $dummy = Kegiatan::where('id_program',$id)->get();
-        return response()->json($dummy);
-      }
-      catch(ModelNotFoundException $e)
-      {
-        return response()->json([]);
-      }
-    
-  }
 
 }
