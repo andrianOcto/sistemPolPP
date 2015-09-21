@@ -73,7 +73,6 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <?php $i=1; ?>
                       @foreach($kegiatan as $data)
                       <tr>
                         <td>{{$data->id}}</td>
@@ -82,7 +81,6 @@
                         <td>{{$data->anggaran}}</td>
                         <td></td>
                       </tr>
-                      <?php $i++; ?>
                       @endforeach
                     </tbody>
                     <tfoot>

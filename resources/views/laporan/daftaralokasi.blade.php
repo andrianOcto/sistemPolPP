@@ -59,7 +59,7 @@
 
               <div class="box">
                 <div class="box-header">
-                  
+                    <a href="/daftaralokasi/excel" class="btn btn-primary">Export to excel</a>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <table id="example2" class="table table-bordered table-striped" style="font-size:10px">
@@ -83,26 +83,24 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <?php $i=1; ?>
-                      @foreach($kegiatan as $data)
+                      @foreach($alokasi as $data)
                       <tr>
-                        <td>{{$data->nama}}</td>
+                        <td>{{$data->nama_bidang}}</td>
                         <td>{{$data->description}}</td>
                         <td>{{$data->anggaran}}</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{$data->jan}}</td>
+                        <td>{{$data->feb}}</td>
+                        <td>{{$data->mar}}</td>
+                        <td>{{$data->apr}}</td>
+                        <td>{{$data->mei}}</td>
+                        <td>{{$data->jun}}</td>
+                        <td>{{$data->jul}}</td>
+                        <td>{{$data->agu}}</td>
+                        <td>{{$data->sep}}</td>
+                        <td>{{$data->okt}}</td>
+                        <td>{{$data->nov}}</td>
+                        <td>{{$data->des}}</td>
                       </tr>
-                      <?php $i++; ?>
                       @endforeach
                     </tbody>
                     <tfoot>

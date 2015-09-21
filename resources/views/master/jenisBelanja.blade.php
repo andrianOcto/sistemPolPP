@@ -102,13 +102,13 @@
       </div><!-- /.content-wrapper -->
       
 
-      <!-- Modal Add User-->
+      <!-- Modal Add Jenis Belanja-->
       <div class="modal fade" id="modal-addJenisbelAnja" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h2 class="modal-title" id="myModalLabel">Tambah</h2>
+              <h2 class="modal-title" id="myModalLabel">Tambah Jenis Belanja</h2>
             </div>
             <div class="modal-body">
               <form role="form" method="post" action="/jenisBelanja/add">
@@ -180,7 +180,7 @@
 
       <?php $i=1; ?>
       @foreach($jenisbelanja as $data)
-      <!-- Modal Update User -->
+      <!-- Modal Update Jenis Belanja -->
       <div class="modal fade" id="modal-updateJenisbelAnja{{$i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">

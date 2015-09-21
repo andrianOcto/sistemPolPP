@@ -74,7 +74,7 @@
                 <div class="box-header">
                   <a class="btn bg-blue btn-app" href="#modal-addBidang" data-toggle="modal" data-target="#modal-addBidang">
                     <i class="fa fa-plus"> </i>
-                    <b>Tambah Data</b>
+                    <b>Tambah Bidang</b>
                   </a>
                 </div><!-- /.box-header -->
                 <div class="box-body">
@@ -118,13 +118,13 @@
       </div><!-- /.content-wrapper -->
       
 
-      <!-- Modal Add User-->
+      <!-- Modal Add Bidang-->
       <div class="modal fade" id="modal-addBidang" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h2 class="modal-title" id="myModalLabel">Add User</h2>
+              <h2 class="modal-title" id="myModalLabel">Tambah Bidang</h2>
             </div>
             <div class="modal-body">
               <form role="form" method="post" action="/bidang/add">
@@ -134,11 +134,11 @@
                       <input type="text" class="form-control" name="kode" placeholder="Masukan Kode Bidang" required>
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Nama</label>
+                      <label for="exampleInputEmail1">Nama Bidang</label>
                       <input type="text" class="form-control" name="nama" placeholder="Masukan Nama" required>
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Nama Lengkap </label>
+                      <label for="exampleInputEmail1">Nama Lengkap Bidang</label>
                       <input type="text" class="form-control" name="lengkap" placeholder="Masukan Lengkap" required>
                     </div>
                   </div><!-- /.box-body -->
@@ -155,7 +155,7 @@
       </div>
       <?php $i=1; ?>
       @foreach($bidang as $data)
-      <!-- Modal Convirmation Delete User-->
+      <!-- Modal Convirmation Delete Bidang-->
       <div class="modal fade" id="modal-deleteBidang{{$i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -182,13 +182,13 @@
 
       <?php $i=1; ?>
       @foreach($bidang as $data)
-      <!-- Modal Update User -->
+      <!-- Modal Update Bidang -->
       <div class="modal fade" id="modal-updateBidang{{$i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h2 class="modal-title" id="myModalLabel">Update User</h2>
+              <h2 class="modal-title" id="myModalLabel">Update Bidang</h2>
             </div>
             <div class="modal-body">
               <form role="form" method="post" action="/bidang/update">
@@ -211,7 +211,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-warning">Update User</button>
+              <button type="submit" class="btn btn-warning">Update Bidang</button>
             </div>
             </form>
           </div>

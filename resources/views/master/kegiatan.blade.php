@@ -47,7 +47,7 @@
 
         <section class="content-header">
           <h1>
-            Setting Obyek belanja
+            Setting Kegiatan
           </h1>
         </section>
         
@@ -126,7 +126,7 @@
 
       <?php $i=1; ?>
       @foreach($kegiatan as $data)
-      <!-- Modal Convirmation Delete User-->
+      <!-- Modal Convirmation Delete Kegiatan-->
       <div class="modal fade" id="modal-deleteObjekbelanja{{$i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -153,7 +153,7 @@
 
       <?php $i=1; ?>
       @foreach($kegiatan as $data)
-      <!-- Modal Update User -->
+      <!-- Modal Update Kegiatan -->
       <div class="modal fade" id="modal-updateObjekbelanja{{$i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">

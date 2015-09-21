@@ -59,15 +59,11 @@
                     <div class="box-body" style="margin-top:5px">
                     <form class="form" method="" action="">
                         <div class="form-inline">
-                            <label for="bulan">Bulan:</label>
-                            <select class="form-control select2" id="bulan">
-                                <option value="1">Oktober</option>
-                                <option value="2">November</option>
-                            </select>
-                            <label for="bulan" style="margin-left:20px">Tahun:</label>
-                            <select class="form-control select2" id="bulan">
-                                <option value="1">2014</option>
-                                <option value="2">2015</option>
+                            <label for="tahun">Tahun:</label>
+                            <select class="form-control select2" id="pertahun">
+                                @foreach($rko as $data)
+                                <option value="{{$data->id_kegiatan}}">{{$data->tahun}}</option>
+                                @endforeach
                             </select>
                             <button type="submit" class="btn btn-primary" style="margin-left:20px">preview</button>
                         </div>
@@ -89,11 +85,73 @@
                       </tr>
                     </thead>
                     <tbody>
+                        @foreach($rko as $data)
                       <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>Januari</td>
+                        <td>{{$data->jan}}</td>
+                        <td>0</td>
                       </tr>
+                      <tr>
+                        <td>Februari</td>
+                        <td>{{$data->feb}}</td>
+                        <td>0</td>
+                      </tr>
+                      <tr>
+                        <td>Maret</td>
+                        <td>{{$data->mar}}</td>
+                        <td>0</td>
+                      </tr>
+                      <tr>
+                        <td>April</td>
+                        <td>{{$data->apr}}</td>
+                        <td>0</td>
+                      </tr>
+                      <tr>
+                        <td>Mei</td>
+                        <td>{{$data->mei}}</td>
+                        <td>0</td>
+                      </tr>
+                      <tr>
+                        <td>Juni</td>
+                        <td>{{$data->jun}}</td>
+                        <td>0</td>
+                      </tr>
+                      <tr>
+                        <td>Juni</td>
+                        <td>{{$data->jun}}</td>
+                        <td>0</td>
+                      </tr>
+                      <tr>
+                        <td>Juli</td>
+                        <td>{{$data->jul}}</td>
+                        <td>0</td>
+                      </tr>
+                        <tr>
+                        <td>Agustus</td>
+                        <td>{{$data->agu}}</td>
+                        <td>0</td>
+                      </tr>
+                        <tr>
+                        <td>September</td>
+                        <td>{{$data->sep}}</td>
+                        <td>0</td>
+                      </tr>
+                        <tr>
+                        <td>Oktober</td>
+                        <td>{{$data->okt}}</td>
+                        <td>0</td>
+                      </tr>
+                        <tr>
+                        <td>November</td>
+                        <td>{{$data->nov}}</td>
+                        <td>0</td>
+                      </tr>
+                        <tr>
+                        <td>Desember</td>
+                        <td>{{$data->des}}</td>
+                        <td>0</td>
+                      </tr>
+                        @endforeach
                     </tbody>
                     <tfoot>
 
@@ -106,9 +164,15 @@
               <div class="box">
                 <div class="box-body">
                 <div class="box-header"></div>
-                  <div class="chart">
+                <div class="chart">
                     <canvas id="barChart" style="height:330px"></canvas>
-                  </div>
+                </div>
+                <div class="box-footer">
+                    <center>
+                        <span style="background-color:rgba(210, 214, 222, 1); padding:5px">RKO</span>
+                        <span style="background-color:#00a65a; padding:5px; color:#fff; margin-left:20px">Realisasi</span>
+                    </center>
+                </div>    
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
             </div><!-- /.col -->
@@ -147,33 +211,39 @@
         var barChartCanvas = $("#barChart").get(0).getContext("2d");
         var barChart = new Chart(barChartCanvas);
         var barChartData = {
-          labels: ["January", "February", "March", "April", "May", "June", "July", "Agustus", "September", "Oktober", "November", "Desember"],
+          labels: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"],
           datasets: [
             {
-              label: "Electronics",
+              label: "RKO",
+              //styling grafik batang1
               fillColor: "rgba(210, 214, 222, 1)",
               strokeColor: "rgba(210, 214, 222, 1)",
               pointColor: "rgba(210, 214, 222, 1)",
               pointStrokeColor: "#c1c7d1",
               pointHighlightFill: "#fff",
               pointHighlightStroke: "rgba(220,220,220,1)",
+                
+              //data grafik dari database RKO perbulan pertahun
               data: [65, 59, 80, 81, 56, 55, 40, 20, 34, 56, 78, 35]
             },
             {
-              label: "Digital Goods",
-              fillColor: "rgba(60,141,188,0.9)",
-              strokeColor: "rgba(60,141,188,0.8)",
-              pointColor: "#3b8bba",
-              pointStrokeColor: "rgba(60,141,188,1)",
+              label: "realisasi",
+              //styling grafik batang2
+              fillColor: "#00a65a",
+              strokeColor: "#00a65a",
+              pointColor: "#00a65a",
+              pointStrokeColor: "#00a65a",
               pointHighlightFill: "#fff",
-              pointHighlightStroke: "rgba(60,141,188,1)",
+              pointHighlightStroke: "#00a65a",
+                
+              //data grafik dari database realisasi anggaran program perbulan pertahun
               data: [28, 48, 40, 19, 86, 27, 90, 24, 78, 44, 56, 45]
             }
           ]
         };
-        barChartData.datasets[1].fillColor = "#00a65a";
-        barChartData.datasets[1].strokeColor = "#00a65a";
-        barChartData.datasets[1].pointColor = "#00a65a";
+//        barChartData.datasets[1].fillColor = "#00a65a";
+//        barChartData.datasets[1].strokeColor = "#00a65a";
+//        barChartData.datasets[1].pointColor = "#00a65a";
         var barChartOptions = {
           //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
           scaleBeginAtZero: true,

@@ -59,7 +59,7 @@
                 <div class="box-header">
                   <a class="btn bg-blue btn-app" href="#modal-addUrusan" data-toggle="modal" data-target="#modal-addUrusan">
                     <i class="fa fa-plus"> </i>
-                    <b>Tambah Data</b>
+                    <b>Tambah Urusan</b>
                   </a>
                 </div><!-- /.box-header -->
                 <div class="box-body">
@@ -101,13 +101,13 @@
       </div><!-- /.content-wrapper -->
       
 
-      <!-- Modal Add User-->
+      <!-- Modal Add Urusan-->
       <div class="modal fade" id="modal-addUrusan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h2 class="modal-title" id="myModalLabel">Add User</h2>
+              <h2 class="modal-title" id="myModalLabel">Tambah Data Urusan</h2>
             </div>
             <div class="modal-body">
               <form role="form" method="post" action="/urusan/add">
@@ -134,7 +134,7 @@
       </div>
       <?php $i=1; ?>
       @foreach($urusan as $data)
-      <!-- Modal Convirmation Delete User-->
+      <!-- Modal Convirmation Delete Urusan-->
       <div class="modal fade" id="modal-deleteUrusan{{$i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -161,13 +161,13 @@
 
       <?php $i=1; ?>
       @foreach($urusan as $data)
-      <!-- Modal Update User -->
+      <!-- Modal Update Urusan -->
       <div class="modal fade" id="modal-updateUrusan{{$i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h2 class="modal-title" id="myModalLabel">Update User</h2>
+              <h2 class="modal-title" id="myModalLabel">Update Urusan</h2>
             </div>
             <div class="modal-body">
               <form role="form" method="post" action="/urusan/update">
@@ -186,7 +186,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-warning">Update User</button>
+              <button type="submit" class="btn btn-warning">Update</button>
             </div>
             </form>
           </div>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Data Tables</title>
+    <title>Master Setting</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -47,14 +47,8 @@
 
         <section class="content-header">
           <h1>
-            Setting Urusan
-            <small></small>
+            Setting Satuan Kerja
           </h1>
-          <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Tables</a></li>
-            <li class="active">Data tables</li>
-          </ol>
         </section>
 
         <!-- Main content -->
@@ -67,9 +61,9 @@
           </div>
           @endif
           <div class='row'>
-  <div class='col-md-10'>
+  <div class='col-xs-10'>
     <!-- Box -->
-    <div class="box box-primary">
+    <div class="box box-default">
       <div class="box-header with-border">
         <h3 class="box-title">Data Satuan Kerja</h3>
       </div>
@@ -156,7 +150,7 @@
           </div><!-- /.box-body -->
           <div class="box-footer">
             <button type="submit" class="btn btn-default">Cancel</button>
-            <button type="submit" class="btn btn-info pull-right">Simpan</button>
+            <button type="submit" class="btn btn-primary pull-right">Simpan</button>
           </div><!-- /.box-footer -->
         </form>
         </div>

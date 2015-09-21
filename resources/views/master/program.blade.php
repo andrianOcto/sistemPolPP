@@ -119,7 +119,6 @@
         <section class="content-header">
           <h1>
             Setting Kegiatan
-            <small></small>
           </h1>
         </section>
 
@@ -190,7 +189,7 @@
 
       <?php $i=0;?>
       @foreach($programs as $program)
-      <!-- Modal Convirmation Delete User-->
+      <!-- Modal Convirmation Delete Program-->
       <div class="modal fade" id="modal-deleteProgram{{$program->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -217,7 +216,7 @@
 
       <?php $i=0;?>
       @foreach($programs as $program)
-      <!-- Modal Update User -->
+      <!-- Modal Update Program -->
       <div class="modal fade" id="modal-updateProgram{{$i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">

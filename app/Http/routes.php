@@ -108,9 +108,11 @@ Route::group(['middleware' => 'auth'], function () {
     
      //Route Daftar RKO
      Route::get('/daftaralokasi','Laporan\DaftarAlokasiController@getIndex');
+     Route::get('/daftaralokasi/excel','Laporan\DaftarAlokasiController@exportToExcel');
     
      //Route Grafik Realisasi Keseluruhan
      Route::get('/grafikrealisasikeseluruhan','Laporan\GrafikKeseluruhanController@getIndex');
+     Route::post('/grafikrealisasi/pertahun','Laporan\GrafikKeseluruhanController@perTahun');
     
      //Route Grafik Realisasi Perbidang
      Route::get('/grafikrealisasiperbidang','Laporan\GrafikPerbidangController@getIndex');

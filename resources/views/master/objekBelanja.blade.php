@@ -122,13 +122,13 @@
       </div><!-- /.content-wrapper -->
       
 
-      <!-- Modal Add User-->
+      <!-- Modal Add Obyek Belanja-->
       <div class="modal fade" id="modal-addObjekbelanja" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h2 class="modal-title" id="myModalLabel">Tambah</h2>
+              <h2 class="modal-title" id="myModalLabel">Tambah Data Obyek Belanja</h2>
             </div>
             <div class="modal-body">
               <form role="form" method="post" action="/objekBelanja/add">
@@ -174,7 +174,7 @@
 
       <?php $i=1; ?>
       @foreach($objekbelanja as $data)
-      <!-- Modal Convirmation Delete User-->
+      <!-- Modal Convirmation Delete Obyek Belanja-->
       <div class="modal fade" id="modal-deleteObjekbelanja{{$i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -201,13 +201,13 @@
 
       <?php $i=1; ?>
       @foreach($objekbelanja as $data)
-      <!-- Modal Update User -->
+      <!-- Modal Update Obyek Belanja -->
       <div class="modal fade" id="modal-updateObjekbelanja{{$i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h2 class="modal-title" id="myModalLabel">Update User</h2>
+              <h2 class="modal-title" id="myModalLabel">Update Obyek Belanja</h2>
             </div>
             <div class="modal-body">
               <form role="form" method="post" action="/objekBelanja/update/{{$i}}">
@@ -246,7 +246,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-warning">Update User</button>
+              <button type="submit" class="btn btn-warning">Update</button>
             </div>
             </form>
           </div>

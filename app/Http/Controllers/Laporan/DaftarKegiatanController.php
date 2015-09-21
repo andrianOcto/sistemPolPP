@@ -21,7 +21,6 @@ class DaftarKegiatanController extends Controller {
                                   ->join('s_bidang', 's_kegiatan.id_bidang', '=', 's_bidang.id')
                                   ->select('s_kegiatan.id', 's_bidang.nama','s_kegiatan.id_bidang', 's_kegiatan.description', 's_kegiatan.anggaran', 's_kegiatan.sasaran')
                                   ->get();
-    $data['bidang']       = Bidang::all();
     
     if(Session::get("role","default")=="master")
         return redirect('/');
