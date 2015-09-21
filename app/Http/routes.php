@@ -104,6 +104,7 @@ Route::group(['middleware' => 'auth'], function () {
     
      //Route Daftar Kegiatan
      Route::get('/daftarkegiatan','Laporan\DaftarKegiatanController@getIndex');
+     Route::get('/dafarkegiatan/excel','Laporan\DaftarKegiatanController@exportToExcel');
     
      //Route Daftar RKO
      Route::get('/daftaralokasi','Laporan\DaftarAlokasiController@getIndex');
