@@ -52,6 +52,23 @@
 
         <!-- Main content -->
         <section class="content">
+          @if (session('errMessage') != null)
+          <!-- Error message kalau kode sudah pernah di masukkan -->
+          <div class="alert alert-danger alert-dismissable ">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h4><i class="icon fa fa-ban"></i> Data gagal disimpan!</h4>
+            {!! session('errMessage') !!}
+          </div>
+          @endif
+
+         @if (session('successMessage') != null)
+          <!-- Success message kalau data berhasil dimasukkan -->
+          <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h4><i class="icon fa fa-check"></i>{{session('successMessage')}} </h4>
+          </div>
+          @endif
+
           <div class="row">
             <div class="col-xs-12">
 

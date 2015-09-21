@@ -3,14 +3,15 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Master Setting</title>
+    <title>AdminLTE 2 | Data Tables</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
     <link href="{{ asset("/bower_components/admin-lte/bootstrap/css/bootstrap.min.css") }}" rel="stylesheet" type="text/css" />
     <!-- Font Awesome Icons -->
     <link href="{{ asset("/bower_components/admin-lte/awesome-font/css/font-awesome.min.css")}}" rel="stylesheet" type="text/css" />
     <!-- Ionicons -->
-    <link href="{{ asset("/bower_components/admin-lte/dist/css/ionic.css")}}" rel="stylesheet" type="text/css" />
+    <!-- <link href="{{ asset("/bower_components/admin-lte/dist/css/ionic.css")}}" rel="stylesheet" type="text/css" /> -->
     <!-- Font Awesome -->
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> -->
     <!-- Ionicons -->
@@ -22,7 +23,8 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link href="{{ asset("/bower_components/admin-lte/dist/css/skins/_all-skins.min.css") }}" rel="stylesheet" type="text/css" />
-
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset("bower_components/admin-lte/plugins/select2/select2.min.css")}}">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -45,81 +47,129 @@
 
         <section class="content-header">
           <h1>
-            Setting Bidang
+            Setting Urusan
+            <small></small>
           </h1>
+          <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Tables</a></li>
+            <li class="active">Data tables</li>
+          </ol>
         </section>
 
         <!-- Main content -->
         <section class="content">
-          @if (session('errMessage') != null)
-          <!-- Error message kalau kode sudah pernah di masukkan -->
-          <div class="alert alert-danger alert-dismissable ">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h4><i class="icon fa fa-ban"></i> Data gagal disimpan!</h4>
-            {!! session('errMessage') !!}
-          </div>
-          @endif
-
-         @if (session('successMessage') != null)
+        @if (session('successMessage') != null)
           <!-- Success message kalau data berhasil dimasukkan -->
           <div class="alert alert-success alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
             <h4><i class="icon fa fa-check"></i>{{session('successMessage')}} </h4>
           </div>
           @endif
-          <div class="row">
-            <div class="col-xs-12">
+          <div class='row'>
+  <div class='col-md-10'>
+    <!-- Box -->
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title">Data Satuan Kerja</h3>
+      </div>
+      <div class="box-body">
+        <div class="col-md-12">
+        <form class="form-horizontal" role="form" method="post" action="satuanKerja/save">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          <div class="box-body">
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Urusan</label>
+              <div class="col-sm-10">
+                <select class="form-control select2" style="width: 100%;" id="kode_urusan" name="id_urusan">
+                  @foreach($urusan as $data)
+                  <option value="{{$data->id}}" <?php if($data->id==$satuanKerja->id_urusan) echo "selected" ?>>{{$data->id}} &nbsp {{$data->description}}</option>
+                  @endforeach
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Kode SKPD</label>
+              <div class="col-xs-3">
+                      <input type="text" class="form-control" placeholder="" id="kode_skpd" name="kode_skpd" value="{{$satuanKerja->id_urusan}}">
+              </div>
+              <div class="col-xs-3">
+                <input type="text" class="form-control" placeholder="" name="kode_skpd2" value="{{$satuanKerja->kode_skpd}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Nama SKPD</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputEmail3" placeholder="Nama SKPD" name="nama_skpd" value="{{$satuanKerja->nama_skpd}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Nama Bendahara</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputEmail3" placeholder="Nama Bendahara" name="nama_bendahara" value="{{$satuanKerja->nama_bendahara}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">NIP Bendahara</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputEmail3" placeholder="NIP Bendahara" name="nip_bendahara" value="{{$satuanKerja->nip}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">NPWP</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputEmail3" placeholder="NPWP" name="npwp" value="{{$satuanKerja->npwp}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Nama Bank</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputEmail3" placeholder="Nama Bank" name="nama_bank" value="{{$satuanKerja->nama_bank}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">No. Rekening</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputEmail3" placeholder="No. Rekening" name="rekening" value="{{$satuanKerja->no_rekening}}">
+              </div>
+            </div>
+            <hr>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">NIP Kepala</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputEmail3" placeholder="NIP Kepala" name="nip_kepala" value="{{$satuanKerja->nip_kepala}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Nama Kepala</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputEmail3" placeholder="Nama Kepala" name="nama_kepala" value="{{$satuanKerja->nama_kepala}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Nama Jabatan</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputEmail3" placeholder="Nama Jabatan" name="nama_jabatan" value="{{$satuanKerja->nama_jabatan}}">
+              </div>
+            </div>
 
-              <div class="box">
-                <div class="box-header">
-                  <a class="btn bg-blue btn-app" href="#modal-addBidang" data-toggle="modal" data-target="#modal-addBidang">
-                    <i class="fa fa-plus"> </i>
-                    <b>Tambah Data</b>
-                  </a>
-                </div><!-- /.box-header -->
-                <div class="box-body">
-                  <table id="example2" class="table table-bordered table-striped">
-                    <thead>
-                      <tr>
-                        <th>Kode</th>
-                        <th>Nama Bidang</th>
-                        <th>Nama Lengkap</th>
-                        <th align="center">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php $i=1; ?>
-                      @foreach($bidang as $data)
-                      <tr>
-                        <td>{{$data->id}}</td>
-                        <td>{{$data->nama}}</td>
-                        <td>{{$data->nama_lengkap}}</td>
-                        <td align="center">
-                          <a class="btn btn-warning" href="#modal-updateBidang{{$i}}" data-toggle="modal" data-target="#modal-updateBidang{{$i}}">
-                              <i class="fa fa-edit fa-lg"></i> Update
-                          </a>
-                          <a class="btn btn-danger"  href="#modal-deleteBidang{{$i}}" data-toggle="modal" data-target="#modal-deleteBidang{{$i}}">
-                              <i class="fa fa-trash-o fa-lg"></i> Delete
-                          </a>
-                        </td>
-                      </tr>
-                      <?php $i++; ?>
-                      @endforeach
-                    </tbody>
-                    <tfoot>
-
-                    </tfoot>
-                  </table>
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
-            </div><!-- /.col -->
-          </div><!-- /.row -->
+          </div><!-- /.box-body -->
+          <div class="box-footer">
+            <button type="submit" class="btn btn-default">Cancel</button>
+            <button type="submit" class="btn btn-info pull-right">Simpan</button>
+          </div><!-- /.box-footer -->
+        </form>
+        </div>
+      </div><!-- /.box-body -->
+    </div><!-- /.box -->
+  </div><!-- /.col -->
+</div><!-- /.row -->
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
       
 
       <!-- Modal Add User-->
-      <div class="modal fade" id="modal-addBidang" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal fade" id="modal-addUrusan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -127,19 +177,15 @@
               <h2 class="modal-title" id="myModalLabel">Add User</h2>
             </div>
             <div class="modal-body">
-              <form role="form" method="post" action="/bidang/add">
+              <form role="form" method="post" action="/urusan/add">
                   <div class="box-body">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Kode Bidang</label>
-                      <input type="text" class="form-control" name="kode" placeholder="Masukan Kode Bidang" required>
+                      <label for="exampleInputEmail1">Kode </label>
+                      <input type="text" class="form-control" name="kode" placeholder="Masukan Kode Urusan" required>
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Nama</label>
-                      <input type="text" class="form-control" name="nama" placeholder="Masukan Nama" required>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Nama Lengkap </label>
-                      <input type="text" class="form-control" name="lengkap" placeholder="Masukan Lengkap" required>
+                      <label for="exampleInputEmail1">Deskripsi </label>
+                      <input type="text" class="form-control" name="deskripsi" placeholder="Masukan Deskripsi Urusan" required>
                     </div>
                   </div><!-- /.box-body -->
                   <?php echo csrf_field(); ?>
@@ -154,9 +200,9 @@
         </div>
       </div>
       <?php $i=1; ?>
-      @foreach($bidang as $data)
+      @foreach($urusan as $data)
       <!-- Modal Convirmation Delete User-->
-      <div class="modal fade" id="modal-deleteBidang{{$i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal fade" id="modal-deleteUrusan{{$i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -167,7 +213,7 @@
               <h4> Apakah Anda Yakin Akan Menghapus Data </h4>
             </div>
             <div class="modal-footer">
-              <form action="/bidang/delete/{{$data->id}}" method="post">
+              <form action="/urusan/delete/{{$data->id}}" method="post">
                 <?php echo csrf_field(); ?>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-danger">Delete</button>
@@ -181,9 +227,9 @@
       @endforeach
 
       <?php $i=1; ?>
-      @foreach($bidang as $data)
+      @foreach($urusan as $data)
       <!-- Modal Update User -->
-      <div class="modal fade" id="modal-updateBidang{{$i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal fade" id="modal-updateUrusan{{$i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -191,19 +237,15 @@
               <h2 class="modal-title" id="myModalLabel">Update User</h2>
             </div>
             <div class="modal-body">
-              <form role="form" method="post" action="/bidang/update">
+              <form role="form" method="post" action="/urusan/update">
                   <div class="box-body">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Kode</label>
                       <input type="text" class="form-control" name="kode" placeholder="Kode" value="{{$data->id}}" readonly>
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Nama </label>
-                      <input type="text" class="form-control" name="nama" placeholder="Masukan Deskripsi" value="{{$data->nama}}" required>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Nama Lengkap</label>
-                      <input type="text" class="form-control" name="lengkap" placeholder="Masukan Deskripsi" value="{{$data->nama_lengkap}}" required>
+                      <label for="exampleInputEmail1">Deskripsi </label>
+                      <input type="text" class="form-control" name="deskripsi" placeholder="Masukan Deskripsi" value="{{$data->description}}" required>
                     </div>
                   </div><!-- /.box-body -->
                   <?php echo csrf_field(); ?>
@@ -238,6 +280,8 @@
     <script src="{{ asset ("/bower_components/admin-lte/plugins/datatables/dataTables.bootstrap.min.js") }}"></script>
     <!-- SlimScroll -->
     <script src="{{ asset ("/bower_components/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js") }}"></script>
+    <!-- Select2 -->
+    <script src="{{ asset("bower_components/admin-lte/plugins/select2/select2.full.min.js")}}"></script>
     <!-- FastClick -->
     <script src="{{ asset ("/bower_components/admin-lte/plugins/fastclick/fastclick.min.js") }}"></script>
     <!-- AdminLTE App -->
@@ -257,6 +301,16 @@
           "info": true,
           "autoWidth": true
         });
+
+        $('#kode_urusan').change(function(){
+          var kode = $(this).val();
+          if(kode != "-Pilih Jenis Belanja-")
+            $('#kode_skpd').val(kode);
+          else
+            $('#kode_skpd').val(null);
+        });
+
+        $(".select2").select2();
       });
     </script>
   </body>
