@@ -143,7 +143,8 @@ return [
         App\Providers\AppServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        /* Service Provider Export Excel */
+        'Maatwebsite\Excel\ExcelServiceProvider',
     ],
 
     /*
@@ -191,6 +192,8 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
+        /*export excel alias*/
+        'Excel'     => 'Maatwebsite\Excel\ExcelServiceProvider',
 
     ],
 

@@ -59,7 +59,7 @@
 
               <div class="box">
                 <div class="box-header">
-                  
+                    <a href="/dafarkegiatan/excel" class="btn btn-primary">Export to excel</a>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <table id="example2" class="table table-bordered table-striped">
