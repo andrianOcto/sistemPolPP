@@ -42,7 +42,7 @@
 
         <section class="content-header">
           <h1>
-            Management User
+            Management Role
           </h1>
         </section>
 
@@ -71,36 +71,32 @@
                 <div class="box-header">
                   <a class="btn bg-blue btn-app" href="#modal-addUser" data-toggle="modal" data-target="#modal-addUser">
                     <i class="fa fa-plus"> </i>
-                    <b>Tambah User</b>
+                    <b>Tambah Role</b>
                   </a>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <table id="example2" class="table table-bordered table-striped">
                     <thead>
                       <tr>
-                        <th>Username</th>
-                        <th>Nama</th>
                         <th>Role</th>
                         <th align="center">Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       @foreach($users as $user)
-                        @if($user->role != "master")
-                        <tr>
-                          <td>{{$user->username}}</td>
-                          <td>{{$user->nama}}</td>
-                          <td>{{$user->role}}</td>
-                          <td align="center">
-                            <a class="btn btn-warning" href="#modal-updateUser{{$user->username}}" data-toggle="modal" data-target="#modal-updateUser{{$user->username}}">
-                                <i class="fa fa-edit fa-lg"></i> Update
-                            </a>
-                            <a class="btn btn-danger"  href="#modal-deleteUser{{$user->username}}" data-toggle="modal" data-target="#modal-deleteUser{{$user->username}}">
-                                <i class="fa fa-trash-o fa-lg"></i> Delete
-                            </a>
-                          </td>
-                        </tr>
-                        @endif
+                      @if($user->description != "master")
+                      <tr>
+                        <td>{{$user->description}}</td>
+                        <td align="center">
+                          <a class="btn btn-warning" href="#modal-updateUser{{$user->id}}" data-toggle="modal" data-target="#modal-updateUser{{$user->id}}">
+                              <i class="fa fa-edit fa-lg"></i> Update
+                          </a>
+                          <a class="btn btn-danger"  href="#modal-deleteUser{{$user->id}}" data-toggle="modal" data-target="#modal-deleteUser{{$user->id}}">
+                              <i class="fa fa-trash-o fa-lg"></i> Delete
+                          </a>
+                        </td>
+                      </tr>
+                      @endif
                       @endforeach
                     </tbody>
                     <tfoot>
@@ -121,41 +117,23 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h2 class="modal-title" id="myModalLabel">Add User</h2>
+              <h2 class="modal-title" id="myModalLabel">Add Role</h2>
             </div>
             <div class="modal-body">
-              <form role="form" method="post" action="/admin/register">
+              <form role="form" method="post" action="/admin/role/register">
                   <div class="box-body">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Username</label>
-                      <input type="text" class="form-control" name="username" placeholder="Enter Username" required>
+                      <label for="exampleInputEmail1">Role</label>
+                      <input type="text" class="form-control" name="role" placeholder="Enter Role" required>
                     </div>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Nama </label>
-                      <input type="text" class="form-control" name="nama" placeholder="Enter Name" required>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Role </label>
-                      <select class="form-control" name="role" required>
-                        @foreach($role as $item)                
-                           @if($item->description != "master")          
-                          <option value="{{$item->description}}">{{$item->description}}</option>
-                          @endif
-                        @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">Password</label>
-                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
-                    </div>
+                   
                   </div><!-- /.box-body -->
                   <?php echo csrf_field(); ?>
                 
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Tambah User</button>
+              <button type="submit" class="btn btn-primary">Tambah Role</button>
             </div>
             </form>
           </div>
@@ -164,7 +142,7 @@
 
       @foreach($users as $user)
       <!-- Modal Convirmation Delete User-->
-      <div class="modal fade" id="modal-deleteUser{{$user->username}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal fade" id="modal-deleteUser{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -175,7 +153,7 @@
               <h4> Apakah Anda Yakin Akan Menghapus Data </h4>
             </div>
             <div class="modal-footer">
-              <form action="/admin/delete/{{$user->username}}" method="post">
+              <form action="/admin/role/delete/{{$user->id}}" method="post">
                 <?php echo csrf_field(); ?>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-danger">Delete</button>
@@ -189,38 +167,20 @@
 
       @foreach($users as $user)
       <!-- Modal Update User -->
-      <div class="modal fade" id="modal-updateUser{{$user->username}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal fade" id="modal-updateUser{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h2 class="modal-title" id="myModalLabel">Update User</h2>
+              <h2 class="modal-title" id="myModalLabel">Update Role</h2>
             </div>
             <div class="modal-body">
-              <form role="form" method="post" action="/admin/update">
+              <form role="form" method="post" action="/admin/role/update">
                   <div class="box-body">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Username</label>
-                      <input type="text" class="form-control" name="username" placeholder="Enter Username" value="{{$user->username}}" readonly>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Nama </label>
-                      <input type="text" class="form-control" name="nama" placeholder="Enter Name" value="{{$user->nama}}" required>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Role </label>
-                        <select class="form-control" name="role" required>
-                        @foreach($role as $item)                
-                           @if($item->description != "master")          
-                          <option value="{{$item->description}}">{{$item->description}}</option>
-                          @endif
-                        @endforeach
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">Password</label>
-                      <input type="password" class="form-control" name="password" placeholder="Password" required>
+                      <label for="exampleInputEmail1">Role</label>
+                      <input type="text" class="form-control" name="role" placeholder="Enter Role" value="{{$user->description}}">
+                      <input type="hidden" class="form-control" name="id" placeholder="Enter Role" value="{{$user->id}}">
                     </div>
                   </div><!-- /.box-body -->
                   <?php echo csrf_field(); ?>
@@ -228,7 +188,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-warning">Update User</button>
+              <button type="submit" class="btn btn-warning">Update Role</button>
             </div>
             </form>
           </div>

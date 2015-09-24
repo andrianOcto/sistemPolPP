@@ -43,23 +43,36 @@ setlocale(LC_MONETARY, 'id_ID');
     //jika user sudah ada dalam database
     catch(\Illuminate\Database\QueryException $e)
     {
-      return redirect("/rencana/".$request->input("id_kegiatan"))->with('errMessage', 'Kode yang disimpan sudah ada dalam database. </br> Harap Coba menggunakan kode yang belum ada'.$e->getMessage());
+      return redirect("/rencana/".$request->input("id_kegiatan"))->with('errMessage', 'Item yang disimpan sudah ada dalam database. </br> Harap Coba menggunakan kode yang belum ada'.$e->getMessage());
     }
   }
 
   public function postUpdate(Request $request)
   {
-    $bidang               = Bidang::find($request->input("kode"));
-    $bidang->nama         = $request->input("nama");
-    $bidang->nama_lengkap = $request->input("lengkap");
-    $bidang->save();
-    return redirect("/bidang");
+    try
+    {
+      $bidang               = Rencana::where("id_kegiatan",$request->input("id_kegiatan"))->where("tahun",date('Y'))->where("description",$request->input("oldName"))
+                              ->update(['description' => $request->input("newName") , 'jumlah' => $request->input("jumlah"),'harga' => $request->input("harga")]);
+      return redirect("/rencana/".$request->input("id_kegiatan"))->with('successMessage', 'Data berhasil diupdate!');
+    }
+    catch(\Illuminate\Database\QueryException $e)
+    {
+      return redirect("/rencana/".$request->input("id_kegiatan"))->with('errMessage', 'Item yang disimpan sudah ada dalam database. </br> Harap Coba menggunakan kode yang belum ada'.$e->getMessage());
+    }
   }
 
-  public function postDelete(Request $request,$id)
+  public function postDelete(Request $request,$kegiatan,$id)
   {
-    Bidang::destroy($id);
-    return redirect("/bidang");
+    try
+    {
+      Rencana::where("id_kegiatan",$kegiatan)->where("tahun",date('Y'))->where("description",$id)->delete();
+      return redirect("/rencana/".$kegiatan)->with('successMessage', 'Data berhasil di Hapus!');
+
+    }
+    catch(\Illuminate\Database\QueryException $e)
+    {
+      return redirect("/rencana/".$kegiatan)->with('errMessage', 'Item yang disimpan sudah ada dalam database. </br> Harap Coba menggunakan kode yang belum ada'.$e->getMessage());
+    }
   }
 
 }

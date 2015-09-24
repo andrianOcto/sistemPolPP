@@ -37,6 +37,12 @@ Route::group(['middleware' => 'auth'], function () {
      Route::post('/admin/update','Admin\AdminController@postUpdate');
      Route::post('/admin/delete/{username}','Admin\AdminController@postDelete');
 
+     Route::get('/admin/role','Admin\RoleController@getIndex');
+     Route::post('/admin/role/register','Admin\RoleController@postRegister');
+     Route::post('/admin/role/update','Admin\RoleController@postUpdate');
+     Route::post('/admin/role/delete/{username}','Admin\RoleController@postDelete');
+
+
      // Route Master Setting Satuan Kerja
      Route::get('/satuanKerja','Master\setKerjaController@getIndex');
      Route::get('/satuanKerja/edit','Master\setKerjaController@getEdit');
@@ -94,6 +100,8 @@ Route::group(['middleware' => 'auth'], function () {
      //Route Rencana Realisasi
      Route::get('/rencana/{id}','Master\RencanaController@getIndex');
      Route::post('/rencana/add','Master\RencanaController@postRencana');
+     Route::post('/rencana/update','Master\RencanaController@postUpdate');
+     Route::post('/rencana/delete/{kegiatan}/{id}','Master\RencanaController@postDelete');
 
      //Route Entry RKO
      Route::get('/entryRKO','Entry\EntryRKOController@getIndex');

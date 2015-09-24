@@ -13,7 +13,12 @@
     </div>
     <!-- Sidebar Menu -->
     <p style="color:white; padding:10px; font-size:1.2em">
-        Administrator pengelola hanya mempunyai hak melakukan pengelolaan user saja.
+        <!-- Sidebar Menu -->
+    <ul class="sidebar-menu">
+      <li class="header">MENU</li>
+      <li><a href="/">Kelola User</a></li>
+          <li><a href="/admin/role">Kelola Role</a></li>
+    </ul><!-- /.sidebar-menu -->
     </p>
   </section>
   <!-- /.sidebar -->

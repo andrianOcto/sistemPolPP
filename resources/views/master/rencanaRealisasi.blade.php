@@ -174,7 +174,7 @@
               <h4> Apakah Anda Yakin Akan Menghapus Data </h4>
             </div>
             <div class="modal-footer">
-              <form action="/bidang/delete/{{$data->id}}" method="post">
+              <form action="/rencana/delete/{{$id_kegiatan}}/{{$data->description}}" method="post">
                 <?php echo csrf_field(); ?>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-danger">Delete</button>
@@ -199,19 +199,21 @@
               <h2 class="modal-title" id="myModalLabel">Update Rencana Item</h2>
             </div>
             <div class="modal-body">
-              <form role="form" method="post" action="/bidang/update">
+              <form role="form" method="post" action="/rencana/update">
                   <div class="box-body">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Nama Item</label>
-                      <input type="text" class="form-control" name="kode" placeholder="Kode" value="{{$data->id}}" readonly>
+                      <input type="text" class="form-control" name="newName" placeholder="Kode" value="{{$data->description}}">
+                      <input type="hidden" class="form-control" name="id_kegiatan" value="{{$id_kegiatan}}" >
+                      <input type="hidden" class="form-control" name="oldName" value="{{$data->description}}" >
                     </div>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Jumlah</label>
-                      <input type="text" class="form-control" name="nama" placeholder="Masukan Deskripsi" value="{{$data->nama}}" required>
+                      <input type="text" class="form-control" name="jumlah" placeholder="Masukan Deskripsi" value="{{$data->jumlah}}" required>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Harga Satuan</label>
-                      <input type="text" class="form-control" name="lengkap" placeholder="Masukan Deskripsi" value="{{$data->nama_lengkap}}" required>
+                      <input type="text" class="form-control" name="harga" placeholder="Masukan Deskripsi" value="{{$data->harga}}" required>
                     </div>
                   </div><!-- /.box-body -->
                   <?php echo csrf_field(); ?>
