@@ -14,6 +14,7 @@ use App\Program;
 use App\Kegiatan;
 use App\EntryRKO;
 use App\Rencana;
+use App\RincianBelanja;
 use DB;
 
 class EntrySPJController extends Controller {
@@ -37,6 +38,7 @@ class EntrySPJController extends Controller {
 
   public function getDetailSPJ(Request $request,$id){
     $data['page_title']       = "Entry Realisasi SJP";
+    $data['rincian_belanja']  = RincianBelanja::all();
     $data['rencana']          = Rencana::where("id_kegiatan",$id)->where("tahun",date('Y'))->get();
     $data['detailKegiatan']   = Kegiatan::find($id);
 

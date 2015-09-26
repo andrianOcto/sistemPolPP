@@ -10,7 +10,7 @@
     <!-- Font Awesome Icons -->
     <link href="{{ asset("/bower_components/admin-lte/awesome-font/css/font-awesome.min.css")}}" rel="stylesheet" type="text/css" />
     <!-- Ionicons -->
-    <link href="{{ asset("/bower_components/admin-lte/dist/css/ionic.css")}}" rel="stylesheet" type="text/css" />
+    <!-- <link href="{{ asset("/bower_components/admin-lte/dist/css/ionic.css")}}" rel="stylesheet" type="text/css" /> -->
     <!-- Font Awesome -->
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> -->
     <!-- Ionicons -->
@@ -19,9 +19,11 @@
     <link href="{{ asset("/bower_components/admin-lte/plugins/datatables/dataTables.bootstrap.css") }}" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
     <link href="{{ asset("/bower_components/admin-lte/dist/css/AdminLTE.min.css") }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset("/bower_components/admin-lte/plugins/datepicker/datepicker3.css") }}" rel="stylesheet" type="text/css" />
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link href="{{ asset("/bower_components/admin-lte/dist/css/skins/_all-skins.min.css") }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{ asset("bower_components/admin-lte/plugins/select2/select2.min.css")}}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -76,7 +78,7 @@
                   <h3 class="box-title"></h3>
                 </div><!-- /.box-header -->
                 
-                  <form class="form-horizontal">
+                  <form class="form-horizontal" method="post" action="/SPJ/realisasi/add">
                     <div class="form-group">
                       <label for="inputEmail3" class="col-sm-2 control-label">Kode Kegiatan</label>
                       <div class="col-sm-3">
@@ -99,6 +101,58 @@
                       <label for="inputEmail3" class="col-sm-2 control-label">Nama Kegiatan</label>
                       <div class="col-sm-8">
                         <input type="text" class="form-control" id="inputEmail3" value="{{$detailKegiatan->description}}" readonly="">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Rekening Belanja</label>
+                      <div class="col-sm-6">
+                        <select class="form-control select2" style="width: 100%;" id="">
+                          @foreach($rincian_belanja as $data)
+                          <option value="{{$data->id}}">{{$data->id}} &nbsp {{$data->description}}</option>
+                          @endforeach
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Keperluan</label>
+                      <div class="col-xs-4">
+                        <select class="form-control" style="width: 100%;" name="keperluan_select" id="keperluan_select">
+                          <option value="other">-Pilih Keperluan-</option>
+                          @foreach($rencana as $data)
+                          <option value="{{$data->description}}">{{$data->description}}</option>
+                          @endforeach
+                          <option value="other">Lain-lain</option>
+                        </select>
+                      </div>
+                      <div class="col-xs-4">
+                        <input type="text" class="form-control" id="inputEmail3" name="keperluan" required="">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Jumlah</label>
+                      <div class="col-sm-3">
+                        <input type="text" class="form-control" id="inputEmail3" name="jumlah">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Harga</label>
+                      <div class="col-sm-3">
+                        <input type="text" class="form-control" id="inputEmail3" name="harga">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">tanggal</label>
+                      <div class="col-sm-3">
+                        <input type="text" class="form-control" id="tanggal" name="tanggal">
+                      </div>
+                    </div>
+                    <?php echo csrf_field(); ?>
+                    <div class="form-group">
+                      <div class="col-sm-2">
+                        
+                      </div>
+                      <div class="col-sm-3">
+                        <button type="submit" class="btn btn-primary">Tambah Program</button>
                       </div>
                     </div>
                   </form>
@@ -208,10 +262,16 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset ("/bower_components/admin-lte/dist/js/demo.js") }}"></script>
     <!-- page script -->
+    <!-- Select2 -->
+    <script src="{{ asset("bower_components/admin-lte/plugins/select2/select2.full.min.js")}}"></script>
+    <script src="{{ asset("bower_components/admin-lte/plugins/datepicker/bootstrap-datepicker.js")}}"></script>
     <script>
 
       $(function () {
-        
+        $(".select2").select2();
+        $("#tanggal").datepicker({
+          format: 'dd/mm/yyyy'
+        });
       });
     </script>
   </body>
