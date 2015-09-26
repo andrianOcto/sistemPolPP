@@ -109,6 +109,9 @@ Route::group(['middleware' => 'auth'], function () {
      Route::get('/program/load/{id}','Master\ProgramController@getLoad');
      Route::post('/program/update','Master\ProgramController@postUpdate');
      Route::post('/program/delete/{id}','Master\ProgramController@postDelete');
+
+     Route::get('/SPJ','Entry\EntrySPJController@getIndex');
+     Route::get('/SPJ/Realisasi/{id}','Entry\EntrySPJController@getDetailSPJ');
     
      //Route Daftar Kegiatan
      Route::get('/daftarkegiatan','Laporan\DaftarKegiatanController@getIndex');
