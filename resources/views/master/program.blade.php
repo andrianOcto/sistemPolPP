@@ -460,7 +460,7 @@
       }
     });
 
-    refreshData(<?php if(isset($programs[0]['id']))echo $programs[0]['id']?>);
+    refreshData("<?php if(isset($programs[0]['id']))echo $programs[0]['id']?>");
     table2.clear();
     for(var item in data)
     table2.row.add(item);
