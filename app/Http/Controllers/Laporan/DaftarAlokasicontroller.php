@@ -16,7 +16,7 @@ class DaftarAlokasiController extends Controller{
     public function getIndex(){
         $data['page_title'] = "Laporan RKO";
         
-        $data['alokasi']    = DB::table('m_detail_rko')
+        $data['alokasi']    = DB::table('m_detail_rko')->where("s_kegiatan.tahun",date('Y'))
                                 ->join('s_kegiatan', 'm_detail_rko.id_kegiatan', '=', 's_kegiatan.id')
                                 ->select('s_kegiatan.nama_bidang', 's_kegiatan.description', 's_kegiatan.anggaran', 'm_detail_rko.jan', 'm_detail_rko.feb', 'm_detail_rko.mar', 'm_detail_rko.apr', 'm_detail_rko.mei', 'm_detail_rko.jun', 'm_detail_rko.jul', 'm_detail_rko.agu', 'm_detail_rko.sep', 'm_detail_rko.okt', 'm_detail_rko.nov', 'm_detail_rko.des')
                                 ->get();
@@ -29,12 +29,12 @@ class DaftarAlokasiController extends Controller{
     }
     
     public function exportToExcel(){
-        $query    = DB::table('m_detail_rko')
+        $query    = DB::table('m_detail_rko')->where("s_kegiatan.tahun",date('Y'))
                                 ->join('s_kegiatan', 'm_detail_rko.id_kegiatan', '=', 's_kegiatan.id')
                                 ->select('s_kegiatan.nama_bidang', 's_kegiatan.description', 's_kegiatan.anggaran', 'm_detail_rko.jan', 'm_detail_rko.feb', 'm_detail_rko.mar', 'm_detail_rko.apr', 'm_detail_rko.mei', 'm_detail_rko.jun', 'm_detail_rko.jul', 'm_detail_rko.agu', 'm_detail_rko.sep', 'm_detail_rko.okt', 'm_detail_rko.nov', 'm_detail_rko.des')
                                 ->get();
         
-        $i=1;
+        $i=0;
         $datatabel = array();
         foreach($query as $data1){
             $result['nama_bidang'] = $data1->nama_bidang;
@@ -62,10 +62,17 @@ class DaftarAlokasiController extends Controller{
             array('LAPORAN DAFTAR REALISASI ALOKASI'),
             array(''),
             //tabel header
-            array('Bidang','Nama Kegiatan','Anggaran','Januari','Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'),
-            //tabel data
-            $datatabel[1]    
+            array('Bidang','Nama Kegiatan','Anggaran','Januari','Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember')
+            //tabel data 
         );
+
+        $i=0;
+        $startArray = 3;
+        foreach ($datatabel as $key) {
+            $data[$startArray] =$datatabel[$i]; 
+        $i++;
+        $startArray++;
+        }
         
         Excel::create('Daftar Realisasi Alokasi', function($excel) use($data) {
             $excel->sheet('RKO Kegiatan', function($sheet) use($data){
