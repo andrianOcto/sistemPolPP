@@ -98,7 +98,7 @@
                         <td>{{$data->description}}</td>
                         <td>Rp {{number_format($data->anggaran,2,',','.')}}</td>
                         <td align="center">
-                          <a class="btn btn-warning" href="SPJ/Realisasi/{{$data->id}}">
+                          <a class="btn btn-warning" href="SPJ/realisasi/{{$data->id}}">
                               <i class="fa fa-edit fa-lg"></i> Entry SPJ
                           </a>
                         </td>

@@ -15,6 +15,7 @@ use App\Kegiatan;
 use App\EntryRKO;
 use App\Rencana;
 use App\RincianBelanja;
+use App\EntrySPJ;
 use DB;
 
 class EntrySPJController extends Controller {
@@ -40,11 +41,35 @@ class EntrySPJController extends Controller {
     $data['page_title']       = "Entry Realisasi SJP";
     $data['rincian_belanja']  = RincianBelanja::all();
     $data['rencana']          = Rencana::where("id_kegiatan",$id)->where("tahun",date('Y'))->get();
+    $data['detailSPJ']          = EntrySPJ::where("id_kegiatan",$id)->get();
     $data['detailKegiatan']   = Kegiatan::find($id);
 
     if(Session::get("role","default")=="master")
               return redirect('/');
             else
               return view('/entry/EntryRealisasi')->with($data);
+  }
+
+  public function postSPJ(Request $request){
+    try
+    {
+      $spj                = new EntrySPJ;
+      $spj->id_kegiatan   = $request->input("id_kegiatan");   
+      $spj->id_rincian    = $request->input("id_rincian");    
+      $spj->tahun         = date('Y');
+      $spj->jumlah        = $request->input("jumlah");
+      $spj->harga         = $request->input("harga");
+      $spj->keperluan     = $request->input("keperluan"); 
+      $spj->tanggal       = $request->input("tanggal");
+      $spj->save();
+      $id_kegiatan        = $request->input("id_kegiatan");   
+      return redirect("/SPJ/realisasi/$id_kegiatan")->with('successMessage', 'Data berhasil ditambahkan!');
+    }
+
+    //jika user sudah ada dalam database
+    catch(\Illuminate\Database\QueryException $e)
+    {
+      return redirect("/SPJ")->with('errMessage', 'Kode yang disimpan sudah ada dalam database. </br> Harap Coba menggunakan kode yang belum ada');
+    }
   }
 }

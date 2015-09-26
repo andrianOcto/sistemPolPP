@@ -78,11 +78,12 @@
                   <h3 class="box-title"></h3>
                 </div><!-- /.box-header -->
                 
-                  <form class="form-horizontal" method="post" action="/SPJ/realisasi/add">
+                  <form class="form-horizontal" method="post" action="/SPJ/add">
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
                       <label for="inputEmail3" class="col-sm-2 control-label">Kode Kegiatan</label>
                       <div class="col-sm-3">
-                        <input type="text" class="form-control" id="inputEmail3" value="{{$detailKegiatan->id}}" readonly="">
+                        <input type="text" class="form-control" name="id_kegiatan" value="{{$detailKegiatan->id}}" readonly="">
                       </div>
                     </div>
                     <div class="form-group">
@@ -106,7 +107,7 @@
                     <div class="form-group">
                       <label for="inputEmail3" class="col-sm-2 control-label">Rekening Belanja</label>
                       <div class="col-sm-6">
-                        <select class="form-control select2" style="width: 100%;" id="">
+                        <select class="form-control select2" name="id_rincian" style="width: 100%;" id="">
                           @foreach($rincian_belanja as $data)
                           <option value="{{$data->id}}">{{$data->id}} &nbsp {{$data->description}}</option>
                           @endforeach
@@ -117,7 +118,7 @@
                       <label for="inputEmail3" class="col-sm-2 control-label">Keperluan</label>
                       <div class="col-xs-4">
                         <select class="form-control" style="width: 100%;" name="keperluan_select" id="keperluan_select">
-                          <option value="other">-Pilih Keperluan-</option>
+                          <option value="pilih">-Pilih Keperluan-</option>
                           @foreach($rencana as $data)
                           <option value="{{$data->description}}">{{$data->description}}</option>
                           @endforeach
@@ -125,7 +126,7 @@
                         </select>
                       </div>
                       <div class="col-xs-4">
-                        <input type="text" class="form-control" id="inputEmail3" name="keperluan" required="">
+                        <input type="text" class="form-control" id="keperluan" name="keperluan" readonly="" reqiured="">
                       </div>
                     </div>
                     <div class="form-group">
@@ -146,7 +147,6 @@
                         <input type="text" class="form-control" id="tanggal" name="tanggal">
                       </div>
                     </div>
-                    <?php echo csrf_field(); ?>
                     <div class="form-group">
                       <div class="col-sm-2">
                         
@@ -160,7 +160,10 @@
                   <table id="example2" class="table table-bordered table-striped">
                     <thead>
                       <tr>
-                        <th>Deskripsi</th>
+                        <th>Id Kegiatan</th>
+                        <th>Id Rincian</th>
+                        <th>Tahun</th>
+                        <th>Keperluan</th>
                         <th>Jumlah</th>
                         <th>Harga</th>
                         <th align="center">Action</th>
@@ -168,9 +171,12 @@
                     </thead>
                     <tbody>
                       <?php $i=1; ?>
-                      @foreach($rencana as $data)
+                      @foreach($detailSPJ as $data)
                       <tr>
-                        <td>{{$data->description}}</td>
+                        <td>{{$data->id_kegiatan}}</td>
+                        <td>{{$data->id_rincian}}</td>
+                        <td>{{$data->tahun}}</td>
+                        <td>{{$data->keperluan}}</td>
                         <td>{{$data->jumlah}}</td>
                         <td>Rp {{ number_format($data->harga,2,',','.')}}</td>
                         <td align="center">
@@ -273,6 +279,22 @@
           format: 'dd/mm/yyyy'
         });
       });
+
+      $('#keperluan_select').change(function(){
+          var keperluan = $(this).val();
+          if(keperluan != "pilih" && keperluan != "other"){
+            $('#keperluan').val(keperluan);
+            $('#keperluan').attr('readonly','');
+          }else if (keperluan == "other") {
+            $('#keperluan').removeAttr("readonly");
+            $('#keperluan').val("");
+            $('#keperluan').focus();
+          }else{
+            $('#keperluan').val(null);
+          }
+        });
+
+
     </script>
   </body>
 </html>
