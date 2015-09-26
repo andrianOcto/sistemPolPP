@@ -88,67 +88,62 @@
                         @foreach($rko as $data)
                       <tr>
                         <td>Januari</td>
-                        <td>{{$data->jan}}</td>
+                        <td>{{$data->jan}}<?php $rkoJan = $data->jan ?></td>
                         <td>0</td>
                       </tr>
                       <tr>
                         <td>Februari</td>
-                        <td>{{$data->feb}}</td>
+                        <td>{{$data->feb}}<?php $rkoFeb = $data->feb ?></td>
                         <td>0</td>
                       </tr>
                       <tr>
                         <td>Maret</td>
-                        <td>{{$data->mar}}</td>
+                        <td>{{$data->mar}} <?php $rkoMar = $data->mar ?></td>
                         <td>0</td>
                       </tr>
                       <tr>
                         <td>April</td>
-                        <td>{{$data->apr}}</td>
+                        <td>{{$data->apr}} <?php $rkoApr = $data->apr ?></td>
                         <td>0</td>
                       </tr>
                       <tr>
                         <td>Mei</td>
-                        <td>{{$data->mei}}</td>
+                        <td>{{$data->mei}} <?php $rkoMei = $data->mei ?></td>
                         <td>0</td>
                       </tr>
                       <tr>
                         <td>Juni</td>
-                        <td>{{$data->jun}}</td>
-                        <td>0</td>
-                      </tr>
-                      <tr>
-                        <td>Juni</td>
-                        <td>{{$data->jun}}</td>
+                        <td>{{$data->jun}} <?php $rkoJun = $data->jun ?></td>
                         <td>0</td>
                       </tr>
                       <tr>
                         <td>Juli</td>
-                        <td>{{$data->jul}}</td>
+                        <td>{{$data->jul}} <?php $rkoJul = $data->jul ?></td>
                         <td>0</td>
                       </tr>
                         <tr>
                         <td>Agustus</td>
-                        <td>{{$data->agu}}</td>
+                        <td>{{$data->agu}} <?php $rkoAgu = $data->agu ?></td>
                         <td>0</td>
                       </tr>
                         <tr>
                         <td>September</td>
-                        <td>{{$data->sep}}</td>
+                        <td>{{$data->sep}} <?php $rkoSep = $data->sep ?></td>
                         <td>0</td>
                       </tr>
                         <tr>
                         <td>Oktober</td>
-                        <td>{{$data->okt}}</td>
+                        <td>{{$data->okt}} <?php $rkoOkt = $data->okt ?></td>
                         <td>0</td>
                       </tr>
                         <tr>
                         <td>November</td>
-                        <td>{{$data->nov}}</td>
+                        <td>{{$data->nov}} <?php $rkoNov = $data->nov ?></td>
                         <td>0</td>
                       </tr>
                         <tr>
                         <td>Desember</td>
-                        <td>{{$data->des}}</td>
+                        <td>{{$data->des}} <?php $rkoDes = $data->des ?></td>
                         <td>0</td>
                       </tr>
                         @endforeach
@@ -224,7 +219,7 @@
               pointHighlightStroke: "rgba(220,220,220,1)",
                 
               //data grafik dari database RKO perbulan pertahun
-              data: [65, 59, 80, 81, 56, 55, 40, 20, 34, 56, 78, 35]
+              data: [@foreach($rko as $data) {{$data->jan}}, {{$data->feb}}, {{$data->mar}}, {{$data->apr}}, {{$data->mei}}, {{$data->jun}}, {{$data->jul}}, {{$data->agu}}, {{$data->sep}}, {{$data->okt}}, {{$data->nov}}, {{$data->des}} @endforeach]
             },
             {
               label: "realisasi",

@@ -17,7 +17,7 @@ class DaftarKegiatanController extends Controller {
     public function getIndex(){
         
     $data['page_title'] = "Laporan Daftar Kegiatan";
-    $data['kegiatan']   = DB::table('s_kegiatan')
+    $data['kegiatan']   = DB::table('s_kegiatan')->where("tahun",date('Y'))
                                   ->join('s_bidang', 's_kegiatan.id_bidang', '=', 's_bidang.id')
                                   ->select('s_kegiatan.id', 's_bidang.nama','s_kegiatan.id_bidang', 's_kegiatan.description', 's_kegiatan.anggaran', 's_kegiatan.sasaran')
                                   ->get();
@@ -30,12 +30,12 @@ class DaftarKegiatanController extends Controller {
     }
     
     public function exportToExcel(){
-        $query = DB::table('s_kegiatan')
+        $query = DB::table('s_kegiatan')->where("tahun",date('Y'))
                 ->join('s_bidang', 's_kegiatan.id_bidang', '=', 's_bidang.id')
                 ->select('s_kegiatan.id', 's_bidang.nama','s_kegiatan.id_bidang', 's_kegiatan.description', 's_kegiatan.anggaran', 's_kegiatan.sasaran')
                 ->get();
         
-        $i=1;
+        $i=0;
         $datatabel = array();
         foreach($query as $data1){
             $result['id'] = $data1->id;
@@ -53,15 +53,17 @@ class DaftarKegiatanController extends Controller {
             array('LAPORAN DAFTAR KEGIATAN'),
             array(''),
             //tabel header
-            array('Kode Kegiatan','Bidang','Nama Kegiatan','Anggaran','Sasaran'),
+            array('Kode Kegiatan','Bidang','Nama Kegiatan','Anggaran','Sasaran')
             //tabel data
-            $datatabel[1],
-            $datatabel[2],
-            $datatabel[3],
-            $datatabel[4],
-            $datatabel[5],
-            $datatabel[6]
         );
+
+        $i=0;
+        $startArray = 3;
+        foreach ($datatabel as $key) {
+            $data[$startArray] =$datatabel[$i]; 
+        $i++;
+        $startArray++;
+        }
         
         Excel::create('Daftar Kegiatan', function($excel) use($data) {
             $excel->sheet('kegiatan', function($sheet) use($data){
