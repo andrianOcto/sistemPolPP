@@ -61,8 +61,8 @@
                         <div class="form-inline">
                             <label for="tahun">Tahun:</label>
                             <select class="form-control select2" id="pertahun">
-                                @foreach($rko as $data)
-                                <option value="{{$data->id_kegiatan}}">{{$data->tahun}}</option>
+                                @foreach($tahun as $data)
+                                <option value="{{$data->tahun}}">{{$data->tahun}}</option>
                                 @endforeach
                             </select>
                             <button type="submit" class="btn btn-primary" style="margin-left:20px">preview</button>
