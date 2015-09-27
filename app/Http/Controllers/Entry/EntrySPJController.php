@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\Eloquent\Model;
 //Lib yang digunakan
 use Session;
 //Model yang digunakan
@@ -16,6 +17,7 @@ use App\EntryRKO;
 use App\Rencana;
 use App\RincianBelanja;
 use App\EntrySPJ;
+use Carbon\Carbon;
 use DB;
 
 class EntrySPJController extends Controller {
@@ -53,6 +55,9 @@ class EntrySPJController extends Controller {
   public function postSPJ(Request $request){
     try
     {
+      $input  = $request->input("tanggal");
+      $format = 'd/m/Y';
+      $tgl = Carbon::createFromFormat($format, $input);
       $spj                = new EntrySPJ;
       $spj->id_kegiatan   = $request->input("id_kegiatan");   
       $spj->id_rincian    = $request->input("id_rincian");    
@@ -60,7 +65,9 @@ class EntrySPJController extends Controller {
       $spj->jumlah        = $request->input("jumlah");
       $spj->harga         = $request->input("harga");
       $spj->keperluan     = $request->input("keperluan"); 
-      $spj->tanggal       = $request->input("tanggal");
+      $spj->tanggal       = $tgl;
+
+
       $spj->save();
       $id_kegiatan        = $request->input("id_kegiatan");   
       return redirect("/SPJ/realisasi/$id_kegiatan")->with('successMessage', 'Data berhasil ditambahkan!');
@@ -71,5 +78,13 @@ class EntrySPJController extends Controller {
     {
       return redirect("/SPJ")->with('errMessage', 'Kode yang disimpan sudah ada dalam database. </br> Harap Coba menggunakan kode yang belum ada');
     }
+  }
+
+  public function testDate(){
+    $input  = '11/Sep/2015';
+    $format = 'd/M/Y';
+
+    $date = Carbon::createFromFormat($format, $input);
+    echo $date;
   }
 }

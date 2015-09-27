@@ -204,49 +204,7 @@
            immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
     </div><!-- ./wrapper -->
-      <?php $i=1; ?>
-      @foreach($rencana as $data)
-      <!-- Modal Update User -->
-      <div class="modal fade" id="modal-updateBidang{{$i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h2 class="modal-title" id="myModalLabel">Realisasi Item</h2>
-            </div>
-            <div class="modal-body">
-              <form role="form" method="post" action="/bidang/update">
-                  <div class="box-body">
-                    <table class="table table-bordered table-striped">
-                        <tr>
-                          <th>Deskripsi</th>
-                          <th>Rencana Jumlah</th>
-                          <th>Rencana Harga</th>
-                          <th>Realisasi Jumlah</th>
-                          <th>Realisasi Harga</th>
-                        </tr>
-                        <tr>
-                          <td><input type="text" class="form-control" name="kode" value="{{$data->description}}" readonly></td>
-                          <td><input type="text" class="form-control" name="kode" value="{{$data->jumlah}}" readonly></td>
-                          <td><input type="text" class="form-control" name="kode" value="{{$data->harga}}"></td>
-                          <td><input type="text" class="form-control" name="kode" placeholder=""></td>
-                          <td><input type="text" class="form-control" name="kode" placeholder=""></td>
-                        </tr>
-                    </table>
-                  </div><!-- /.box-body -->
-                  <?php echo csrf_field(); ?>
-                
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-warning">Update User</button>
-            </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      <?php $i++; ?>
-      @endforeach
+      
       <!-- Control Sidebar -->
 
 
