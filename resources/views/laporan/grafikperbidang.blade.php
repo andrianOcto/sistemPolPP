@@ -61,17 +61,17 @@
                         <div class="form-inline">
                             <label for="tahun">Tahun:</label>
                             <select class="form-control select2" id="pertahun">
-                                @foreach($rko as $data)
-                                <option value="{{$data->id_kegiatan}}">{{$data->tahun}}</option>
+                                @foreach($tahun as $data)
+                                <option value="{{$data->tahun}}" @if(date('Y')==$data->tahun) selected @endif>{{$data->tahun}}</option>
                                 @endforeach
                             </select>
                             <label for="bidang" style="margin-left:20px">Bidang:</label>
                             <select class="form-control select2" id="perbidang">
                                 @foreach($bidang as $data)
-                                <option value="$i">{{$data->id}} &nbsp; {{$data->nama}}</option>
+                                <option value="{{$data->id}}">{{$data->id}} &nbsp; {{$data->nama}}</option>
                                 @endforeach
                             </select>
-                            <button type="submit" class="btn btn-primary" style="margin-left:20px">preview</button>
+                            <button type="button" onClick = "refreshPage()" class="btn btn-primary" style="margin-left:20px">preview</button>
                         </div>
                     </form>
                     </div>
@@ -231,7 +231,8 @@
               pointHighlightStroke: "rgba(220,220,220,1)",
                 
               //data grafik dari database RKO perbulan pertahun
-              data: [65, 59, 80, 81, 56, 55, 40, 20, 34, 56, 78, 35]
+              data: [@foreach($rko as $data) {{$data->jan}}, {{$data->feb}}, {{$data->mar}}, {{$data->apr}}, {{$data->mei}}, {{$data->jun}}, {{$data->jul}}, {{$data->agu}}, {{$data->sep}}, {{$data->okt}}, {{$data->nov}}, {{$data->des}} @endforeach]
+
             },
             {
               label: "realisasi",
@@ -283,6 +284,14 @@
         barChart.Bar(barChartData, barChartOptions);
         
     });
+    
+    function refreshPage()
+    {
+      var tahun = document.getElementById("pertahun").value;
+      var bidang = document.getElementById("perbidang").value;
+
+      window.location="{{url()}}/grafikrealisasiperbidang/refresh/"+tahun+"/"+bidang; 
+    }
     </script>
   </body>
 </html>

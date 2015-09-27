@@ -107,7 +107,7 @@ Route::group(['middleware' => 'auth'], function () {
      Route::get('/entryRKO','Entry\EntryRKOController@getIndex');
      Route::post('/program/add','Master\ProgramController@postAdd');
      Route::get('/program/load/{id}','Master\ProgramController@getLoad');
-     Route::post('/program/update','Master\ProgramController@postUpdate');
+     Route::post('/entryRKO/update','Entry\EntryRKOController@postUpdate');
      Route::post('/program/delete/{id}','Master\ProgramController@postDelete');
 
      Route::get('/SPJ','Entry\EntrySPJController@getIndex');
@@ -124,12 +124,10 @@ Route::group(['middleware' => 'auth'], function () {
     
      //Route Grafik Realisasi Keseluruhan
      Route::get('/grafikrealisasikeseluruhan','Laporan\GrafikKeseluruhanController@getIndex');
+     Route::get('/grafikrealisasikeseluruhan/refresh/{tahun}','Laporan\GrafikKeseluruhanController@getRefresh');
      Route::post('/grafikrealisasi/pertahun','Laporan\GrafikKeseluruhanController@perTahun');
     
      //Route Grafik Realisasi Perbidang
      Route::get('/grafikrealisasiperbidang','Laporan\GrafikPerbidangController@getIndex');
+     Route::get('/grafikrealisasiperbidang/refresh/{tahun}/{id}','Laporan\GrafikPerbidangController@getRefresh');
 });
-
-
-
-

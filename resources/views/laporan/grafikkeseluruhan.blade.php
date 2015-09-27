@@ -65,7 +65,7 @@
                                 <option value="{{$data->tahun}}">{{$data->tahun}}</option>
                                 @endforeach
                             </select>
-                            <button type="submit" class="btn btn-primary" style="margin-left:20px">preview</button>
+                            <button type="button" onclick="refreshPage()" class="btn btn-primary" style="margin-left:20px">preview</button>
                         </div>
                     </form>
                     </div>
@@ -271,6 +271,13 @@
         barChart.Bar(barChartData, barChartOptions);
         
     });
+
+    function refreshPage()
+    {
+      var tahun = document.getElementById("pertahun").value;
+
+      window.location="{{url()}}/grafikrealisasikeseluruhan/refresh/"+tahun; 
+    }
     </script>
   </body>
 </html>
