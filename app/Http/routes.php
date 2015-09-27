@@ -128,7 +128,6 @@ Route::group(['middleware' => 'auth'], function () {
     
      //Route Grafik Realisasi Perbidang
      Route::get('/grafikrealisasiperbidang','Laporan\GrafikPerbidangController@getIndex');
-     Route::get('/testDate', 'Entry\EntrySPJController@testDate');
 });
 
 
