@@ -130,4 +130,7 @@ Route::group(['middleware' => 'auth'], function () {
      //Route Grafik Realisasi Perbidang
      Route::get('/grafikrealisasiperbidang','Laporan\GrafikPerbidangController@getIndex');
      Route::get('/grafikrealisasiperbidang/refresh/{tahun}/{id}','Laporan\GrafikPerbidangController@getRefresh');
+
+     //Route ChangePassword
+     Route::post('/changePassword','DashboardController@getPassword');
 });
