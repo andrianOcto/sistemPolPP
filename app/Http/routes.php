@@ -42,7 +42,6 @@ Route::group(['middleware' => 'auth'], function () {
      Route::post('/admin/role/update','Admin\RoleController@postUpdate');
      Route::post('/admin/role/delete/{username}','Admin\RoleController@postDelete');
 
-
      // Route Master Setting Satuan Kerja
      Route::get('/satuanKerja','Master\setKerjaController@getIndex');
      Route::get('/satuanKerja/edit','Master\setKerjaController@getEdit');
@@ -109,7 +108,8 @@ Route::group(['middleware' => 'auth'], function () {
      Route::get('/program/load/{id}','Master\ProgramController@getLoad');
      Route::post('/entryRKO/update','Entry\EntryRKOController@postUpdate');
      Route::post('/program/delete/{id}','Master\ProgramController@postDelete');
-
+    
+     //Route Entry SPJ
      Route::get('/SPJ','Entry\EntrySPJController@getIndex');
      Route::get('/SPJ/realisasi/{id}','Entry\EntrySPJController@getDetailSPJ');
      Route::post('/SPJ/add','Entry\EntrySPJController@postSPJ');
@@ -128,9 +128,15 @@ Route::group(['middleware' => 'auth'], function () {
      Route::post('/grafikrealisasi/pertahun','Laporan\GrafikKeseluruhanController@perTahun');
     
      //Route Grafik Realisasi Perbidang
-     Route::get('/grafikrealisasiperbidang','Laporan\GrafikPerbidangController@getIndex');
-     Route::get('/grafikrealisasiperbidang/refresh/{tahun}/{id}','Laporan\GrafikPerbidangController@getRefresh');
+     Route::get('/grafikrealisasiperbidang','Laporan\GrafikPerbidangController@getIndex');             
+    Route::get('/grafikrealisasiperbidang/refresh/{tahun}/{id}','Laporan\GrafikPerbidangController@getRefresh');
 
      //Route ChangePassword
      Route::post('/changePassword','DashboardController@getPassword');
+    
+     //Route Realisasi Seluruh
+     Route::get('/realisasikeseluruhan','Laporan\RealisasiKeseluruhanController@getIndex');
+    
+     //Route Realisasi Seluruh Perbidang
+     Route::get('/realisasikeseluruhanperbidang','Laporan\RealisasiKeseluruhanPerbidangController@getIndex');
 });

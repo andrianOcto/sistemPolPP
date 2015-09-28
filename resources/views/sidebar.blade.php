@@ -7,7 +7,7 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel">
       <div class="pull-left image">
-        <img src="{{ asset("/bower_components/admin-lte/dist/img/user2-160x160.jpg") }}" class="img-circle" alt="User Image" />
+        <img src="{{ asset("/images/logo-pp.png") }}" class="" alt="Logo Image" />
       </div>
       
     </div>
@@ -16,19 +16,19 @@
       <li class="header">MENU</li>
       <!-- Optionally, you can add icons to the links -->
       <li class="treeview">
-        <a href="#"><span>Input</span> <i class="fa fa-angle-left pull-right"></i></a>
+        <a href="#"><i class="fa fa-pencil-square-o"></i> <span>Input</span> <i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">
           <li><a href="/entryRKO">Entry RKO</a></li>
           <li><a href="/SPJ">Entry SPJ</a></li>
         </ul>
       </li>
       <li class="treeview">
-        <a href="#"><span>Laporan</span> <i class="fa fa-angle-left pull-right"></i></a>
+        <a href="#"><i class="fa fa-file-text-o"></i> <span>Laporan</span> <i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">
           <li><a href="/daftarkegiatan">Daftar Kegiatan</a></li>
           <li><a href="/daftaralokasi">Daftar RKO (Alokasi)</a></li>
-          <li><a href="#">Realisasi Seluruh</a></li>
-          <li><a href="#">Realisasi Per Bidang</a></li>
+          <li><a href="/realisasikeseluruhan">Realisasi Seluruh</a></li>
+          <li><a href="/realisasikeseluruhanperbidang">Realisasi Per Bidang</a></li>
           <li><a href="#">Rekap Realisasi Seluruh</a></li>
           <li><a href="#">Rekap Realisasi Per Bidang</a></li>
           <li><a href="/grafikrealisasikeseluruhan">Grafik Realisasi Seluruh</a></li>
@@ -37,7 +37,7 @@
         </ul>
       </li>
       <li class="treeview">
-        <a href="#"><span>Master</span> <i class="fa fa-angle-left pull-right"></i></a>
+        <a href="#"><i class="fa fa-list"></i> <span>Master</span> <i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">
           <li><a href="/satuanKerja">Setting Satuan Kerja</a></li>
           <li><a href="/bidang">Bidang</a></li>

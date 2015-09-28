@@ -77,7 +77,7 @@
                 <div class="box-header">
                   <h3 class="box-title"></h3>
                 </div><!-- /.box-header -->
-                
+                <div class="box-body">
                   <form class="form-horizontal" method="post" action="/SPJ/add">
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
@@ -160,8 +160,8 @@
                   <table id="example2" class="table table-bordered table-striped">
                     <thead>
                       <tr>
-                        <th>Id Kegiatan</th>
-                        <th>Id Rincian</th>
+                        <th>Kode Kegiatan</th>
+                        <th>Kode Rincian</th>
                         <th>Tahun</th>
                         <th>Keperluan</th>
                         <th>Jumlah</th>
@@ -232,6 +232,15 @@
     <script>
 
       $(function () {
+        $("#example1").DataTable();
+        $('#example2').DataTable({
+          "paging": true,
+          "lengthChange": true,
+          "searching": true,
+          "ordering": true,
+          "info": true,
+          "autoWidth": true
+        });
         $(".select2").select2();
         $("#tanggal").datepicker({
           format: 'dd/mm/yyyy'

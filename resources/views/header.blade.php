@@ -20,29 +20,22 @@
           <!-- Menu Toggle Button -->
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <!-- The user image in the navbar-->
-            <img src="{{ asset("/bower_components/admin-lte/dist/img/user2-160x160.jpg") }}" class="user-image" alt="User Image"/>
+            <i class="fa fa-user"></i>
             <!-- hidden-xs hides the username on small devices so only the image appears. -->
             <span class="hidden-xs"><?php echo Session::get('name', 'default'); ?></span>
           </a>
           <ul class="dropdown-menu">
             <!-- The user image in the menu -->
-            <li class="user-header">
-              <img src="{{ asset("/bower_components/admin-lte/dist/img/user2-160x160.jpg") }}" class="img-circle" alt="User Image" />
-              <p>
-                Alexander Pierce - Web Developer
-                <small>Member since Nov. 2012</small>
-              </p>
+            <li class="user-header" style="height:auto; background-color:#B6B6B6">
+              <img src="{{ asset("/images/logo-pp.png") }}" class="" style="border:none; height:auto"/>
             </li>
-            
-
-
             <!-- Menu Footer-->
             <li class="user-footer">
               <div class="pull-left">
-                <button data-toggle="modal" data-target="#modal-changePassword" class="btn btn-default btn-flat">Change Password</button>
+                <button data-toggle="modal" data-target="#modal-changePassword" class="btn btn-success btn-flat">Change Password</button>
               </div>
               <div class="pull-right">
-                <a href="/logout" class="btn btn-default btn-flat">Sign out</a>
+                <a href="/logout" class="btn btn-danger btn-flat">Sign out</a>
               </div>
             </li>
           </ul>

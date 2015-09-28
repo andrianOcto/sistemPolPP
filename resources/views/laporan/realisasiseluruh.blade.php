@@ -47,7 +47,7 @@
 
         <section class="content-header">
           <h1>
-            Laporan Daftar Realisasi Alokasi
+            Laporan Realisasi Keseluruhan
           </h1>
         </section>
         
@@ -59,49 +59,60 @@
 
               <div class="box">
                 <div class="box-header">
-                    <a href="/daftaralokasi/excel" class="btn btn-success">Export to excel</a>
+                    <form class="form" method="" action="" style="margin-bottom:10px">
+                        <div class="form-inline">
+                            <label for="tahun">Tahun:</label>
+                            <select class="form-control select2" id="pertahun">
+                                <option value="1">2015</option>
+                            </select>
+                            <button type="button" onclick="#" class="btn btn-primary" style="margin-left:20px">preview</button>
+                            <a href="#" class="btn btn-success" style="float:right">Export to excel</a>
+                        </div>
+                    </form>
+                    
                 </div><!-- /.box-header -->
                 <div class="box-body" style="overflow-x: scroll">
                   <table id="example2" class="table table-bordered table-striped">
                     <thead>
-                      <tr>
-                        <th>Bidang</th>
-                        <th>Nama Kegiatan</th>
-                        <th>Anggaran</th>
-                        <th>Januari</th>
-                        <th>Februari</th>
-                        <th>Maret</th>
-                        <th>April</th>
-                        <th>Mei</th>
-                        <th>Juni</th>
-                        <th>Juli</th>
-                        <th>Agustus</th>
-                        <th>September</th>
-                        <th>Oktober</th>
-                        <th>November</th>
-                        <th>Desember</th>
+                      <tr align="center">
+                        <td rowspan="2">Kode Kegiatan</td>
+                        <td rowspan="2">Kegiatan</td>
+                        <td rowspan="2">Bidang</td>
+                        <td rowspan="2">Program</td>
+                        <td rowspan="2">Kode Rincian</td>
+                        <td rowspan="2">Keperluan</td>
+                        <td rowspan="2">Jumlah</td>
+                        <td colspan="12">Bulan</td>
+                      </tr>
+                    <tr>
+                        <td>Jumlah</td>
+                        <td>Januari</td>
+                        <td>Jumlah</td>
+                        <td>Februari</td>
+                        <td>Jumlah</td>
+                        <td>Maret</td>
+                        <td>Jumlah</td>
+                        <td>April</td>
+                        <td>Jumlah</td>
+                        <td>Mei</td>
+                        <td>Jumlah</td>
+                        <td>Juni</td>
+                        <td>Jumlah</td>
+                        <td>Juli</td>
+                        <td>Jumlah</td>
+                        <td>Agustus</td>
+                        <td>Jumlah</td>
+                        <td>September</td>
+                        <td>Jumlah</td>
+                        <td>Oktober</td>
+                        <td>Jumlah</td>
+                        <td>November</td>
+                        <td>Jumlah</td>
+                        <td>Desember</td>
                       </tr>
                     </thead>
                     <tbody>
-                      @foreach($alokasi as $data)
-                      <tr>
-                        <td>{{$data->nama_bidang}}</td>
-                        <td>{{$data->description}}</td>
-                        <td>{{$data->anggaran}}</td>
-                        <td>{{$data->jan}}</td>
-                        <td>{{$data->feb}}</td>
-                        <td>{{$data->mar}}</td>
-                        <td>{{$data->apr}}</td>
-                        <td>{{$data->mei}}</td>
-                        <td>{{$data->jun}}</td>
-                        <td>{{$data->jul}}</td>
-                        <td>{{$data->agu}}</td>
-                        <td>{{$data->sep}}</td>
-                        <td>{{$data->okt}}</td>
-                        <td>{{$data->nov}}</td>
-                        <td>{{$data->des}}</td>
-                      </tr>
-                      @endforeach
+                      
                     </tbody>
                     <tfoot>
 
@@ -148,7 +159,7 @@
           "paging": true,
           "lengthChange": true,
           "searching": true,
-          "ordering": true,
+          "ordering": false,
           "info": true,
           "autoWidth": true
         });

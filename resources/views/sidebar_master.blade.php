@@ -15,9 +15,9 @@
     <p style="color:white; padding:10px; font-size:1.2em">
         <!-- Sidebar Menu -->
     <ul class="sidebar-menu">
-      <li class="header">MENU</li>
-      <li><a href="/">Kelola User</a></li>
-          <li><a href="/admin/role">Kelola Role</a></li>
+        <li class="header">MENU</li>
+        <li><a href="/">Kelola User</a></li>
+        <li><a href="/admin/role">Kelola Role</a></li>
     </ul><!-- /.sidebar-menu -->
     </p>
   </section>

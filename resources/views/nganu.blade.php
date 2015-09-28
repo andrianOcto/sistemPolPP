@@ -45,14 +45,31 @@
         <!-- Content Header (Page header) -->
 
         <section class="content-header">
-          <h1>
-            Dashboard
-          </h1>
+            <h1>Satuan Polisi Pamong Praja</h1>
+            <h1>Wilayah Semarang Kota - Jawa Tengah</h1>
         </section>
 
         <!-- Main content -->
         <div class='row'>
             <section class="content">
+                
+            <div class="col-lg-12 col-xs-12" id="clock" style="font-size:3em"></div>
+            <div class="col-lg-12 col-xs-12" id="date" style="margin-bottom:30px">
+                <p style="font-size:1.5em">
+                    <script type='text/javascript'>
+                      var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+                      var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
+                      var date = new Date();
+                      var day = date.getDate();
+                      var month = date.getMonth();
+                      var thisDay = date.getDay(),
+                          thisDay = myDays[thisDay];
+                      var yy = date.getYear();
+                      var year = (yy < 1000) ? yy + 1900 : yy;
+                      document.write(thisDay + ', ' + day + ' ' + months[month] + ' ' + year);
+                    </script>
+                </p>
+            </div>
                 
             <div class="col-lg-3 col-xs-6">
               <!-- small box -->
@@ -188,17 +205,50 @@
     <!-- page script -->
     <script>
 
-      $(function () {
-        $("#example1").DataTable();
-        $('#example2').DataTable({
-          "paging": true,
-          "lengthChange": true,
-          "searching": true,
-          "ordering": true,
-          "info": true,
-          "autoWidth": true
+        $(function () {
+            $("#example1").DataTable();
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": true
+            });
         });
-      });
+        
+        function startTime() {
+            var today=new Date(),
+                curr_hour=today.getHours(),
+                curr_min=today.getMinutes(),
+                curr_sec=today.getSeconds();
+                    curr_hour=checkTime(curr_hour);
+                    curr_min=checkTime(curr_min);
+                    curr_sec=checkTime(curr_sec);
+            document.getElementById('clock').innerHTML=curr_hour+":"+curr_min+":"+curr_sec;
+        }
+        
+        function checkTime(i) {
+            if (i<10) {
+                i="0" + i;
+            }
+            return i;
+        }
+        
+        setInterval(startTime, 500);
+        
+//        function startDate(){
+//            var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+//            var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
+//            var date = new Date();
+//                var day = date.getDate();
+//                var month = date.getMonth();
+//                var thisDay = date.getDay(),
+//            thisDay = myDays[thisDay];
+//            var yy = date.getYear();
+//            var year = (yy < 1000) ? yy + 1900 : yy;
+//            document.getElementById('date').innerHTML=thisDay + ', ' + day + ' ' + months[month] + ' ' + year);
+//        }
     </script>
   </body>
 </html>
