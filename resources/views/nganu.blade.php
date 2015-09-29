@@ -105,7 +105,7 @@
                   <p>Program</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-person-add"></i>
+                  <i class="fa fa-tasks"></i>
                 </div>
               </div>
             </div><!-- ./col -->
@@ -118,7 +118,7 @@
                   <p>Bidang</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-pie-graph"></i>
+                  <i class="fa fa-get-pocket"></i>
                 </div>
               </div>
             </div><!-- ./col -->
@@ -131,7 +131,7 @@
                   <p>Kegiatan</p>
                 </div>
                 <div class="icon">
-                  <i class="fa fa-shopping-cart"></i>
+                  <i class="fa fa-calendar"></i>
                 </div>
               </div>
             </div><!-- ./col -->
@@ -144,7 +144,7 @@
                   <p>Urusan</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
+                  <i class="fa fa-bookmark-o"></i>
                 </div>
               </div>
             </div><!-- ./col -->
@@ -157,20 +157,20 @@
                   <p>Kelompok Kerja</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-person-add"></i>
+                  <i class="fa fa-paper-plane"></i>
                 </div>
               </div>
             </div><!-- ./col -->
                 
             <div class="col-lg-3 col-xs-6">
               <!-- small box -->
-              <div class="small-box bg-navy">
+              <div class="small-box bg-gray">
                 <div class="inner">
                   <h3>65</h3>
                   <p>Kelompok Belanja</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-pie-graph"></i>
+                  <i class="fa fa-shopping-cart"></i>
                 </div>
               </div>
             </div><!-- ./col -->
@@ -237,18 +237,6 @@
         
         setInterval(startTime, 500);
         
-//        function startDate(){
-//            var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-//            var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
-//            var date = new Date();
-//                var day = date.getDate();
-//                var month = date.getMonth();
-//                var thisDay = date.getDay(),
-//            thisDay = myDays[thisDay];
-//            var yy = date.getYear();
-//            var year = (yy < 1000) ? yy + 1900 : yy;
-//            document.getElementById('date').innerHTML=thisDay + ', ' + day + ' ' + months[month] + ' ' + year);
-//        }
     </script>
   </body>
 </html>

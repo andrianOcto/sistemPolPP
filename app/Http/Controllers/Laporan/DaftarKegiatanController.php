@@ -85,7 +85,7 @@ class DaftarKegiatanController extends Controller {
                     $cells->setBorder('solid','solid','solid','solid');
                 });
                 $sheet->cells('A4:E8', function($cells){
-                    $cells->setBorder('solid','none','none','solid');
+                    $cells->setBorder('solid','solid','solid','solid');
                 });
                 
                 //data

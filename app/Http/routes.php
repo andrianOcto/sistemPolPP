@@ -131,7 +131,7 @@ Route::group(['middleware' => 'auth'], function () {
     
      //Route Grafik Realisasi Perbidang
      Route::get('/grafikrealisasiperbidang','Laporan\GrafikPerbidangController@getIndex');             
-    Route::get('/grafikrealisasiperbidang/refresh/{tahun}/{id}','Laporan\GrafikPerbidangController@getRefresh');
+     Route::get('/grafikrealisasiperbidang/refresh/{tahun}/{id}', 'Laporan\GrafikPerbidangController@getRefresh');
 
      //Route ChangePassword
      Route::post('/changePassword','DashboardController@getPassword');
@@ -141,4 +141,12 @@ Route::group(['middleware' => 'auth'], function () {
     
      //Route Realisasi Seluruh Perbidang
      Route::get('/realisasikeseluruhanperbidang','Laporan\RealisasiKeseluruhanPerbidangController@getIndex');
+    
+     //Route Rekap Realisasi Seluruh
+     Route::get('/rekaprealisasikeseluruhan','Laporan\RekapRealisasiKeseluruhanController@getIndex');
+     Route::get('/rekaprealisasikeseluruhan/excel','Laporan\RekapRealisasiKeseluruhanController@exportToExcel');
+    
+     //Route Rekap Realisasi Seluruh Perbidang
+     Route::get('/rekaprealisasikeseluruhanperbidang', 'Laporan\RekapRealisasiKeseluruhanPerbidangController@getIndex');
+     Route::get('/rekaprealisasikeseluruhanperbidang/excel', 'Laporan\RekapRealisasiKeseluruhanPerbidangController@exportToExcel');
 });
