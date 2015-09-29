@@ -113,6 +113,8 @@ Route::group(['middleware' => 'auth'], function () {
      Route::get('/SPJ','Entry\EntrySPJController@getIndex');
      Route::get('/SPJ/realisasi/{id}','Entry\EntrySPJController@getDetailSPJ');
      Route::post('/SPJ/add','Entry\EntrySPJController@postSPJ');
+     Route::post('/realisasi/delete/{id}', 'Entry\EntrySPJController@postDelete');
+     Route::post('/SPJ/update', 'Entry\EntrySPJController@postUpdate');
     
      //Route Daftar Kegiatan
      Route::get('/daftarkegiatan','Laporan\DaftarKegiatanController@getIndex');

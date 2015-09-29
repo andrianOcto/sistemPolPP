@@ -152,7 +152,7 @@
                         
                       </div>
                       <div class="col-sm-3">
-                        <button type="submit" class="btn btn-primary">Tambah Program</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                       </div>
                     </div>
                   </form>
@@ -180,8 +180,11 @@
                         <td>{{$data->jumlah}}</td>
                         <td>Rp {{ number_format($data->harga,2,',','.')}}</td>
                         <td align="center">
-                          <a class="btn btn-warning" href="#modal-updateBidang{{$i}}" data-toggle="modal" data-target="#modal-updateBidang{{$i}}">
+                          <a class="btn btn-warning" href="#modal-updateKelompokBelanja{{$i}}" data-toggle="modal" data-target="#modal-updateKelompokBelanja{{$i}}">
                               <i class="fa fa-edit fa-lg"></i> Update
+                          </a>
+                          <a class="btn btn-danger"  href="#modal-deleteKelompokBelanja{{$i}}" data-toggle="modal" data-target="#modal-deleteKelompokBelanja{{$i}}">
+                              <i class="fa fa-trash-o fa-lg"></i> Delete
                           </a>
                         </td>
                       </tr>
@@ -204,7 +207,127 @@
            immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
     </div><!-- ./wrapper -->
-      
+    <?php $i=1; ?>
+      @foreach($detailSPJ as $data)
+      <!-- Modal Convirmation Delete Kelompok Belanja-->
+      <div class="modal fade" id="modal-deleteKelompokBelanja{{$i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h2 class="modal-title" id="myModalLabel">Perhatian</h2>
+            </div>
+            <div class="modal-body">
+              <h4> Apakah Anda Yakin Akan Menghapus Data </h4>
+            </div>
+            <div class="modal-footer">
+              <form action="/realisasi/delete/{{$data->id}}" method="post">
+                <input type="hidden" value="{{$data->id_kegiatan}}" name="id_kegiatan">
+                <?php echo csrf_field(); ?>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <?php $i++; ?>
+      @endforeach
+
+      <?php $i=1; ?>
+      @foreach($detailSPJ as $data)
+      <!-- Modal Update User -->
+      <div class="modal fade" id="modal-updateKelompokBelanja{{$i}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h2 class="modal-title" id="myModalLabel">Update Kelompok Belanja</h2>
+            </div>
+            <div class="modal-body">
+              <form class="form-horizontal" method="post" action="/SPJ/update">
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                  <input type="hidden" name="id" value="{{$data->id}}">
+                    <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Kode Kegiatan</label>
+                      <div class="col-sm-3">
+                        <input type="text" class="form-control" name="id_kegiatan" value="{{$detailKegiatan->id}}" readonly="">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Nama Bidang</label>
+                      <div class="col-sm-3">
+                        <input type="text" class="form-control" id="inputEmail3" value="{{$detailKegiatan->nama_bidang}}" readonly="">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Anggaran</label>
+                      <div class="col-sm-3">
+                        <input type="text" class="form-control" id="inputEmail3" value="{{$detailKegiatan->anggaran}}" readonly="">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Nama Kegiatan</label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" id="inputEmail3" value="{{$detailKegiatan->description}}" readonly="">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Rekening Belanja</label>
+                      <div class="col-sm-6">
+                        <select class="form-control select2" name="id_rincian" style="width: 100%;" id="">
+                          @foreach($rincian_belanja as $rincian)
+                          <option value="{{$rincian->id}}" <?php if($data->id_rincian == $rincian->id) echo "selected" ?> >{{$rincian->id}} &nbsp {{$rincian->description}}</option>
+                          @endforeach
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Keperluan</label>
+                      <div class="col-xs-4">
+                        <select class="form-control" style="width: 100%;" name="keperluan_select" id="keperluan_select">
+                          <option value="pilih">-Pilih Keperluan-</option>
+                          @foreach($rencana as $keperluan)
+                          <option value="{{$keperluan->description}}" <?php if($keperluan->description == $data->keperluan) echo "selected"; ?> disabled >{{$keperluan->description}}</option>
+                          @endforeach
+                          <option value="other">Lain-lain</option>
+                        </select>
+                      </div>
+                      <div class="col-xs-4">
+                        <input type="text" class="form-control" id="keperluan" name="keperluan" readonly="" reqiured="" value="{{$data->keperluan}}">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Jumlah</label>
+                      <div class="col-sm-3">
+                        <input type="text" class="form-control" id="inputEmail3" name="jumlah" value="{{$data->jumlah}}">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Harga</label>
+                      <div class="col-sm-3">
+                        <input type="text" class="form-control" id="inputEmail3" name="harga" value="{{$data->harga}}">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">tanggal</label>
+                      <div class="col-sm-3">
+                        <input type="text" class="form-control" name="tanggal" value="{{$data->tanggal}}" readonly="">
+                      </div>
+                    </div>
+                  <?php echo csrf_field(); ?>
+                
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-warning">Update</button>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <?php $i++; ?>
+      @endforeach
       <!-- Control Sidebar -->
 
 
@@ -243,6 +366,9 @@
         });
         $(".select2").select2();
         $("#tanggal").datepicker({
+          format: 'dd/mm/yyyy'
+        });
+        $(".tgl").datepicker({
           format: 'dd/mm/yyyy'
         });
       });

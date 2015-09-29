@@ -80,11 +80,21 @@ class EntrySPJController extends Controller {
     }
   }
 
-  public function testDate(){
-    $input  = '11/Sep/2015';
-    $format = 'd/M/Y';
+  public function postUpdate(Request $request)
+  {
+    $EntrySPJ               = EntrySPJ::find($request->input("id"));
+    $id_kegiatan            = $request->input('id_kegiatan');
+    $EntrySPJ->id_rincian   = $request->input('id_rincian');
+    $EntrySPJ->harga        = $request->input('harga');
+    $EntrySPJ->jumlah       = $request->input('jumlah'); 
+    $EntrySPJ->save();
+    return redirect("/SPJ/realisasi/$id_kegiatan")->with('successMessage', 'Data berhasil diupdate!');;
+  }
 
-    $date = Carbon::createFromFormat($format, $input);
-    echo $date;
+  public function postDelete(Request $request,$id)
+  {
+    EntrySPJ::destroy($id);
+    $id_kegiatan = $request->input('id_kegiatan');
+    return redirect("/SPJ/realisasi/$id_kegiatan")->with('successMessage', 'Data berhasil dihapus!');;
   }
 }
