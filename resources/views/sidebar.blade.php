@@ -29,8 +29,8 @@
           <li><a href="/daftaralokasi">Daftar RKO (Alokasi)</a></li>
           <li><a href="/realisasikeseluruhan">Realisasi Seluruh</a></li>
           <li><a href="/realisasikeseluruhanperbidang">Realisasi Per Bidang</a></li>
-          <li><a href="#">Rekap Realisasi Seluruh</a></li>
-          <li><a href="#">Rekap Realisasi Per Bidang</a></li>
+          <li><a href="/rekaprealisasikeseluruhan">Rekap Realisasi Seluruh</a></li>
+          <li><a href="/rekaprealisasikeseluruhanperbidang">Rekap Realisasi Per Bidang</a></li>
           <li><a href="/grafikrealisasikeseluruhan">Grafik Realisasi Seluruh</a></li>
           <li><a href="/grafikrealisasiperbidang">Grafik Realisasi Per Bidang</a></li>
           <li><a href="#">Cetak Laporan SPJ</a></li>

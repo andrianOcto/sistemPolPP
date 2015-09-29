@@ -65,163 +65,122 @@
                             <select class="form-control select2" id="pertahun">
                                 <option value="1">2015</option>
                             </select>
+                            <label for="bidang" style="margin-left:20px">Bidang:</label>
+                            <select class="form-control select2" id="perbidang">
+                                @foreach($bidang as $data)
+                                <option value="{{$data->id}}">{{$data->id}} &nbsp; {{$data->nama}}</option>
+                                @endforeach
+                            </select>
                             <button type="button" onclick="#" class="btn btn-primary" style="margin-left:20px">preview</button>
-                            <a href="#" class="btn btn-success" style="float:right">Export to excel</a>
+                            <a href="/rekaprealisasikeseluruhanperbidang/excel" class="btn btn-success" style="float:right">Export to excel</a>
                         </div>
                     </form>
-
+                    
                 </div><!-- /.box-header -->
-                <div class="box-body" style="overflow-x: scroll">
+                <div class="box-body" style="">
                   <table id="example2" class="table table-bordered table-striped">
                     <thead>
-                      <tr align="center">
-                        <th rowspan="3">Kode Kegiatan</th>
-                        <th rowspan="3">Kegiatan</th>
-                        <th colspan="24">Rencana</th>
-                        <th colspan="24">Realisasi</th>
-                        <th rowspan="2" colspan="2">Sisa anggaran</th>
-                      </tr>
-                      <tr align="center">
-                        <!-- Bulan Rencana -->
-                        <th colspan="2">Januari</th>
-                        <th colspan="2">Februari</th>  
-                        <th colspan="2">Maret</th>
-                        <th colspan="2">April</th>
-                        <th colspan="2">Mei</th>
-                        <th colspan="2">Juni</th>
-                        <th colspan="2">Juli</th>
-                        <th colspan="2">Agustus</th>
-                        <th colspan="2">September</th>
-                        <th colspan="2">Oktober</th>
-                        <th colspan="2">November</th>
-                        <th colspan="2">Desember</th>
-                        <!-- Bulan Realisasi -->
-                        <th colspan="2">Januari</th>
-                        <th colspan="2">Februari</th>  
-                        <th colspan="2">Maret</th>
-                        <th colspan="2">April</th>
-                        <th colspan="2">Mei</th>
-                        <th colspan="2">Juni</th>
-                        <th colspan="2">Juli</th>
-                        <th colspan="2">Agustus</th>
-                        <th colspan="2">September</th>
-                        <th colspan="2">Oktober</th>
-                        <th colspan="2">November</th>
-                        <th colspan="2">Desember</th>
-                      </tr>
-                        <tr align="center">
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
+                        <tr>
+                            <th>Bulan</th>
+                            <th>Anggaran</th>
+                            <th>RKO</th>
+                            <th>Realisasi</th>
+                            <th>Saldo</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($rko as $data)
                         <tr>
-                            <td>{{$data->id_kegiatan}}</td>
-                            <td>{{$data->description}}</td>
-                            <!-- rencana -->
+                            <td>Januari</td>
                             <td></td>
                             <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <!-- realisasi -->
-                            <td>{{$data->jan}}</td>
-                            <td></td>
-                            <td>{{$data->feb}}</td>
-                            <td></td>
-                            <td>{{$data->mar}}</td>
-                            <td></td>
-                            <td>{{$data->apr}}</td>
-                            <td></td>
-                            <td>{{$data->mei}}</td>
-                            <td></td>
-                            <td>{{$data->jun}}</td>
-                            <td></td>
-                            <td>{{$data->jul}}</td>
-                            <td></td>
-                            <td>{{$data->agu}}</td>
-                            <td></td>
-                            <td>{{$data->sep}}</td>
-                            <td></td>
-                            <td>{{$data->okt}}</td>
-                            <td></td>
-                            <td>{{$data->nov}}</td>
-                            <td></td>
-                            <td>{{$data->des}}</td>
-                            <!-- sisa anggaran -->
                             <td></td>
                             <td></td>
                         </tr>
-                        @endforeach
+                        <tr>
+                            <td>Februari</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Maret</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>April</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Mei</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Juni</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Juli</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Agustus</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>September</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Oktober</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>November</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Desember</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <!-- jumlah -->
+                        <tr>
+                            <td><strong>Jumlah</strong></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
                     </tbody>
                     <tfoot>
 
@@ -265,11 +224,11 @@
       $(function () {
         $("#example1").DataTable();
         $('#example2').DataTable({
-          "paging": true,
-          "lengthChange": true,
+          "paging": false,
+          "lengthChange": false,
           "searching": true,
           "ordering": false,
-          "info": true,
+          "info": false,
           "autoWidth": true
         });
       });

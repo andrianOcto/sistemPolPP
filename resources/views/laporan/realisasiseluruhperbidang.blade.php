@@ -67,7 +67,9 @@
                             </select>
                             <label for="bidang" style="margin-left:20px">Bidang:</label>
                             <select class="form-control select2" id="perbidang">
-                                <option value="1">1 &nbsp; Bidang1</option>
+                                @foreach($bidang as $data)
+                                <option value="{{$data->id}}">{{$data->id}} &nbsp; {{$data->nama}}</option>
+                                @endforeach
                             </select>
                             <button type="button" onclick="#" class="btn btn-primary" style="margin-left:20px">preview</button>
                             <a href="#" class="btn btn-success" style="float:right">Export to excel</a>
@@ -79,43 +81,152 @@
                   <table id="example2" class="table table-bordered table-striped">
                     <thead>
                       <tr align="center">
-                        <td rowspan="2">Kode Kegiatan</td>
-                        <td rowspan="2">Kegiatan</td>
-                        <td rowspan="2">Program</td>
-                        <td rowspan="2">Kode Rincian</td>
-                        <td rowspan="2">Keperluan</td>
-                        <td rowspan="2">Jumlah</td>
-                        <td colspan="12">Bulan</td>
+                        <td rowspan="3">Kode Kegiatan</td>
+                        <td rowspan="3">Kegiatan</td>
+                        <td colspan="24">Rencana</td>
+                        <td colspan="24">Realisasi</td>
+                        <td rowspan="2" colspan="2">Sisa anggaran</td>
                       </tr>
-                    <tr>
-                        <td>Jumlah</td>
-                        <td>Januari</td>
-                        <td>Jumlah</td>
-                        <td>Februari</td>
-                        <td>Jumlah</td>
-                        <td>Maret</td>
-                        <td>Jumlah</td>
-                        <td>April</td>
-                        <td>Jumlah</td>
-                        <td>Mei</td>
-                        <td>Jumlah</td>
-                        <td>Juni</td>
-                        <td>Jumlah</td>
-                        <td>Juli</td>
-                        <td>Jumlah</td>
-                        <td>Agustus</td>
-                        <td>Jumlah</td>
-                        <td>September</td>
-                        <td>Jumlah</td>
-                        <td>Oktober</td>
-                        <td>Jumlah</td>
-                        <td>November</td>
-                        <td>Jumlah</td>
-                        <td>Desember</td>
+                        <!-- Bulan Rencana -->
+                        <td colspan="2">Januari</td>
+                        <td colspan="2">Februari</td>  
+                        <td colspan="2">Maret</td>
+                        <td colspan="2">April</td>
+                        <td colspan="2">Mei</td>
+                        <td colspan="2">Juni</td>
+                        <td colspan="2">Juli</td>
+                        <td colspan="2">Agustus</td>
+                        <td colspan="2">September</td>
+                        <td colspan="2">Oktober</td>
+                        <td colspan="2">November</td>
+                        <td colspan="2">Desember</td>
+                        <!-- Bulan Realisasi -->
+                        <td colspan="2">Januari</td>
+                        <td colspan="2">Februari</td>  
+                        <td colspan="2">Maret</td>
+                        <td colspan="2">April</td>
+                        <td colspan="2">Mei</td>
+                        <td colspan="2">Juni</td>
+                        <td colspan="2">Juli</td>
+                        <td colspan="2">Agustus</td>
+                        <td colspan="2">September</td>
+                        <td colspan="2">Oktober</td>
+                        <td colspan="2">November</td>
+                        <td colspan="2">Desember</td>
                       </tr>
+                        <tr align="center">
+                            <td>%</td>
+                            <td>Rp</td>
+                            <td>%</td>
+                            <td>Rp</td>
+                            <td>%</td>
+                            <td>Rp</td>
+                            <td>%</td>
+                            <td>Rp</td>
+                            <td>%</td>
+                            <td>Rp</td>
+                            <td>%</td>
+                            <td>Rp</td>
+                            <td>%</td>
+                            <td>Rp</td>
+                            <td>%</td>
+                            <td>Rp</td>
+                            <td>%</td>
+                            <td>Rp</td>
+                            <td>%</td>
+                            <td>Rp</td>
+                            <td>%</td>
+                            <td>Rp</td>
+                            <td>%</td>
+                            <td>Rp</td>
+                            <td>%</td>
+                            <td>Rp</td>
+                            <td>%</td>
+                            <td>Rp</td>
+                            <td>%</td>
+                            <td>Rp</td>
+                            <td>%</td>
+                            <td>Rp</td>
+                            <td>%</td>
+                            <td>Rp</td>
+                            <td>%</td>
+                            <td>Rp</td>
+                            <td>%</td>
+                            <td>Rp</td>
+                            <td>%</td>
+                            <td>Rp</td>
+                            <td>%</td>
+                            <td>Rp</td>
+                            <td>%</td>
+                            <td>Rp</td>
+                            <td>%</td>
+                            <td>Rp</td>
+                            <td>%</td>
+                            <td>Rp</td>
+                            <td>%</td>
+                            <td>Rp</td>
+                        </tr>
                     </thead>
                     <tbody>
-                      
+                         @foreach($rko as $data)
+                        <tr>
+                            <td>{{$data->id_kegiatan}}</td>
+                            <td>{{$data->description}}</td>
+                            <!-- rencana -->
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <!-- realisasi -->
+                            <td>{{$data->jan}}</td>
+                            <td></td>
+                            <td>{{$data->feb}}</td>
+                            <td></td>
+                            <td>{{$data->mar}}</td>
+                            <td></td>
+                            <td>{{$data->apr}}</td>
+                            <td></td>
+                            <td>{{$data->mei}}</td>
+                            <td></td>
+                            <td>{{$data->jun}}</td>
+                            <td></td>
+                            <td>{{$data->jul}}</td>
+                            <td></td>
+                            <td>{{$data->agu}}</td>
+                            <td></td>
+                            <td>{{$data->sep}}</td>
+                            <td></td>
+                            <td>{{$data->okt}}</td>
+                            <td></td>
+                            <td>{{$data->nov}}</td>
+                            <td></td>
+                            <td>{{$data->des}}</td>
+                            <!-- sisa anggaran -->
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        @endforeach
                     </tbody>
                     <tfoot>
 
