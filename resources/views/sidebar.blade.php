@@ -33,7 +33,8 @@
           <li><a href="/rekaprealisasikeseluruhanperbidang">Rekap Realisasi Per Bidang</a></li>
           <li><a href="/grafikrealisasikeseluruhan">Grafik Realisasi Seluruh</a></li>
           <li><a href="/grafikrealisasiperbidang">Grafik Realisasi Per Bidang</a></li>
-          <li><a href="#">Cetak Laporan SPJ</a></li>
+          <li><a href="/laporanSPJ">Laporan SPJ</a></li>
+          <!-- <li><a href="#">Cetak Laporan SPJ</a></li> -->
         </ul>
       </li>
       <li class="treeview">

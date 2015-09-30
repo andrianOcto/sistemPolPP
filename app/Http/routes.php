@@ -149,4 +149,6 @@ Route::group(['middleware' => 'auth'], function () {
      //Route Rekap Realisasi Seluruh Perbidang
      Route::get('/rekaprealisasikeseluruhanperbidang', 'Laporan\RekapRealisasiKeseluruhanPerbidangController@getIndex');
      Route::get('/rekaprealisasikeseluruhanperbidang/excel', 'Laporan\RekapRealisasiKeseluruhanPerbidangController@exportToExcel');
+
+     Route::get('/laporanSPJ','Laporan\RealisasiKeseluruhanController@getSPJ');
 });

@@ -25,11 +25,13 @@ class RealisasiKeseluruhanController extends Controller{
         else
             return view('/laporan/realisasiseluruh')->with($data);
     }
-    
-//    public function exportToExcel(){
-//        $data   = array(
-//                array('LAPORAN REALISASI KESELURUHAN'),
-//                array(''),
-//        );
-//    }
+
+    public function getSPJ(){
+        $data['page_title'] = "Realisasi";
+        $data['realisasi']  = DB::table('v_realisasi')->get();
+        if(Session::get("role","default")=="master")
+            return redirect('/');
+        else
+            return view('/laporan/laporanRealisasi')->with($data);   
+    }
 }
