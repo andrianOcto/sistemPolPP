@@ -18,10 +18,10 @@ class ProgramController extends Controller {
 
   public function getIndex() {
 
-    $data['programs'] = Program::all();
-    $data['kegiatans'] = Kegiatan::all();
-    $data['bidang'] = Bidang::all();
-    $data['bidangJSON'] = Bidang::all()->toJSON();
+    $data['programs'] = Program::all()->where("tahun",date('Y'));
+    $data['kegiatans'] = Kegiatan::all()->where("tahun",date('Y'));
+    $data['bidang'] = Bidang::all()->where("tahun",date('Y'));
+    $data['bidangJSON'] = Bidang::all()->where("tahun",date('Y'))->toJSON();
 
     if(Session::get("role","default")=="master")
                 return redirect('/');
@@ -77,7 +77,7 @@ class ProgramController extends Controller {
       {
         return response()->json([]);
       }
-    
+
   }
 
 }
