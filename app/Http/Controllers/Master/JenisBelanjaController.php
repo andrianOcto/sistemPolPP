@@ -28,11 +28,11 @@ class JenisbelanjaController extends Controller {
               return redirect('/');
             else
               return view('/master/jenisbelanja')->with($data);
-    
+
   }
 
   public function postJenis(Request $request)
-  { 
+  {
     $klp = $request->input("kelompok");
     $kd  = $request->input("kode");
     $kode = $klp.".".$kd;

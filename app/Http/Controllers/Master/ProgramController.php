@@ -18,8 +18,8 @@ class ProgramController extends Controller {
 
   public function getIndex() {
 
-    $data['programs'] = Program::all();
-    $data['kegiatans'] = Kegiatan::all();
+    $data['programs'] = Program::where("tahun",date('Y'))->get();
+    $data['kegiatans'] = Kegiatan::where("tahun",date('Y'))->get();
     $data['bidang'] = Bidang::all();
     $data['bidangJSON'] = Bidang::all()->toJSON();
 
@@ -69,7 +69,7 @@ class ProgramController extends Controller {
        $dummy= DB::table('s_kegiatan')->where('s_kegiatan.tahun', date('Y'))
                                   ->where('s_kegiatan.id_program',$id)
                                   ->join('m_detail_rko', 's_kegiatan.id', '=', 'm_detail_rko.id_kegiatan')
-                                  ->select('s_kegiatan.id','s_kegiatan.description','m_detail_rko.jan','m_detail_rko.feb','m_detail_rko.mar','m_detail_rko.apr','m_detail_rko.mei','m_detail_rko.jun','m_detail_rko.jul','m_detail_rko.agu','m_detail_rko.sep','m_detail_rko.okt','m_detail_rko.nov','m_detail_rko.des')
+                                  ->select('s_kegiatan.id','s_kegiatan.description','m_detail_rko.jan','m_detail_rko.feb','m_detail_rko.mar','m_detail_rko.apr','m_detail_rko.mei','m_detail_rko.jun','m_detail_rko.jul','m_detail_rko.agu','m_detail_rko.sep','m_detail_rko.okt','m_detail_rko.nov','m_detail_rko.des','s_kegiatan.anggaran')
                                   ->get();
         return response()->json($dummy);
       }
@@ -77,7 +77,7 @@ class ProgramController extends Controller {
       {
         return response()->json([]);
       }
-    
+
   }
 
 }

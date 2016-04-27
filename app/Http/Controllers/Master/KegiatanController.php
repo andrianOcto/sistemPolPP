@@ -19,7 +19,7 @@ class KegiatanController extends Controller {
   public function getIndex() {
 
   	$data['page_title']     = "Master Setting Kegiatan";
-    $data['kegiatan']   = DB::table('s_kegiatan')
+    $data['kegiatan']   = DB::table('s_kegiatan')->where("tahun",date('Y'))
                                   ->join('s_bidang', 's_kegiatan.id_bidang', '=', 's_bidang.id')
                                   ->select('s_kegiatan.id', 's_bidang.nama','s_kegiatan.id_bidang', 's_kegiatan.description', 's_kegiatan.anggaran', 's_kegiatan.sasaran')
                                   ->get();
@@ -30,7 +30,7 @@ class KegiatanController extends Controller {
               return redirect('/');
             else
               return view('/master/kegiatan')->with($data);
-    
+
   }
 
 public function postAdd(Request $request)
@@ -66,7 +66,7 @@ public function postAdd(Request $request)
   {
     $kode                     = $request->input("kodeKegiatan");
     $kegiatan                 = Kegiatan::find($kode);
-    
+
     $kegiatan->id_bidang      = $request->input("kodeBidang".$id);
     $kegiatan->description    = $request->input("namaKegiatan");
     $kegiatan->anggaran       = $request->input("anggaran");

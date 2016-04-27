@@ -92,7 +92,7 @@
                       <tr @if($i==0) class = "success"
                           @endif
                         >
-                        <td>{{$program->id}}</td>
+                        <td>{{$program->id}} </td>
                         <td>{{$program->description}}</td>
                         <td align="center">
                           <a class="btn btn-warning" href="#modal-updateProgram{{$i}}" data-toggle="modal" data-target="#modal-updateProgram{{$i}}">
@@ -142,7 +142,7 @@
                         <th>Nama Kegiatan</th>
                       </tr>
                     </thead>
-                    
+
                     <tfoot>
 
                     </tfoot>
@@ -153,7 +153,7 @@
           </div><!-- /.row -->
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
-      
+
 
       <!-- Modal Add Program-->
       <div class="modal fade" id="modal-addProgram" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -176,7 +176,7 @@
                     </div>
                   </div><!-- /.box-body -->
                   <?php echo csrf_field(); ?>
-                
+
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -237,7 +237,7 @@
                     </div>
                   </div><!-- /.box-body -->
                   <?php echo csrf_field(); ?>
-                
+
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -259,7 +259,7 @@
               <h2 class="modal-title" id="myModalLabel">Tambah Kegiatan</h2>
             </div>
             <div class="modal-body">
-              
+
               <form role="form" method="post" action="/kegiatan/add">
                   <div class="box-body">
                     <div class="form-group">
@@ -305,7 +305,7 @@
                     </div>
                   </div><!-- /.box-body -->
                   <?php echo csrf_field(); ?>
-                
+
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -342,7 +342,7 @@
     <script src="/bower_components/admin-lte/dist/js/demo.js"></script>
     <!-- page script -->
     <script>
-    
+
     //data that will be used to reload datatables
     var data = [];
     var table;
@@ -371,30 +371,30 @@
       });
 
 
-      
+
     //initialize data
     function refreshData(id)
     {
-      
+
       $.ajax({
         url: "/program/load/"+id,
         success: function(response) {
-         
-          
+
+
           //if single data
           if(typeof(response.length) === "undefined")
           {
             table2.clear();
             //create data from response
-            
+
               var arrTemp = [];
               var objName;
-              
+
               arrTemp.push(response["id"]);
               arrTemp.push(response["description"]);
 
               table2.row.add(arrTemp);
-            
+
           }
           //if multiple data
           else if(typeof(response.length) === "number")
@@ -404,17 +404,17 @@
             for (var i =0; i<response.length ; i++) {
                     var arrTemp = [];
                     var objName;
-                    
+
                     arrTemp.push(response[i]["id"]);
                     arrTemp.push(response[i]["description"]);
 
                     table2.row.add(arrTemp);
                 }
           }
-          
-          
+
+
             table2.draw();
-          
+
             //Do Something
         },
         error: function(xhr) {
@@ -430,12 +430,12 @@
     var arrBidangKode = [];
     var arrBidangNama = [];
 
-    //add nama to array list of bidang 
+    //add nama to array list of bidang
     @foreach($bidang as $item)
       arrBidangKode['{{$item->id}}'] = '{{$item->nama}}';
     @endforeach
 
-    //add nama_lengkap to array list of bidang 
+    //add nama_lengkap to array list of bidang
     @foreach($bidang as $item)
       arrBidangNama['{{$item->id}}'] = '{{$item->nama_lengkap}}';
     @endforeach
@@ -460,11 +460,13 @@
       }
     });
 
+    <?php try { if(isset($programs[0]['id'])){} ?>
     refreshData("<?php if(isset($programs[0]['id']))echo $programs[0]['id']?>");
     table2.clear();
     for(var item in data)
     table2.row.add(item);
     table2.draw();
+    <?php }catch(Exception $e){} ?>
 
     $('#example2 tbody').on( 'click', 'tr', function () {
 
@@ -481,13 +483,13 @@
             $('#namaProgram').val(rowData[1]);
         }
     } );
- 
+
     $('#button').click( function () {
         table.row('.success').remove().draw( false );
     } );
 } );
 
-      
+
     </script>
   </body>
 </html>

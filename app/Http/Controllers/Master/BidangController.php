@@ -20,7 +20,7 @@ class BidangController extends Controller {
               return redirect('/');
             else
               return view('/master/bidang')->with($data);
-    
+
   }
 
   public function postBidang(Request $request)

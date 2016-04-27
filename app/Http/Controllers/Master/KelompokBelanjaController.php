@@ -20,7 +20,7 @@ class KelompokBelanjaController extends Controller {
               return redirect('/');
             else
               return view('/master/kelompokbelanja')->with($data);
-    
+
   }
 
   public function postKelompok(Request $request)
