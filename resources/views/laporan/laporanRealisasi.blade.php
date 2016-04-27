@@ -65,14 +65,14 @@
                             <select class="form-control select2" id="pertahun">
                                 <option value="1">2015</option>
                             </select>
-                            <button type="button" onclick="#" class="btn btn-primary" style="margin-left:20px">preview</button>
-                            <a href="#" class="btn btn-success" style="float:right">Export to excel</a>
+                            <!-- <button type="button" onclick="#" class="btn btn-primary" style="margin-left:20px">preview</button>
+                            <a href="#" class="btn btn-success" style="float:right">Export to excel</a> -->
                         </div>
                     </form>
 
                 </div><!-- /.box-header -->
                 <div class="box-body" style="overflow-x: scroll">
-                  <table id="example2" class="table table-bordered table-striped">
+                  <table id="example1" class="table table-bordered table-striped">
                     <thead>
                       <th>Kode Kegiatan</th>
                       <th>Kode Bidang</th>
@@ -82,7 +82,6 @@
                       <th>Rencana Keperluan</th>
                       <th>Rencana Jumlah</th>
                       <th>Rencana Harga</th>
-                      <th>Rencana Keperluan</th>
                       <th>Realisasi Keperluan</th>
                       <th>Realisasi Jumlah</th>
                       <th>Realisasi Harga</th>

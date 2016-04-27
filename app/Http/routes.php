@@ -11,6 +11,7 @@
 |
 */
 
+Route::controller('api', 'ApiController');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
