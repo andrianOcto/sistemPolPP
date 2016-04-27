@@ -25,26 +25,28 @@ class EntrySPJController extends Controller {
   public function getIndex() {
 
     $data['page_title']     = "Master Setting Kegiatan";
-    $data['kegiatan']       = DB::table('s_kegiatan')
+    $data['kegiatan']       = DB::table('s_kegiatan')->where("tahun",date('Y'))
                                   ->join('s_bidang', 's_kegiatan.id_bidang', '=', 's_bidang.id')
                                   ->select('s_kegiatan.id', 's_bidang.nama','s_kegiatan.id_bidang', 's_kegiatan.description', 's_kegiatan.anggaran', 's_kegiatan.sasaran')
                                   ->get();
     $data['bidang']         = Bidang::all();
+    $data['role']             = Session::get("role","default");
 
     //digunakan untuk membatasi master agar tidak masuk ke dalam fitur
     if(Session::get("role","default")=="master")
               return redirect('/');
             else
               return view('/entry/EntrySPJ')->with($data);
-    
+
   }
 
   public function getDetailSPJ(Request $request,$id){
     $data['page_title']       = "Entry Realisasi SJP";
     $data['rincian_belanja']  = RincianBelanja::all();
     $data['rencana']          = Rencana::where("id_kegiatan",$id)->where("tahun",date('Y'))->get();
-    $data['detailSPJ']          = EntrySPJ::where("id_kegiatan",$id)->get();
+    $data['detailSPJ']        = EntrySPJ::where("id_kegiatan",$id)->get();
     $data['detailKegiatan']   = Kegiatan::find($id);
+    $data['role']             = Session::get("role","default");
 
     if(Session::get("role","default")=="master")
               return redirect('/');
@@ -59,17 +61,17 @@ class EntrySPJController extends Controller {
       $format = 'd/m/Y';
       $tgl = Carbon::createFromFormat($format, $input);
       $spj                = new EntrySPJ;
-      $spj->id_kegiatan   = $request->input("id_kegiatan");   
-      $spj->id_rincian    = $request->input("id_rincian");    
+      $spj->id_kegiatan   = $request->input("id_kegiatan");
+      $spj->id_rincian    = $request->input("id_rincian");
       $spj->tahun         = date('Y');
       $spj->jumlah        = $request->input("jumlah");
       $spj->harga         = $request->input("harga");
-      $spj->keperluan     = $request->input("keperluan"); 
+      $spj->keperluan     = $request->input("keperluan");
       $spj->tanggal       = $tgl;
 
 
       $spj->save();
-      $id_kegiatan        = $request->input("id_kegiatan");   
+      $id_kegiatan        = $request->input("id_kegiatan");
       return redirect("/SPJ/realisasi/$id_kegiatan")->with('successMessage', 'Data berhasil ditambahkan!');
     }
 
@@ -86,7 +88,7 @@ class EntrySPJController extends Controller {
     $id_kegiatan            = $request->input('id_kegiatan');
     $EntrySPJ->id_rincian   = $request->input('id_rincian');
     $EntrySPJ->harga        = $request->input('harga');
-    $EntrySPJ->jumlah       = $request->input('jumlah'); 
+    $EntrySPJ->jumlah       = $request->input('jumlah');
     $EntrySPJ->save();
     return redirect("/SPJ/realisasi/$id_kegiatan")->with('successMessage', 'Data berhasil diupdate!');;
   }

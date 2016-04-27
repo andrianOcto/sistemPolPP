@@ -75,26 +75,17 @@
                   <table id="example2" class="table table-bordered table-striped">
                     <thead>
                       <tr align="center">
-                        <th rowspan="3">Kode Kegiatan</th>
-                        <th rowspan="3">Kegiatan</th>
-                        <th colspan="24">Rencana</th>
-                        <th colspan="24">Realisasi</th>
-                        <th rowspan="2" colspan="2">Sisa anggaran</th>
+                        <th rowspan="3" style="vertical-align:middle">Kode Kegiatan</th>
+                        <th rowspan="3" style="vertical-align:middle">Bidang</th>
+                        <th rowspan="3" style="vertical-align:middle">Program</th>
+                        <th rowspan="3" style="vertical-align:middle">Kegiatan</th>
+                        <th rowspan="3" style="vertical-align:middle">Jenis Barang</th>
+                        <th rowspan="3" style="vertical-align:middle">Volume</th>
+                        <th rowspan="3" style="vertical-align:middle">Harga Satuan</th>
+                        <th rowspan="3" style="vertical-align:middle">Total</th>
+                        <th colspan="24" style="text-align:center">Realisasi</th>
                       </tr>
                       <tr align="center">
-                        <!-- Bulan Rencana -->
-                        <th colspan="2">Januari</th>
-                        <th colspan="2">Februari</th>  
-                        <th colspan="2">Maret</th>
-                        <th colspan="2">April</th>
-                        <th colspan="2">Mei</th>
-                        <th colspan="2">Juni</th>
-                        <th colspan="2">Juli</th>
-                        <th colspan="2">Agustus</th>
-                        <th colspan="2">September</th>
-                        <th colspan="2">Oktober</th>
-                        <th colspan="2">November</th>
-                        <th colspan="2">Desember</th>
                         <!-- Bulan Realisasi -->
                         <th colspan="2">Januari</th>
                         <th colspan="2">Februari</th>  
@@ -110,115 +101,78 @@
                         <th colspan="2">Desember</th>
                       </tr>
                         <tr align="center">
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
-                            <td>%</td>
-                            <td>Rp</td>
+                            <td>volume (%)</td>
+                            <td>Rp (%)</td>
+                            <td>volume (%)</td>
+                            <td>Rp (%)</td>
+                            <td>volume (%)</td>
+                            <td>Rp (%)</td>
+                            <td>volume (%)</td>
+                            <td>Rp (%)</td>
+                            <td>volume (%)</td>
+                            <td>Rp (%)</td>
+                            <td>volume (%)</td>
+                            <td>Rp (%)</td>
+                            <td>volume (%)</td>
+                            <td>Rp (%)</td>
+                            <td>volume (%)</td>
+                            <td>Rp (%)</td>
+                            <td>volume (%)</td>
+                            <td>Rp (%)</td>
+                            <td>volume (%)</td>
+                            <td>Rp (%)</td>
+                            <td>volume (%)</td>
+                            <td>Rp (%)</td>
+                            <td>volume (%)</td>
+                            <td>Rp (%)</td>
                         </tr>
                     </thead>
                     <tbody>
+                    <?php
+                        function sum($x, $y) {
+                            $z = $x * $y;
+                            return $z;
+                        }
+
+                        function persen_volume($x, $y){
+                            $z = 0 - (($y/$x)*100);
+                            return $z;
+                        }
+                        ?>
                         @foreach($rko as $data)
                         <tr>
                             <td>{{$data->id_kegiatan}}</td>
-                            <td>{{$data->description}}</td>
-                            <!-- rencana -->
+                            <td>{{$data->bidang}}</td>
                             <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{{$data->kegiatan}}</td>
+                            <td>{{$data->barang}}</td>
+                            <td>{{$data->jumlah}}</td>
+                            <td>{{$data->harga}}</td>
+                            <td><?php echo sum(($data->jumlah),($data->harga)); ?></td>
                             <!-- realisasi -->
-                            <td>{{$data->jan}}</td>
+                            <td><?php echo persen_volume(($data->jumlah),($data->jan))." %"; ?></td>
                             <td></td>
-                            <td>{{$data->feb}}</td>
+                            <td><?php echo persen_volume(($data->jumlah),($data->feb))." %"; ?></td>
                             <td></td>
-                            <td>{{$data->mar}}</td>
+                            <td><?php echo persen_volume(($data->jumlah),($data->mar))." %"; ?></td>
                             <td></td>
-                            <td>{{$data->apr}}</td>
+                            <td><?php echo persen_volume(($data->jumlah),($data->apr))." %"; ?></td>
                             <td></td>
-                            <td>{{$data->mei}}</td>
+                            <td><?php echo persen_volume(($data->jumlah),($data->mei))." %"; ?></td>
                             <td></td>
-                            <td>{{$data->jun}}</td>
+                            <td><?php echo persen_volume(($data->jumlah),($data->jun))." %"; ?></td>
                             <td></td>
-                            <td>{{$data->jul}}</td>
+                            <td><?php echo persen_volume(($data->jumlah),($data->jul))." %"; ?></td>
                             <td></td>
-                            <td>{{$data->agu}}</td>
+                            <td><?php echo persen_volume(($data->jumlah),($data->agu))." %"; ?></td>
                             <td></td>
-                            <td>{{$data->sep}}</td>
+                            <td><?php echo persen_volume(($data->jumlah),($data->sep))." %"; ?></td>
                             <td></td>
-                            <td>{{$data->okt}}</td>
+                            <td><?php echo persen_volume(($data->jumlah),($data->okt))." %"; ?></td>
                             <td></td>
-                            <td>{{$data->nov}}</td>
+                            <td><?php echo persen_volume(($data->jumlah),($data->nov))." %"; ?></td>
                             <td></td>
-                            <td>{{$data->des}}</td>
-                            <!-- sisa anggaran -->
-                            <td></td>
+                            <td><?php echo persen_volume(($data->jumlah),($data->des))." %"; ?></td>
                             <td></td>
                         </tr>
                         @endforeach
