@@ -17,7 +17,7 @@ class BidangController extends Controller {
   	$data['page_title']    = "Master Setting Bidang";
     $data['bidang']        = Bidang::all();
 
-    if(Session::get("role","default")=="master")
+    if(Session::get("role","default")!="master")
               return redirect('/');
             else
               return view('/master/bidang')->with($data);
@@ -59,6 +59,7 @@ class BidangController extends Controller {
     $role->id_bidang      = $request->input("kode");
     $role->description    = $request->input("nama");
     $role->save();
+
     return redirect("/bidang")->with('successMessage', 'Data berhasil diupdate!');;;;
   }
 

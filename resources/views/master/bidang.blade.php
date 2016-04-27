@@ -37,7 +37,7 @@
       @include('header')
 
       <!-- Sidebar -->
-      @include('sidebar')
+      @include('sidebar_master')
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
@@ -116,7 +116,7 @@
           </div><!-- /.row -->
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
-      
+
 
       <!-- Modal Add Bidang-->
       <div class="modal fade" id="modal-addBidang" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -143,7 +143,7 @@
                     </div>
                   </div><!-- /.box-body -->
                   <?php echo csrf_field(); ?>
-                
+
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -207,7 +207,7 @@
                     </div>
                   </div><!-- /.box-body -->
                   <?php echo csrf_field(); ?>
-                
+
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

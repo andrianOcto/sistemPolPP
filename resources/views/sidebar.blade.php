@@ -9,7 +9,7 @@
       <div class="pull-left image">
         <img src="{{ asset("/images/logo-pp.png") }}" class="" alt="Logo Image" />
       </div>
-      
+
     </div>
     <!-- Sidebar Menu -->
     <ul class="sidebar-menu">
@@ -41,7 +41,6 @@
         <a href="#"><i class="fa fa-list"></i> <span>Master</span> <i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">
           <li><a href="/satuanKerja">Setting Satuan Kerja</a></li>
-          <li><a href="/bidang">Bidang</a></li>
           <li><a href="/program">Program</a></li>
           <li><a href="/kegiatan">Kegiatan</a></li>
           <li><a href="/kelompokBelanja">Kelompok Belanja</a></li>

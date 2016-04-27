@@ -9,7 +9,7 @@
       <div class="pull-left image">
         <img src="{{ asset("/bower_components/admin-lte/dist/img/user2-160x160.jpg") }}" class="img-circle" alt="User Image" />
       </div>
-      
+
     </div>
     <!-- Sidebar Menu -->
     <p style="color:white; padding:10px; font-size:1.2em">
@@ -17,7 +17,7 @@
     <ul class="sidebar-menu">
         <li class="header">MENU</li>
         <li><a href="/">Kelola User</a></li>
-        <li><a href="/admin/role">Kelola Role</a></li>
+        <li><a href="/bidang">Kelola Bidang</a></li>
     </ul><!-- /.sidebar-menu -->
     </p>
   </section>
