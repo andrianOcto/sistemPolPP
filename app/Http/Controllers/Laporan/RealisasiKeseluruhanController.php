@@ -16,8 +16,9 @@ class RealisasiKeseluruhanController extends Controller{
     public function getIndex(){
         $data['page_title'] = "Realisasi Keseluruhan";
         $data['rko']        = DB::table('m_detail_rko')
-                                -> join ('s_kegiatan', 'm_detail_rko.id_kegiatan', '=', 's_kegiatan.id')
-                                -> select('m_detail_rko.id_kegiatan', 's_kegiatan.description', 'm_detail_rko.jan', 'm_detail_rko.feb', 'm_detail_rko.mar', 'm_detail_rko.apr', 'm_detail_rko.mei', 'm_detail_rko.jun', 'm_detail_rko.jul', 'm_detail_rko.agu', 'm_detail_rko.sep', 'm_detail_rko.okt', 'm_detail_rko.nov', 'm_detail_rko.des')
+                                -> join('s_kegiatan', 'm_detail_rko.id_kegiatan', '=', 's_kegiatan.id')
+                                -> join('m_rencana_realisasi', 'm_detail_rko.id_kegiatan', '=', 'm_rencana_realisasi.id_kegiatan')
+                                -> select('m_detail_rko.id_kegiatan', 's_kegiatan.nama_bidang as bidang', 'm_rencana_realisasi.description as barang', 'm_rencana_realisasi.jumlah', 'm_rencana_realisasi.harga', 's_kegiatan.description as kegiatan', 'm_detail_rko.jan', 'm_detail_rko.feb', 'm_detail_rko.mar', 'm_detail_rko.apr', 'm_detail_rko.mei', 'm_detail_rko.jun', 'm_detail_rko.jul', 'm_detail_rko.agu', 'm_detail_rko.sep', 'm_detail_rko.okt', 'm_detail_rko.nov', 'm_detail_rko.des')
                                 -> get();
         
         if(Session::get("role","default")=="master")
@@ -34,4 +35,5 @@ class RealisasiKeseluruhanController extends Controller{
         else
             return view('/laporan/laporanRealisasi')->with($data);   
     }
+
 }
