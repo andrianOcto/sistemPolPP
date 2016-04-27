@@ -14,7 +14,7 @@ class KelompokBelanjaController extends Controller {
   public function getIndex() {
 
   	$data['page_title']    = "Master Setting KelompokBelanja";
-    $data['kelompokbelanja']        = KelompokBelanja::all()->where("tahun",date('Y'));
+    $data['kelompokbelanja']        = KelompokBelanja::all();
 
     if(Session::get("role","default")=="master")
               return redirect('/');

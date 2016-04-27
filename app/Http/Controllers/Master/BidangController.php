@@ -14,7 +14,7 @@ class BidangController extends Controller {
   public function getIndex() {
 
   	$data['page_title']    = "Master Setting Bidang";
-    $data['bidang']        = Bidang::all()->where("tahun",date('Y'));
+    $data['bidang']        = Bidang::all();
 
     if(Session::get("role","default")=="master")
               return redirect('/');
