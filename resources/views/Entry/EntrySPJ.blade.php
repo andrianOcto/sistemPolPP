@@ -7,7 +7,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
-    
+
     <link href="{{ asset("/bower_components/admin-lte/bootstrap/css/bootstrap.min.css") }}" rel="stylesheet" type="text/css" />
         <!-- Font Awesome Icons -->
     <link href="{{ asset("/bower_components/admin-lte/awesome-font/css/font-awesome.min.css")}}" rel="stylesheet" type="text/css" />
@@ -50,7 +50,7 @@
             Entry SPJ
           </h1>
         </section>
-        
+
         <!-- Main content -->
         <section class="content">
 
@@ -76,7 +76,7 @@
 
               <div class="box">
                 <div class="box-header">
-                  
+
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <table id="example2" class="table table-bordered table-striped">
@@ -92,6 +92,7 @@
                     <tbody>
                       <?php $i=1; ?>
                       @foreach($kegiatan as $data)
+                      @if($role == $data->nama || $role == "all")
                       <tr>
                         <td>{{$data->id}}</td>
                         <td>{{$data->nama}}</td>
@@ -104,6 +105,7 @@
                         </td>
                       </tr>
                       <?php $i++; ?>
+                      @endif
                       @endforeach
                     </tbody>
                     <tfoot>
@@ -157,12 +159,12 @@
 
 
       function validateNumber(evt) {
-        
+
     var e = evt || window.event;
     var key = e.keyCode || e.which;
 
     if (!e.shiftKey && !e.altKey && !e.ctrlKey &&
-    // numbers   
+    // numbers
     key >= 48 && key <= 57 ||
     // Numeric keypad
     key >= 96 && key <= 105 ||

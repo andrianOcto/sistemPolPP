@@ -113,7 +113,7 @@
           </div><!-- /.row -->
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
-      
+
 
       <!-- Modal Add User-->
       <div class="modal fade" id="modal-addUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -138,8 +138,8 @@
                     <div class="form-group">
                       <label for="exampleInputEmail1">Role </label>
                       <select class="form-control" name="role" required>
-                        @foreach($role as $item)                
-                           @if($item->description != "master")          
+                        @foreach($role as $item)
+                           @if($item->description != "master")
                           <option value="{{$item->description}}">{{$item->description}}</option>
                           @endif
                         @endforeach
@@ -151,7 +151,7 @@
                     </div>
                   </div><!-- /.box-body -->
                   <?php echo csrf_field(); ?>
-                
+
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -210,8 +210,8 @@
                     <div class="form-group">
                       <label for="exampleInputEmail1">Role </label>
                         <select class="form-control" name="role" required>
-                        @foreach($role as $item)                
-                           @if($item->description != "master")          
+                        @foreach($role as $item)
+                           @if($item->description != "master")
                           <option value="{{$item->description}}">{{$item->description}}</option>
                           @endif
                         @endforeach
@@ -224,7 +224,7 @@
                     </div>
                   </div><!-- /.box-body -->
                   <?php echo csrf_field(); ?>
-                
+
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

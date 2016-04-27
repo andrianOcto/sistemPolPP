@@ -23,7 +23,8 @@ class KegiatanController extends Controller {
                                   ->join('s_bidang', 's_kegiatan.id_bidang', '=', 's_bidang.id')
                                   ->select('s_kegiatan.id', 's_bidang.nama','s_kegiatan.id_bidang', 's_kegiatan.description', 's_kegiatan.anggaran', 's_kegiatan.sasaran')
                                   ->get();
-    $data['bidang']       = Bidang::all()->where("tahun",date('Y'));
+    $data['bidang']       = Bidang::all();
+    $data['role']         = Session::get("role","default");
 
     //digunakan untuk membatasi master agar tidak masuk ke dalam fitur
     if(Session::get("role","default")=="master")

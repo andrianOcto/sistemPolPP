@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Session;
 //Model yang digunakan
 use App\Bidang;
+use App\Role;
 
 class BidangController extends Controller {
 
   public function getIndex() {
 
   	$data['page_title']    = "Master Setting Bidang";
-    $data['bidang']        = Bidang::all()->where("tahun",date('Y'));
+    $data['bidang']        = Bidang::all();
 
     if(Session::get("role","default")=="master")
               return redirect('/');
@@ -32,6 +33,11 @@ class BidangController extends Controller {
       $bidang->nama         = $request->input("nama");
       $bidang->nama_lengkap = $request->input("lengkap");
       $bidang->save();
+
+      $role                 = new Role;
+      $role->id_bidang      = $request->input("kode");
+      $role->description    = $request->input("nama");
+      $role->save();
       return redirect("/bidang")->with('successMessage', 'Data berhasil ditambahkan!');;
     }
 
@@ -48,6 +54,11 @@ class BidangController extends Controller {
     $bidang->nama         = $request->input("nama");
     $bidang->nama_lengkap = $request->input("lengkap");
     $bidang->save();
+
+    $role                 = Role::where('id_bidang', $request->input("kode"))->firstOrFail();
+    $role->id_bidang      = $request->input("kode");
+    $role->description    = $request->input("nama");
+    $role->save();
     return redirect("/bidang")->with('successMessage', 'Data berhasil diupdate!');;;;
   }
 

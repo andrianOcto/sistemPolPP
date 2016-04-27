@@ -127,7 +127,7 @@
                         <th>Action</th>
                       </tr>
                     </thead>
-                    
+
                     <tfoot>
 
                     </tfoot>
@@ -163,70 +163,86 @@
                     <div class="row">
                       <div class="col-md-4 form-group">
                         <label for="exampleInputEmail1">Januari</label>
-                        <input type="text" class="form-control" name="jan" id="jan" placeholder="0" required>
+                        <input type="text" class="form-control" name="jan" id="jan" onkeyup="sumTotal()" placeholder="0" required>
                       </div>
                       <div class="col-md-4">
                         <label for="exampleInputEmail1">Februari</label>
-                        <input type="text" class="form-control" name="feb" id="feb" placeholder="0" required>
+                        <input type="text" class="form-control" name="feb" id="feb" onkeyup="sumTotal()" placeholder="0" required>
                       </div>
                       <div class="col-md-4">
                         <label for="exampleInputEmail1">Maret</label>
-                        <input type="text" class="form-control" name="mar" id="mar" placeholder="0" required>
+                        <input type="text" class="form-control" name="mar" id="mar" onkeyup="sumTotal()" placeholder="0" required>
                       </div>
                     </div>
 
                     <div class="row">
                       <div class="col-md-4 form-group">
                         <label for="exampleInputEmail1">April</label>
-                        <input type="text" class="form-control" name="apr" id="apr" placeholder="0" required>
+                        <input type="text" class="form-control" name="apr" id="apr" onkeyup="sumTotal()" placeholder="0" required>
                       </div>
                       <div class="col-md-4">
                         <label for="exampleInputEmail1">Mei</label>
-                        <input type="text" class="form-control" name="mei" id="mei" placeholder="0" required>
+                        <input type="text" class="form-control" name="mei" id="mei" onkeyup="sumTotal()" placeholder="0" required>
                       </div>
                       <div class="col-md-4">
                         <label for="exampleInputEmail1">Juni</label>
-                        <input type="text" class="form-control" name="jun" id="jun" placeholder="0" required>
+                        <input type="text" class="form-control" name="jun" id="jun" onkeyup="sumTotal()" placeholder="0" required>
                       </div>
                     </div>
 
                     <div class="row">
                       <div class="col-md-4 form-group">
                         <label for="exampleInputEmail1">Juli</label>
-                        <input type="text" class="form-control" name="jul" id="jul" placeholder="0" required>
+                        <input type="text" class="form-control" name="jul" id="jul" onkeyup="sumTotal()" placeholder="0" required>
                       </div>
                       <div class="col-md-4">
                         <label for="exampleInputEmail1">Agustus</label>
-                        <input type="text" class="form-control" name="agu" id="agu" placeholder="0" required>
+                        <input type="text" class="form-control" name="agu" id="agu" onkeyup="sumTotal()" placeholder="0" required>
                       </div>
                       <div class="col-md-4">
                         <label for="exampleInputEmail1">September</label>
-                        <input type="text" class="form-control" name="sep" id="sep" placeholder="0" required>
+                        <input type="text" class="form-control" name="sep" id="sep" onkeyup="sumTotal()" placeholder="0" required>
                       </div>
-                    </div>             
+                    </div>
 
 
                     <div class="row">
                       <div class="col-md-4 form-group">
                         <label for="exampleInputEmail1">Oktober</label>
-                        <input type="text" class="form-control" name="okt" id="okt" placeholder="0" required>
+                        <input type="text" class="form-control" name="okt" id="okt" onkeyup="sumTotal()" placeholder="0" required>
                       </div>
                       <div class="col-md-4">
                         <label for="exampleInputEmail1">November</label>
-                        <input type="text" class="form-control" name="nov" id="nov" placeholder="0" required>
+                        <input type="text" class="form-control" name="nov" id="nov" onkeyup="sumTotal()" placeholder="0" required>
                       </div>
                       <div class="col-md-4">
                         <label for="exampleInputEmail1">Desember</label>
-                        <input type="text" class="form-control" name="des" id="des" placeholder="0" required>
+                        <input type="text" class="form-control" name="des" id="des" onkeyup="sumTotal()" placeholder="0" required>
                       </div>
-                    </div>     
+                    </div>
+
+                    <hr class="divider" style="border-top-color:#908D8D;border-top-width:2px">
+
+
+                    <div class="row">
+                      <div class="col-md-4 form-group">
+                        <label for="exampleInputEmail1">Total Anggaran</label>
+                        <input type="text" class="form-control" name="totalAnggaran" id="totalAnggaran" placeholder="0" readOnly required>
+                      </div>
+                      <div class="col-md-4">
+                        <label for="exampleInputEmail1">Sasaran Anggaran</label>
+                        <input type="text" class="form-control" name="anggaranSasaran" id="anggaranSasaran" placeholder="{{}}" readOnly required>
+                      </div>
+
+                    </div>
+                                        <div class="alert alert-danger" id="alertTotal" role="alert">Total anggaran dan Sasaran Anggaran tidak sama</div>
                   </div><!-- /.box-body -->
                   <?php echo csrf_field(); ?>
-                
+
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-warning">Update</button>
+              <button type="submit" id="updateButton" name="updateButton" disabled class="btn btn-warning">Update</button>
             </div>
             </form>
           </div>
@@ -259,7 +275,7 @@
     <script src="/bower_components/admin-lte/dist/js/demo.js"></script>
     <!-- page script -->
     <script>
-    
+
     //data that will be used to reload datatables
     var data = [];
     var table;
@@ -286,8 +302,40 @@
         table = $('#example2').DataTable();
         table2 = $('#tableProgram').DataTable();
       });
-      
-    function updateModal(idKegiatan,namaKegiatan,jan,feb,mar,apr,mei,jun,jul,agu,sep,okt,nov,des)
+
+    function sumTotal(){
+      var jan = parseInt(document.getElementById("jan").value);
+      var feb = parseInt(document.getElementById("feb").value);
+      var mar = parseInt(document.getElementById("mar").value);
+      var apr = parseInt(document.getElementById("apr").value);
+      var mei = parseInt(document.getElementById("mei").value);
+      var jun = parseInt(document.getElementById("jun").value);
+      var jul = parseInt(document.getElementById("jul").value);
+      var agu = parseInt(document.getElementById("agu").value);
+      var sep = parseInt(document.getElementById("sep").value);
+      var okt = parseInt(document.getElementById("okt").value);
+      var nov = parseInt(document.getElementById("nov").value);
+      var des = parseInt(document.getElementById("des").value);
+
+      var total = jan + feb + mar + apr + mei + jun + jul + agu + sep + okt + nov + des;
+
+      document.getElementById("totalAnggaran").value = total;
+
+      var sasaran = document.getElementById("anggaranSasaran").value;
+
+      if(sasaran != total)
+      {
+        document.getElementById("updateButton").disabled=true;
+        document.getElementById("alertTotal").style.visibility="visible";
+      }
+      else
+      {
+        document.getElementById("updateButton").disabled=false;
+        document.getElementById("alertTotal").style.visibility="hidden";
+      }
+
+    }
+    function updateModal(idKegiatan,namaKegiatan,jan,feb,mar,apr,mei,jun,jul,agu,sep,okt,nov,des,anggaran)
     {
       document.getElementById("kodeKegiatan").value = idKegiatan;
       document.getElementById("namaKegiatan").value = namaKegiatan;
@@ -304,32 +352,33 @@
       document.getElementById("okt").value = okt;
       document.getElementById("nov").value = nov;
       document.getElementById("des").value = des;
-       
+      document.getElementById("anggaranSasaran").value=anggaran;
+
     }
 
     //initialize data
     function refreshData(id)
     {
-      
+
       $.ajax({
         url: "/program/load/"+id,
         success: function(response) {
-         
-          
+
+
           //if single data
           if(typeof(response.length) === "undefined")
           {
             table2.clear();
             //create data from response
-              
+
               var arrTemp = [];
               var objName;
-              var temp = "<a class='btn btn-primary' href='#modal-updateProgram' data-toggle='modal' data-target='#modal-updateProgram' onClick='updateModal(\""+response[i]['id']+"\",\""+response[i]['description']+"\",\""+response[i]['jan']+"\",\""+response[i]['feb']+"\",\""+response[i]['mar']+"\",\""+response[i]['apr']+"\",\""+response[i]['mei']+"\",\""+response[i]['jun']+"\",\""+response[i]['jul']+"\",\""+response[i]['agu']+"\",\""+response[i]['sep']+"\",\""+response[i]['okt']+"\",\""+response[i]['nov']+"\",\""+response[i]['des']+"\")'><i class='fa fa-edit fa-lg'></i> Entry RKO</a>";
+              var temp = "<a class='btn btn-primary' href='#modal-updateProgram' data-toggle='modal' data-target='#modal-updateProgram' onClick='updateModal(\""+response[i]['id']+"\",\""+response[i]['description']+"\",\""+response[i]['jan']+"\",\""+response[i]['feb']+"\",\""+response[i]['mar']+"\",\""+response[i]['apr']+"\",\""+response[i]['mei']+"\",\""+response[i]['jun']+"\",\""+response[i]['jul']+"\",\""+response[i]['agu']+"\",\""+response[i]['sep']+"\",\""+response[i]['okt']+"\",\""+response[i]['nov']+"\",\""+response[i]['des']+"\",\""+response[i]['anggaran']+"\"); sumTotal();'><i class='fa fa-edit fa-lg'></i> Entry RKO</a>";
               arrTemp.push(response["id"]);
               arrTemp.push(response["description"]);
               arrTemp.push(temp);
               table2.row.add(arrTemp);
-            
+
           }
           //if multiple data
           else if(typeof(response.length) === "number")
@@ -340,18 +389,18 @@
                     var arrTemp = [];
                     var objName;
 
-                    var temp = "<a class='btn btn-primary' href='#modal-updateProgram' data-toggle='modal' data-target='#modal-updateProgram' onClick='updateModal(\""+response[i]['id']+"\",\""+response[i]['description']+"\",\""+response[i]['jan']+"\",\""+response[i]['feb']+"\",\""+response[i]['mar']+"\",\""+response[i]['apr']+"\",\""+response[i]['mei']+"\",\""+response[i]['jun']+"\",\""+response[i]['jul']+"\",\""+response[i]['agu']+"\",\""+response[i]['sep']+"\",\""+response[i]['okt']+"\",\""+response[i]['nov']+"\",\""+response[i]['des']+"\")'><i class='fa fa-edit fa-lg'></i> Entry RKO</a>";
-              
+                    var temp = "<a class='btn btn-primary' href='#modal-updateProgram' data-toggle='modal' data-target='#modal-updateProgram' onClick='updateModal(\""+response[i]['id']+"\",\""+response[i]['description']+"\",\""+response[i]['jan']+"\",\""+response[i]['feb']+"\",\""+response[i]['mar']+"\",\""+response[i]['apr']+"\",\""+response[i]['mei']+"\",\""+response[i]['jun']+"\",\""+response[i]['jul']+"\",\""+response[i]['agu']+"\",\""+response[i]['sep']+"\",\""+response[i]['okt']+"\",\""+response[i]['nov']+"\",\""+response[i]['des']+"\",\""+response[i]['anggaran']+"\"); sumTotal();'><i class='fa fa-edit fa-lg'></i> Entry RKO</a>";
+
                     arrTemp.push(response[i]["id"]);
                     arrTemp.push(response[i]["description"]);
                     arrTemp.push(temp);
                     table2.row.add(arrTemp);
                 }
           }
-          
-          
+
+
             table2.draw();
-          
+
             //Do Something
         },
         error: function(xhr) {
@@ -367,12 +416,12 @@
     var arrBidangKode = [];
     var arrBidangNama = [];
 
-    //add nama to array list of bidang 
+    //add nama to array list of bidang
     @foreach($bidang as $item)
       arrBidangKode['{{$item->id}}'] = '{{$item->nama}}';
     @endforeach
 
-    //add nama_lengkap to array list of bidang 
+    //add nama_lengkap to array list of bidang
     @foreach($bidang as $item)
       arrBidangNama['{{$item->id}}'] = '{{$item->nama_lengkap}}';
     @endforeach
@@ -418,13 +467,13 @@
             $('#namaProgram').val(rowData[1]);
         }
     } );
- 
+
     $('#button').click( function () {
         table.row('.success').remove().draw( false );
     } );
 } );
 
-      
+
     </script>
   </body>
 </html>
