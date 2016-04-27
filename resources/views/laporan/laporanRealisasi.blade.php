@@ -82,7 +82,6 @@
                       <th>Rencana Keperluan</th>
                       <th>Rencana Jumlah</th>
                       <th>Rencana Harga</th>
-                      <th>Rencana Keperluan</th>
                       <th>Realisasi Keperluan</th>
                       <th>Realisasi Jumlah</th>
                       <th>Realisasi Harga</th>
